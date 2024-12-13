@@ -1,9 +1,442 @@
-yatc == <b>Yat Compiler</b>
-<br><br>
-Yat Compiler: Yat-sen Compiler
-<br><br>
-Yat Compiler: Yet another tiny Compiler
-<br><br>
-Yat Compiler: Your AI time Compiler
-<br><br>
-yatc == young architect training community/center
+<!doctype html>
+
+
+<!--
+ISCA Conference Template
+Author:       Saugata Ghose (ghose at illinois dot edu)
+Maintainer:   Naveed Ul Mustafa (unknown dot naveedulmustafa at ucf dot edu)
+Last Updated: Oct 13, 2023
+-->
+
+<head>
+    <style>
+        img.diamond {width: 100%;height:auto;}
+        img.platinum {width: 100%;height:auto;}
+        img.gold {width: 75%;height:auto;}
+        img.silver {width: 75%;height:auto;}
+        img.bronze {width: 60%;height:auto;}
+        img.small {width: 60%;height:auto;}
+    </style>
+    
+<script src="https://s3-us-west-2.amazonaws.com/ieeeshutpages/gdpr/settings.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script> -->
+<!-- <script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise(json)
+});
+</script> -->
+
+
+</head>
+
+<html lang="en-us">
+<head>
+  <title>Yat-CC2025: Home</title>
+  <!-- <base href="https://www.iscaconf.org/isca2025/" /> -->
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap & Font Awesome CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" integrity="sha384-PmY9l28YgO4JwMKbTvgaS7XNZJ30MK9FAZjjzXtlqyZCqBY6X6bXIkM++IkyinN+" crossorigin="anonymous">
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.js"></script>
+  <![endif]-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="includes/style.css">
+
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+  <!-- IEEE GDPR Notice -->
+  <!-- <script src="https://s3-us-west-2.amazonaws.com/ieeeshutpages/gdpr/settings.js"></script> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script> -->
+
+  <script src="includes/helpers.js"></script>
+</head>
+  
+<body>
+
+<nav class="navbar navbar-fixed-top">
+  <div class="container" id="navCont">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#iscaNavBar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Yat-CC 2025</a>
+    </div>
+    <div class="collapse navbar-collapse" id="iscaNavBar">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <!-- <li><a href="https://arcsysu.github.io/teach/dcs290/s2024.html"></a>Course Website</li> -->
+            <li><a href="https://arcsysu.github.io/teach/dcs290/s2024.html"><span class="glyphicon glyphicon-cloud-upload"></span> Course Website</a></li>
+            <li><a href="https://arcsysu.github.io/SYsU-lang2"><span class="glyphicon glyphicon-info-sign"></span> Documentation</a></li>
+            <li><a href="https://autograder-docs.howardlau.me/"><span class="glyphicon glyphicon-cog"></span> Evaluation</a></li>
+          </ul>
+        </li>
+        
+        <li class="dropdown">
+            <a href="https://space.bilibili.com/3546650047941291"> Video Tutorials</a>
+        </li>
+
+        
+        <li class="dropdown">
+          <a href="https://github.com/arcsysu/SYsU-lang2">Source Code</a>
+        </li>
+
+        <li class="dropdown">
+
+          <a href="https://easyhpc.net/course/164">Submission</a>
+        </li>
+        
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li class="hidden-xs hidden-sm"><a href="https://twitter.com/ISCAConfOrg"><span class="fa fa-twitter"></span> @ISCAConfOrg</a></li>
+        <li class="hidden-xs hidden-sm"><a href="https://www.iscaconf.org/"><span class="glyphicon glyphicon-globe"></span> iscaconf.org</a></li> -->
+        <!-- <li><a href="."><span class="glyphicon glyphicon-home" ></span><span class="hidden-sm hidden-md hidden-lg"> Home</span></a></li> -->
+        <li><a href="index.html"><span class="glyphicon glyphicon-home" style="font-size:20px;color:#6CACE4;"  ></span><span class="hidden-sm hidden-md hidden-lg"> Home</span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<a class="anchor" name="top"></a>
+
+<div class="jumbotron" >
+  <div class="container " style="background-color: rgb(247, 234, 255);">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="vertical-align">
+          <div class="col-xs-12 text-center short-jumbotron-text ">
+            <h1 id="conferenceShortName">Yat-CC 2025</h1>
+            <img  src="images/yat.png" alt="ISCA 2025 Logo" height="70px" />
+
+            <!-- <h3 id="conferenceName"> LLVM-Based Compiler Practice Teaching Framework 
+            </h3> -->
+            <h3>LLVM-Based Compiler Practice Teaching Framework </h3>
+            <!-- <h2 id="conferenceDates">SYSU-LANG</h2> -->
+            <h2 id="conferenceLocation"></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row container-pad-top">
+    <div class="col-xs-4 col-md-4 text-center">
+        <img  src="images/intro.png" alt="ISCA 2025 Logo" height="350px" />
+        <!-- <p><a class="twitter-timeline" height="375px" width="600px" href="https://twitter.com/ISCAConfOrg" data-widget-id="579313990217699328" style="float: right;" data-chrome="nofooter">Tweets </a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p> -->
+        
+    </div>
+    <div class="col-xs-8 col-md-8">
+        <h2 style="text-align:center;color:#FF3374">Introduction of Yat-CC</h2>
+        <p style="font-size: large;">
+            <br>
+            <b>Yat-CC presents a modern teaching framework for compiler practice based on LLVM</b>
+            , 
+            designed to offer a  developer-friendly experience. The framework provides a fully automated, end-to-end, 
+            and ready-to-use experimental environment, with a modular design that decouples the front-end and middle-end components of the compiler. It integrates unit testing and a dual-mode automated evaluation system (local and online),
+             thereby reducing the learning curve and increasing the rate of successful experiment completion. This approach significantly enhances teaching effectiveness. 
+            <br>
+        </p>
+        <h3 style="text-align:right;"><em>Welcome to your participation!</em></h3>
+        <!--
+        The <b>International Symposium on Computer Architecture</b> (ISCA) is the premier forum for new ideas and experimental results in computer architecture. 
+        The conference seeks particularly forward-looking and novel submissions. In 2024, the 51<sup>st</sup> edition of ISCA will be held in Buenos Aires, Argentina,
+        at the Hilton Buenos Aires during June 29 – July 3, 2024. This is a historic event as ISCA <strong>will be held in Latin America for the first time ever</strong>. 
+        <em>Let’s make history together!</em>
+        -->
+    </div>
+
+    
+
+  </div>
+  
+  <hr />
+  
+
+  
+    <div class="row">
+        
+        <div class="col-xs-12 col-md-7">
+        <h2>Announcements</h2>
+            <div class="newsitem">
+                <div class="title row">
+                <h3 class="col-xs-7 col-md-9">Teaching Paper</h3>
+                        
+                </div>
+                <p>
+                    First Prize, Outstanding Paper at the 2022 China Computer Education Conference. 
+                </p>
+            </div>
+
+            <div class="newsitem">
+                <div class="title row">
+                <h3 class="col-xs-7 col-md-9">System Competition </h3>
+                </div>
+                <p>
+                    First Prize, 2023 Huawei Bisheng Cup Compiler System Design Competition. 
+
+                </p>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-5">
+            <div class="panel panel-danger">
+              
+              <div class="panel-heading"><h4>Important Dates</h4></div>
+              <div class="panel-body">
+                <ul>
+                    
+                  <!-- <li class=""> -->
+                  <!-- <li class="deadline-past">
+                    <b>Full Paper Deadline:</b>
+                    <span class="deadline-date">November 22, 2024 at 11:59 PM <abbr title="Anywhere on Earth (UTC-12)">AoE</abbr></span>
+                  </li> -->
+                  <li class="">
+                    <b>Submission Deadline:</b>
+                    <span class="deadline-date">January 3, 2025 at 11:59 PM <abbr title="Eastern Standard Time (UTC-5)">EST</abbr></span>
+                    <!-- <span class="deadline-date">TBD</span> -->
+                  </li>
+                  <li class="">
+                    <b>Submission Deadline:</b>
+                    <span class="deadline-date">January 3, 2025 at 11:59 PM <abbr title="Eastern Standard Time (UTC-5)">EST</abbr></span>
+                    <!-- <span class="deadline-date">TBD</span> -->
+                  </li>
+                  <li class="">
+                    <b>Submission Deadline:</b>
+                    <span class="deadline-date">January 3, 2025 at 11:59 PM <abbr title="Eastern Standard Time (UTC-5)">EST</abbr></span>
+                    <!-- <span class="deadline-date">TBD</span> -->
+                  </li>
+                  <br><br><br><br>
+      
+                  </li>
+                  
+                </ul>
+                </p>
+              </div>
+            </div>
+              
+          </div>
+
+    </div>
+      
+     
+    <hr/>  
+    
+       
+  
+  <!--<h2>Workshops and Tutorials</h2>-->
+  <!--      <a href="https://rl4cas.github.io" style="color:DodgerBlue;font-size:30px;">Reinforcement Learning for Computer Architecture and Systems Research <br><br></a>-->
+  <!--      <a href=" https://sites.google.com/wisc.edu/5thuarchworkshop/" style="color:DodgerBlue;font-size:30px;">Undergrad Architecture Mentoring (uArch) Workshop.<br><br></a>-->
+  <!--<hr />-->
+
+   <div class="container">
+        <div class="row text-center">
+            <div class="col-xs-12">
+                <h2>Modern Developer-Friendly Experience   </h2>
+                <br/>
+            </div>
+        </div>
+               
+        <!-- <div class="row vertical-center text-center">
+            
+            <div class="col-xs-4 col-md-2">
+                <img src="images/dokcer.png" class="diamond" alt="Reality Labs Research" />
+            </div>
+            <div class="col-xs-1 col-md-1"></div>
+            <div class="col-xs-4 col-md-2">
+           
+                <img src="images/box.png" style="width: 100px;" class="diamond" alt="Reality Labs Research" /><br/>
+      
+            </div>
+            <div class="col-xs-1 col-md-1"></div>
+            <div class="col-xs-4 col-md-2">
+                <img src="images/debug.png" style="width: 100px;"  class="diamond" alt="Reality Labs Research" /><br/>
+            </div>
+            <div class="col-xs-1 col-md-1"></div>
+            <div class="col-xs-4 col-md-2">
+                <img src="images/vs.png" style="width: 100px;"  class="diamond" alt="Reality Labs Research" /><br/>
+            </div>
+        </div> -->
+       
+        <br/>
+        <div class="row text-center">
+            <div class="col-xs-0 col-md-1"></div>
+            <div class="col-xs-5 col-md-5">
+               <img src="images/plug.png"/>
+                <br/><br/><br/>
+                <div class="newsitem">
+                    <div class="title row">
+                    <h3 style="color: black;">Pre-experimentation requires </h3>
+                    <h2 style="color:#e26d6d;">only 6 clicks</h2>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-5" >
+                <img style="width: 400px;" src="images/Task0.gif"/>
+                <br/>
+            </div>
+        </div>
+    </div>
+    
+   <hr />
+   <div class="container">
+    <div class="row text-center">
+        <div class="col-xs-12">
+            <h2>Get Start </h2>
+            <br/>
+        </div>
+    </div>
+   </div>
+   <div class="col-xs-12 col-md-6">
+    
+        <div class="newsitem">
+            <div class="title row">
+            <h3 class="col-xs-7 col-md-6">Course Website</h3>                    
+            </div>
+            <p style="font-size: larger;">
+              You can access to course information and teaching resources of <a href="https://arcsysu.github.io/teach/dcs290/s2024.html">2024</a>、
+              <a href="https://arcsysu.github.io/teach/dcs290/s2023.html">2023</a>、
+              <a href="https://arcsysu.github.io/teach/dcs290/s2022.html">2022</a>、
+              <a href="https://arcsysu.github.io/teach/dcs290/s2021.html">2021</a>.
+            </p>
+        </div>
+        <div class="newsitem">
+            <div class="title row">
+            <h3 class="col-xs-7 col-md-6">Document</h3>
+            </div>
+            <p style="font-size: larger;">
+              <a href="https://arcsysu.github.io/SYsU-lang2">Document</a> that cover the complete process of experimentation and provide a wealth of practical examples.
+            </p>
+        </div>
+        <div class="newsitem">
+          <div class="title row">
+          <h3 class="col-xs-7 col-md-9">Source Code</h3>
+          </div>
+          <p style="font-size: larger;">
+            Detailed <a href="https://github.com/arcsysu/SYsU-lang2">source code</a>  with 282 commits, 245 stars
+          </p>
+      </div>
+      
+    </div>
+    <div class="col-xs-12 col-md-6">
+     
+      <div class="newsitem">
+        <div class="title row">
+        <h3 class="col-xs-7 col-md-9">Evaluation</h3>
+        </div>
+        <p style="font-size: larger;">
+          Real-time evaluation system <a href="https://autograder-docs.howardlau.me/">Autograder</a> that automatically runs cases to provide real-time feedback.
+        </p>
+    </div>
+    <div class="newsitem">
+      <div class="title row">
+      <h3 class="col-xs-7 col-md-9">Video Tutorials</h3>
+      </div>
+      <p style="font-size: larger;">
+        Detailed <a href="https://github.com/arcsysu/SYsU-lang2">source code</a>  with 282 commits, 245 stars.
+      </p>
+  </div>
+  <div class="row text-center">
+    <img src="images/tool.png" style="width: 400px;" />
+  </div>
+  
+    </div>
+  
+    <!-- <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th style="text-align: center;">Name</th>
+            <th style="text-align: center;">Introduction</th>
+            <th style="text-align: center;">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="text-align: left;">Course Website</td>
+            <td style="text-align: left;">You can access to course information and teaching resources </td>
+            <td style="text-align: left;"><a href="https://arcsysu.github.io/teach/dcs290/s2024.html">
+              <strong class="label label-purple">2024</strong>
+            </a></td>
+          </tr>
+        </tbody>
+      </table> -->
+    </div> 
+    </div>
+<hr/>
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-xs-12">
+        <h2>Outlook</h2>
+        <br/>
+        
+      </div>
+    </div>
+    <ul style="font-size: large;font-weight: 200;">
+        <li>The Backend will be extended to support more target hardware platforms, such as ARM/RISC-V and GPUs. 
+        </li>
+        <li>LLM＋compilers will become a key character of the course, particularly in areas like LLVM-expert LLM and LLM Compiler. 
+        </li>
+        <li>The experimental environment will be deployed on the Cloud and packaged as a service for external users.
+        </li>
+    </ul>
+    
+  </div>
+
+  <hr />
+
+
+
+
+    
+  </div>
+
+
+
+
+  <!-- <blockquote class="info">
+    <p>Exam clobbering formulas. You do not need to understand anything in this box.</p>
+  
+    <ol>
+      <li>
+        <p>Compute your z-score on the final exam:</p>
+  
+  <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>final&nbsp;exam&nbsp;z-score</mtext><mo>=</mo><mfrac><mrow><mo stretchy="false">(</mo><mtext>your&nbsp;final&nbsp;exam&nbsp;score&nbsp;–&nbsp;final&nbsp;exam&nbsp;mean</mtext><mo stretchy="false">)</mo></mrow><mtext>final&nbsp;exam&nbsp;standard&nbsp;deviation</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{final exam z-score} = \frac{(\text{your final exam score} \ – \ \text{final exam mean})}{\text{final exam standard deviation}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.6944em;"></span><span class="mord text"><span class="mord">final&nbsp;exam&nbsp;z-score</span></span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span></span><span class="base"><span class="strut" style="height: 2.113em; vertical-align: -0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.427em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord text"><span class="mord">final&nbsp;exam&nbsp;standard&nbsp;deviation</span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord text"><span class="mord">your&nbsp;final&nbsp;exam&nbsp;score</span></span><span class="mspace">&nbsp;</span><span class="mord">–</span><span class="mspace">&nbsp;</span><span class="mord text"><span class="mord">final&nbsp;exam&nbsp;mean</span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.686em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span>
+      </li>
+      <li>
+        <p>Compute the equivalent score on the midterm distribution:</p>
+  
+  <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>scaled&nbsp;midterm&nbsp;score</mtext><mo>=</mo><mo stretchy="false">(</mo><mtext>final&nbsp;exam&nbsp;z-score</mtext><mo>×</mo><mtext>midterm&nbsp;standard&nbsp;deviation</mtext><mo stretchy="false">)</mo><mo>+</mo><mtext>midterm&nbsp;mean</mtext></mrow><annotation encoding="application/x-tex">\text{scaled midterm score} = (\text{final exam z-score} \times \text{midterm standard deviation}) + \text{midterm mean}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.6944em;"></span><span class="mord text"><span class="mord">scaled&nbsp;midterm&nbsp;score</span></span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">final&nbsp;exam&nbsp;z-score</span></span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord text"><span class="mord">midterm&nbsp;standard&nbsp;deviation</span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 0.6944em;"></span><span class="mord text"><span class="mord">midterm&nbsp;mean</span></span></span></span></span></span></span>
+      </li>
+      <li>
+        <p>Your midterm score is:</p>
+  
+  <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mtext>your&nbsp;midterm&nbsp;score</mtext><mo separator="true">,</mo><mtext>scaled&nbsp;midterm&nbsp;score</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\max(\text{your midterm score}, \text{scaled midterm score})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord text"><span class="mord">your&nbsp;midterm&nbsp;score</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.1667em;"></span><span class="mord text"><span class="mord">scaled&nbsp;midterm&nbsp;score</span></span><span class="mclose">)</span></span></span></span></span></span>
+      </li>
+      <li>
+        <p>Repeat Steps 1–3 for both midterms.</p>
+      </li>
+    </ol>
+  </blockquote> -->
+
+</div>
+
+<!-- JS scripts at end of page to reduce load time -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script>
+
+</body>
+</html>
