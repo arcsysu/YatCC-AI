@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>sysu_dcs290</title>
+        <link href="acc/main.css" rel="stylesheet" />
+	<link rel="icon" type="image/x-icon" href="acc/favicon.ico">
+    </head>
+<center>
+	<p><font size="+2" face="Arial, Helvetica, sans-serif" color="#004c00"><b>SYSU-DCS290/292： 编译原理与实验，Spring 2025</b></font>
+	</p>
+</center>
+
+    <body class='container'>
+         <h2 id='section_title'> <span class='highlight'> <font color="#006600"> > Where & When </font></span></h2>
+     <table width="60%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+	  <td width="15%"></td> <td width="30%"><b>Location</b></td> <td width="55%"><b>Time</b></td>
+        </tr>
+
+        <tr>
+	  <td><b>lec</b>:</td> <td>教学大楼 B501</td> <td>Tue 14:20 - 16:00 (wk1-9) <br>Thu 14:20 - 16:00 (wk1-17)</td>
+        </tr>
+	     
+        <tr>
+	  <td><b>lab</b>:</td> <td>实验中心 B201</td> <td>Thu 16:30 - 18:10 (wk1-17)
+	  </td>
+        </tr>
+     </table>
+
+	 <h2 id='section_title'> <span class='highlight'><font color="#006600"> > Teaching Staff</font></span></h2>
+      <table width="60%" border="0" cellspacing="0" cellpadding="0">
+        <tr bgcolor="#C8C4B3">
+	  <td width="20%"></td> <td width="16%"></td> <td width="16%"></td> <td width="16%"></td> <td width="16%"></td> <td width="16%"></td>
+        </tr>
+	
+	<tr>
+	  <td><b>Instructor:</b></td> <td><a class="link-body" href="">郑馥丹</a></td> <td></td> <td></td> <td></td> <td></td>
+        </tr>
+	<!-- <tr>
+	  <td><b>Co-Instr.:</b></td> <td><a class="link-body" href="https://github.com/LuoWeiLinWillam">罗炜麟</a></td> <td></td> <td></td> <td></td> <td></td>
+        </tr> -->
+
+        <tr>
+	  <td><b>TA</b>:</td>
+		<td><a class="link-body" href="https://yhgu2000.github.io/">顾宇浩</a></td>
+		<td>郑腾扬</td>
+		<td><a class="link-body" href="https://zwshan.github.io/">单招文</a></td>
+		<td>潘文轩</td>
+		<td><a class="link-body" href="https://hhthebest.github.io/">黄瀚</a></td>
+        </tr>
+
+        <tr>
+	  <td></td> 
+		<td>许宏鑫</td>
+		<td>何静仪</a></td>
+		<td>吴露</td> <td>孙高锦</td>
+		<td><a class="link-body" href="https://chen-hq.site/aboutme/">陈淏泉</a></td>
+        </tr>
+
+        <!-- <tr>
+	  <td></td> <td>孙高锦</td> <td><a class="link-body" href="https://chen-hq.site/aboutme/">陈淏泉</a></td>
+		<td><a class="link-body" href="https://ouyangyipeng.github.io/">欧阳易芃</a></td>
+		<td>潘胤臻</td>
+        </tr> -->
+
+	<!-- <tr>
+	  <td></td> <td> and more ...</td> <td></td> <td></td> <td></td>
+        </tr> -->
+      </table>
+
+         <h2 id='section_title'> <span class='highlight'><font color="#006600"> > Miscellaneous</font></span></h2>
+	    - <b>QQ Group</b>: <br>
+	    - <b>Lab Projects</b>: <a class="link-other" href="https://github.com/arcsysu/SYsU-lang2">https://github.com/arcsysu/SYsU-lang2</a>
+	    [<a class="link-other" href="https://arcsysu.github.io/SYsU-lang2/#/">docs</a>]
+	    [<a class="link-other" href="https://space.bilibili.com/3546650047941291">videos</a>]
+	    <br>
+	    - <b>HW/Proj Submission</b>: <a class="link-other" href="https://easyhpc.net/course/164">https://easyhpc.net/course/164</a><br>
+	    - <b>Past Semesters</b>: 
+       <a class="link-other" href="https://arcsysu.github.io/teach/dcs290/s2024.html">2024s</a>,
+		 	 <a class="link-other" href="https://arcsysu.github.io/teach/dcs290/s2023.html">2023s</a>,
+		 	 <a class="link-other" href="https://arcsysu.github.io/teach/dcs290/s2022.html">2022s</a>,
+		 	 <a class="link-other" href="https://arcsysu.github.io/teach/dcs290/s2021.html">2021s</a>
+         <p>
+         <h2 id='section_title'> <span class='highlight'><font color="#006600"> > Schedule</font></span></h2>
+         <p>
+
+
+<table width="100%" border="2" cellspacing="0" cellpadding="0">
+ <tr bgcolor="#C8C4B3">
+  <td width="12%"><font face="Arial, Helvetica, sans-serif"><b>Week/Date</b></font>
+  </td>
+  <td width="45%"><font face="Arial, Helvetica, sans-serif"><b>Lecture</b></font>
+  </td>
+  <td width="25%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <b>Lab</b> (<a class="link-other" href="https://github.com/arcsysu/SYsU-lang2">www</a>) </font>
+  </td>
+  <td width="18%" align="center"><font face="Arial, Helvetica, sans-serif">
+     <b>HW/Note</b></font>
+  </td>
+ </tr>
+
+ <tr>
+  <td>wk1: 2/25</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_0.pdf"><img src="acc/PDF_icon.png" height=20 />Overview</a> -->
+  </td>
+  <td align="center">
+    <!-- <a class="link-other" href="https://arcsysu.github.io/SYsU-lang2/#/">SYsU-lang Docs</a> -->
+  </td>
+  <td align="center"></td>
+ </tr>
+ <tr>
+  <td>wk1: 2/27</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_1.pdf"><img src="acc/PDF_icon.png" height=20 />Lexical Analysis: Intro, RegEx</a> -->
+  </td>
+  <td align="center">
+    <!-- <font color="purple"><a class="link-other" href="https://github.com/arcsysu/SYsU-lang2/tree/master/task/0">proj0</a> out</font> -->
+	  <!-- [<a class="link-other" href="https://arcsysu.github.io/SYsU-lang2/#/task0_doc/task0">doc</a>] -->
+	  <!-- [<img src="acc/vid_icon.png" height=20 /><a class="link-other" href="https://www.bilibili.com/video/BV12J4m1j7qF">intro</a>] -->
+  </td>
+  <td align="center"></td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk2: 3/4</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_2.pdf"><img src="acc/PDF_icon.png" height=20 />Lexical Analysis: RegEx, NFA/DFA (1)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+ <tr bgcolor="#E2E2E2">
+  <td>wk2: 3/6</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_3.pdf"><img src="acc/PDF_icon.png" height=20 />Lexical Analysis: NFA/DFA (2)</a> -->
+  </td>
+  <td align="center">
+    <!-- <font color="red"><s>proj0 due</s></font> <br> -->
+	  <!-- <font color="purple"><a class="link-other" href="https://github.com/arcsysu/SYsU-lang2/tree/master/task/1">proj1</a> out</font> -->
+  	<!-- [<a class="link-other" href="https://arcsysu.github.io/SYsU-lang2/#/task1_doc/overview">doc</a>] -->
+	<!-- [<img src="acc/vid_icon.png" height=20 /><a class="link-other" href="https://www.bilibili.com/video/BV17Z42187p4">lexer</a>]  -->
+  </td>
+  <td align="center"></td>
+ </tr>
+
+ <tr>
+  <td>wk3: 3/11</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_4.pdf"><img src="acc/PDF_icon.png" height=20 />Lexical Analysis: NFA/DFA (3)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center">
+  </td>
+ </tr>
+ <tr>
+  <td>wk3: 3/13</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_5.pdf"><img src="acc/PDF_icon.png" height=20 />Syntax Analysis: Parse, CFG</a><img src="acc/quiz_icon.png" height=20 /> -->
+  </td>
+  <td align="center"></td>
+  <td align="center">
+	  <!-- <font color="brown"><img src="acc/PDF_icon.png" height=20 /><a class="link-other" href="slides-25/hw1.pdf">HW1</a></font> -->
+	  <!-- /<img src="acc/PDF_icon.png" height=20 /><a class="link-other" href="slides-25/hw1-sol.pdf">sol</a> -->
+  </td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk4: 3/18</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_6-split.pdf"><img src="acc/PDF_icon.png" height=20 />Syntax Analysis: CFG, Parser</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+ <tr bgcolor="#E2E2E2">
+  <td>wk4: 3/20</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_7-split.pdf"><img src="acc/PDF_icon.png" height=20 />Syntax Analysis: Top-down (1)</a> -->
+  </td>
+  <td align="center">
+        <!-- <font color="#C0C0C0">proj1 due</font><br> -->
+	<!-- <font color="purple"><a class="link-other" href="https://github.com/arcsysu/SYsU-lang2/tree/master/task/2">proj2</a> out</font> -->
+  	<!-- [<a class="link-other" href="https://arcsysu.github.io/SYsU-lang2/#/task2_doc/overview">doc</a>] -->
+	<!-- [<img src="acc/vid_icon.png" height=20 /><a class="link-other" href="https://www.bilibili.com/video/BV15K421i73i">bis</a>/<a class="link-other" href="https://www.bilibili.com/video/BV1C2421P7xY">ant</a>]  -->
+  </td>
+  <td align="center"></td>
+ </tr>
+
+ <tr>
+  <td>wk5: 3/25</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_8-split.pdf"><img src="acc/PDF_icon.png" height=20 />Syntax Analysis: Top-down (2)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+ <tr>
+  <td>wk5: 3/27</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_9-split.pdf"><img src="acc/PDF_icon.png" height=20 />Syntax Analysis: Top-down (3)</a><img src="acc/quiz_icon.png" height=20 /> -->
+  </td>
+  <td align="center">
+    <!-- <font color="red"><s>proj1 due</s></font> -->
+  </td>
+  <td align="center">
+    <!-- <font color="red"><s>HW1 due</s></font>/<a class="link-other" href="slides-25/quiz2.pdf"><img src="acc/PDF_icon.png" height=20 />Q2</a> -->
+  </td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk6: 4/1</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_10.pdf"><img src="acc/PDF_icon.png" height=20 />Syntax Analysis: Bottom-up, LR-parse (1)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+<tr bgcolor="#E2E2E2">
+  <td>wk6: 4/3</td>
+  <td></td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+
+ <tr>
+  <td>wk7: 4/8</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_11-split.pdf"><img src="acc/PDF_icon.png" height=20 />Syntax: LR-parse (2)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center">
+	  <!-- <font color="brown"><img src="acc/PDF_icon.png" height=20 /><a class="link-other" href="slides-25/hw2.pdf">HW2</a></font> -->
+	  <!-- /<img src="acc/PDF_icon.png" height=20 /><a class="link-other" href="slides-25/hw2-sol.pdf">sol</a> -->
+  </td>
+ </tr>
+ <tr>
+  <td>wk7: 4/10</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_12-split.pdf"><img src="acc/PDF_icon.png" height=20 />Synatx: LR-parse (3)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk8: 4/15</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_13.pdf"><img src="acc/PDF_icon.png" height=20 />Syntax: LR-parse (4)</a><img src="acc/quiz_icon.png" height=20 /> -->
+  </td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+ <tr bgcolor="#E2E2E2">
+  <td>wk8: 4/17</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_14.pdf"><img src="acc/PDF_icon.png" height=20 />Synatx: LR-parse (5), Sematic: Intro</a> -->
+  </td>
+  <td align="center">
+    <!-- <font color="red"><s>proj2 due</s></font> <br> -->
+    <!-- <font color="purple"><a class="link-other" href="https://github.com/arcsysu/SYsU-lang2/tree/master/task/3">proj3</a> out</font> -->
+	<!-- [<a class="link-other" href="https://arcsysu.github.io/SYsU-lang2/#/task3_doc/overview">doc</a>] -->
+	<!-- [<img src="acc/vid_icon.png" height=20 /><a class="link-other" href="https://www.bilibili.com/video/BV1Wm411B71w/">IRgen</a>] -->
+  </td>
+  <td align="center"></td>
+ </tr>
+
+
+ <tr>
+  <td>wk9: 4/22</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_15.pdf"><img src="acc/PDF_icon.png" height=20 />Semantic Analysis: Intro, SDD/SDT</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center">
+	  <!-- <font color="red"><s>HW2 due</s></font> -->
+  </td>
+ </tr>
+ <tr>
+  <td>wk9: 4/24</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_16-split.pdf"><img src="acc/PDF_icon.png" height=20 />Semantic Analysis: SDD, SDT</a> -->
+  </td>
+  <td align="center"><br>
+  <td align="center">
+	  <!-- <font color="brown"><img src="acc/PDF_icon.png" height=20 /><a class="link-other" href="slides-25/hw3.pdf">HW3</a></font> -->
+	  <!-- /<img src="acc/PDF_icon.png" height=20 /><a class="link-other" href="slides-25/hw3-sol.pdf">sol</a> -->
+  </td>
+ </tr>
+
+<tr>
+  <td>wk9: </td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_17-split.pdf"><img src="acc/PDF_icon.png" height=20 />Semantic Analysis: SDT, Symbol Table</a><img src="acc/quiz_icon.png" height=20 /> -->
+  </td>
+  <td align="center"></td>
+  <td align="center">
+    <!-- <a class="link-other" href="slides-25/quiz4.pdf"><img src="acc/PDF_icon.png" height=20 />Q4</a> -->
+	  <!-- /<img src="acc/PDF_icon.png" height=20 /><a class="link-other" href="slides-25/q4-sol.pdf">sol</a> -->
+  </td>
+ </tr>
+
+ <tr bgcolor="#ECC86E">
+  <td colspan="4"><hr width="100%" /></td>
+ </tr>
+
+<tr bgcolor="#E2E2E2">
+  <td><s>wk10: 5/1</s></td>
+  <td><s>Rescheduled to </s></td>
+  <td align="center"><s></s></td>
+  <td align="center">HOLIDAY</td>
+ </tr>
+
+<tr>
+  <td>wk11: 5/8</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_18.pdf"><img src="acc/PDF_icon.png" height=20 />Intermediate Code: Generation (1)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk12: 5/15</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_19-split.pdf"><img src="acc/PDF_icon.png" height=20 />Intermediate Code: Generation (2)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center">
+    <!-- <font color="red"><s>HW3 due</s></font> -->
+  </td>
+ </tr>
+
+<tr>
+  <td>wk13: 5/22</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_20-split.pdf"><img src="acc/PDF_icon.png" height=20 />IR Gen(3), Code Optimization (1)</a><img src="acc/quiz_icon.png" height=20 /> -->
+  </td>
+  <td align="center">
+    <!-- <font color="red"><s>proj3 due</s></font> <br> -->
+    <!-- <font color="purple"><a class="link-other" href="https://github.com/arcsysu/SYsU-lang2/tree/master/task/4">proj4</a> out</font> -->
+  	<!-- [<a class="link-other" href="https://arcsysu.github.io/SYsU-lang2/#/task4_doc/overview">doc</a>] -->
+	  <!-- [<img src="acc/vid_icon.png" height=20 /><a class="link-other" href="https://www.bilibili.com/video/BV1Ab421q7HU">IRopt</a>] -->
+  </td>
+  <td align="center"></td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk14: 5/29</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_21.pdf"><img src="acc/PDF_icon.png" height=20 />Code Optimization (2)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+
+<tr>
+  <td>wk15: 6/5</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_22.pdf"><img src="acc/PDF_icon.png" height=20 />Target Code Generation (1)</a><img src="acc/quiz_icon.png" height=20 /> -->
+  </td>
+  <td align="center"></td>
+  <td align="center">
+	  <!-- <font color="brown"><img src="acc/PDF_icon.png" height=20 /><a class="link-other" href="slides-25/hw4.pdf">HW4</a></font> -->
+	  <!-- /<img src="acc/PDF_icon.png" height=20 /><a class="link-other" href="slides-25/hw4-sol.pdf">sol</a> -->
+  </td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk16: 6/12</td>
+  <td></td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+
+ <tr>
+  <td>wk17: 6/19</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_23.pdf"><img src="acc/PDF_icon.png" height=20 />Target Code Generation (2)</a> -->
+    <!-- <a class="link-other" href="slides-25/yatcc.pdf"><img src="acc/PDF_icon.png" height=20 />Yat-CC</a> -->
+  </td>
+  <td align="center">
+	  <!-- <font color="red"><s>proj4 due</s></font> -->
+  </td>
+  <td align="center">
+    <!-- <font color="red"><s>HW4 due</s></font> -->
+  </td>
+ </tr>
+
+ <tr bgcolor="#E2E2E2">
+  <td>wk18: 6/26</td>
+  <td>
+    <!-- <a class="link-other" href="slides-25/lec_24.pdf"><img src="acc/PDF_icon.png" height=20 />Target Code Generation (3)</a> -->
+  </td>
+  <td align="center"></td>
+  <td align="center"></td>
+ </tr>
+
+ <tr bgcolor="#ECC86E">
+  <td>wk19: </td>
+  <td>NO CLASS</td>
+  <td align="center"> FINAL EXAM </td>
+  <td align="center"></td>
+ </tr>
+
+</table>
+</body>
+</html>
