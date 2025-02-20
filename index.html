@@ -17,7 +17,7 @@ Last Updated: Oct 13, 2023
         img.bronze {width: 60%;height:auto;}
         img.small {width: 60%;height:auto;}
     </style>
-    
+
 <script src="https://s3-us-west-2.amazonaws.com/ieeeshutpages/gdpr/settings.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script> -->
@@ -57,7 +57,7 @@ window.cookieconsent.initialise(json)
 
   <script src="includes/helpers.js"></script>
 </head>
-  
+
 <body>
 
 <nav class="navbar navbar-fixed-top">
@@ -73,18 +73,22 @@ window.cookieconsent.initialise(json)
     <div class="collapse navbar-collapse" id="iscaNavBar">
       <ul class="nav navbar-nav">
         <li class="dropdown">
+          <a href="#" target="_blank">Use It</a>
+        </li>
+
+        <li class="dropdown">
           <a href="https://github.com/arcsysu/YatCC" target="_blank">Source Code</a>
         </li>
-          
+
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Resources<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manual<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="https://arcsysu.github.io/YatCC" target="_blank"><span class="glyphicon glyphicon-book"></span> Documentation</a></li>
-            <li><a href="https://autograder-docs.howardlau.me/" target="_blank"><span class="glyphicon glyphicon-cog"></span> Evaluation</a></li>
+            <!--<li><a href="https://autograder-docs.howardlau.me/" target="_blank"><span class="glyphicon glyphicon-cog"></span> Evaluation</a></li>-->
             <li><a href="https://space.bilibili.com/3546650047941291" target="_blank"><span class="glyphicon glyphicon-film"></span> Videoclip</a></li>
           </ul>
         </li>
-        
+
         <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">People<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -92,7 +96,7 @@ window.cookieconsent.initialise(json)
             <li><a href="#"><span class="glyphicon glyphicon-star-empty"></span> Contributors</a></li>
           </ul>
         </li>
-          
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series<span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -103,8 +107,8 @@ window.cookieconsent.initialise(json)
             <li><a href="https://arcsysu.github.io/teach/dcs290/s2021.html" target="_blank"><span class="glyphicon glyphicon-education"></span> 2021</a></li>
           </ul>
         </li>
-        
-        
+
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- <li class="hidden-xs hidden-sm"><a href="https://twitter.com/ISCAConfOrg"><span class="fa fa-twitter"></span> @ISCAConfOrg</a></li>
@@ -127,7 +131,7 @@ window.cookieconsent.initialise(json)
             <h1 id="conferenceShortName">Yat Compiler</h1>
             <img  src="images/yat.png" alt="ISCA 2025 Logo" height="70px" />
 
-            <!-- <h3 id="conferenceName"> LLVM-Based Compiler Practice Teaching Framework 
+            <!-- <h3 id="conferenceName"> LLVM-Based Compiler Practice Teaching Framework
             </h3> -->
             <h3><b>Y</b>our <b>A</b>I <b>T</b>ime <b>C</b>ool <b>C</b>ompiler </h3>
             <h3><b>Y</b>oung <b>A</b>rchitect <b>T</b>raining, <b>C</b>oaching and <b>C</b>ultivating </h3>
@@ -146,53 +150,59 @@ window.cookieconsent.initialise(json)
         <img  src="images/intro.png" alt="ISCA 2025 Logo" height="350px" />
         <!-- <p><a class="twitter-timeline" height="375px" width="600px" href="https://twitter.com/ISCAConfOrg" data-widget-id="579313990217699328" style="float: right;" data-chrome="nofooter">Tweets </a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p> -->
-        
+
     </div>
     <div class="col-xs-12 col-md-8">
-        <h2 style="text-align:center;color:#FF3374">About Yat-CC</h2>
+        <h2 style="text-align:center;color:#FF3374">About YatCC</h2>
         <p style="font-size: large;">
             <br>
-            <b>Yat-CC presents a modern experimental framework on basis of the open-source LLVM</b> 
+            <b>YatCC presents a modern experimental framework on basis of the open-source LLVM</b>
             for compiler construction training and practices, specifically designed to deliver a seamless and
             developer-friendly experience. This framework features a fully automated, end-to-end
             operating environment that is ready for immediate use. Its modular design effectively
             decomposes the compiler's front-end and middle-end into multiple phases,
             thus enabling greater flexibility and scalability.
-            Also, Yat-CC incorporates unit testing and a dual-mode automated evaluation system, 
+            Also, YatCC incorporates unit testing and a dual-mode automated evaluation system,
             supporting both local and online uses.
-            Yat-CC is being actively utilized and refined in Yat-sen Compilation Course at Sun Yat-sen University.
-            <!--These features help lower the learning curve 
+            YatCC is being actively utilized and refined in Yat-sen Compilation Course at Sun Yat-sen University.
+            <!--These features help lower the learning curve
             while improving the success rate of experiments. By streamlining processes and enhancing
             accessibility, this framework significantly improves practicing efficiency and effectiveness.-->
             <br>
         </p>
         <h3 style="text-align:right;"><em>Welcome to join us!</em></h3>
         <!--
-        The <b>International Symposium on Computer Architecture</b> (ISCA) is the premier forum for new ideas and experimental results in computer architecture. 
+        The <b>International Symposium on Computer Architecture</b> (ISCA) is the premier forum for new ideas and experimental results in computer architecture.
         The conference seeks particularly forward-looking and novel submissions. In 2024, the 51<sup>st</sup> edition of ISCA will be held in Buenos Aires, Argentina,
-        at the Hilton Buenos Aires during June 29 – July 3, 2024. This is a historic event as ISCA <strong>will be held in Latin America for the first time ever</strong>. 
+        at the Hilton Buenos Aires during June 29 – July 3, 2024. This is a historic event as ISCA <strong>will be held in Latin America for the first time ever</strong>.
         <em>Let’s make history together!</em>
         -->
     </div>
 
-    
+
 
   </div>
-  
-  <hr />
-  
 
-  
+  <hr />
+
+
+
     <div class="row">
-        
+
         <div class="col-xs-12 col-md-7">
         <h2>News</h2>
             <div class="newsitem">
+              <p>
+                [2025.2] [<font color="red"><b>Release</b></font>] New Version Featuring Web and DeepSeek Integration Now Available for Use.
+              </p>
+           </div>
+
+            <div class="newsitem">
                 <!-- <div class="title row">
-                <h3 class="col-xs-7 col-md-9">Award</h3>      
+                <h3 class="col-xs-7 col-md-9">Award</h3>
                 </div> -->
                 <p>
-                    [2024.7] [<b>Award</b>] First Prize, Best Teaching Case at the 2024 China Computer Education Conference (CCEC). 
+                    [2024.7] [<b>Award</b>] First Prize, Best Teaching Case at the 2024 China Computer Education Conference (CCEC).
                 </p>
             </div>
 
@@ -201,7 +211,7 @@ window.cookieconsent.initialise(json)
                 <h3 class="col-xs-7 col-md-9">Prize </h3>
                 </div> -->
                 <p>
-                    [2023.8] [<b>Prize</b>] First Prize, 2023 Huawei Bisheng Cup Compiler System Design Competition (CSC). 
+                    [2023.8] [<b>Prize</b>] First Prize, 2023 Huawei Bisheng Cup Compiler System Design Competition (CSC).
                 </p>
             </div>
             <div class="newsitem">
@@ -209,36 +219,36 @@ window.cookieconsent.initialise(json)
                 <h3 class="col-xs-7 col-md-9">Paper </h3>
                 </div> -->
                 <p>
-                    [2022.7] [<b>Paper</b>] "SYsU-lang: Construct Practical Compilation View based on Clang/LLVM" (First Prize of CCEC2022). 
+                    [2022.7] [<b>Paper</b>] "SYsU-lang: Construct Compilation View based on Clang/LLVM" (First Prize of CCEC2022).
                 </p>
             </div>
-            
+
         </div>
         <div class="col-xs-12 col-md-5">
             <div class="panel panel-danger">
-              
+
               <div class="panel-heading"><h4>Highlights</h4></div>
               <div class="panel-body">
                 <ul>
-                    
+
                   <!-- <li class=""> -->
                   <!-- <li class="deadline-past">
                     <b>Full Paper Deadline:</b>
                     <span class="deadline-date">November 22, 2024 at 11:59 PM <abbr title="Anywhere on Earth (UTC-12)">AoE</abbr></span>
                   </li> -->
                   <li class="">
-                    <b>From University Lab:</b>
-                    <span class="deadline-date">Yat-sen C Compiler at Sun Yat-sen U.</span>
+                    <b>From University:</b>
+                    <span class="deadline-date"><font color="green"><b>Yat</b></font> <font color="blue"><b>C</b></font>ompilation <font color="blue"><b>C</b></font>ourse.</span>
                     <!-- <span class="deadline-date">TBD</span> -->
                   </li>
                   <li class="">
                     <b>For Practical Training:</b>
-                    <span class="deadline-date">Yet Another Tiny C Compiler</span>
+                    <span class="deadline-date"><font color="green"><b>Y</b></font>et <font color="green"><b>A</b></font>nother <font color="green"><b>T</b></font>iny <font color="blue"><b>C</b></font> <font color="blue"><b>C</b></font>ompiler</span>
                     <!-- <span class="deadline-date">TBD</span> -->
                   </li>
                   <li class="">
                     <b>Follow Technical Trend:</b>
-                    <span class="deadline-date">Your AI Time Cool Compiler</span>
+                    <span class="deadline-date"><font color="green"><b>Y</b></font>our <font color="green"><b>A</b></font>I <font color="green"><b>T</b></font>ime <font color="blue"><b>C</b></font>ool <font color="blue"><b>C</b></font>ompiler</span>
                     <!-- <span class="deadline-date">TBD</span> -->
                   </li>
                   <li class="">
@@ -257,21 +267,21 @@ window.cookieconsent.initialise(json)
                   </li>
                   <!--<br>-->
                   </li>
-                  
+
                 </ul>
                 </p>
               </div>
             </div>
-              
+
           </div>
 
     </div>
-      
-     
-    <hr/>  
-    
-       
-  
+
+
+    <hr/>
+
+
+
   <!--<h2>Workshops and Tutorials</h2>-->
   <!--      <a href="https://rl4cas.github.io" style="color:DodgerBlue;font-size:30px;">Reinforcement Learning for Computer Architecture and Systems Research <br><br></a>-->
   <!--      <a href=" https://sites.google.com/wisc.edu/5thuarchworkshop/" style="color:DodgerBlue;font-size:30px;">Undergrad Architecture Mentoring (uArch) Workshop.<br><br></a>-->
@@ -280,7 +290,7 @@ window.cookieconsent.initialise(json)
    <div class="container">
         <div class="row text-center">
             <div class="col-xs-12">
-                <h2>Developer-friendly and Easy Hands-on   </h2>
+                <h2>User-friendly, Easy Hands-on and LLM Inside </h2>
                 <br/>
             </div>
         </div>
@@ -292,19 +302,18 @@ window.cookieconsent.initialise(json)
                 <br/><br/><br/>
                 <div class="newsitem">
                     <div class="title row">
-                    <h3 style="color: black;">Environment setup requires </h3>
-                    <h2 style="color:#e26d6d;">only 6 clicks</h2>
-                        
+                    <h3 style="color: black;">Ready to use upon opening the browser</h3>
+                    <h2 style="color:#e26d6d;">NO environment setup</h2>
                     </div>
                 </div>
             </div>
             <div class="col-xs-12 col-md-5 text-center" >
-                <img style="width: 400px;" src="images/Task0.gif"/>
+                <img style="width: 700px;" src="images/Task0.gif"/>
                 <br/>
             </div>
         </div>
     </div>
-    
+
    <hr />
    <div class="container">
     <div class="row text-center">
@@ -315,10 +324,10 @@ window.cookieconsent.initialise(json)
     </div>
    </div>
    <div class="col-xs-12 col-md-6">
-    
+
         <div class="newsitem">
             <div class="title row">
-            <h3 class="col-xs-7 col-md-6">Course Archive</h3>                    
+            <h3 class="col-xs-7 col-md-6">Course Archive</h3>
             </div>
             <p style="font-size: larger;">
               Collection of past course information and teaching resources of <a href="teach/s2025.html" target="_blank">2025</a>,
@@ -342,13 +351,13 @@ window.cookieconsent.initialise(json)
           <h3 class="col-xs-7 col-md-9">Source Code</h3>
           </div>
           <p style="font-size: larger;">
-            Detailed <a href="https://github.com/arcsysu/YatCC" target="_blank">source code</a> framework with 282 commits, 245 stars.
+            Detailed <a href="https://github.com/arcsysu/YatCC" target="_blank">source code</a> framework with 300+ commits, 200+ stars.
           </p>
       </div>
-      
+
     </div>
     <div class="col-xs-12 col-md-6">
-     
+
       <div class="newsitem">
         <div class="title row">
         <h3 class="col-xs-7 col-md-9">Auto Grader</h3>
@@ -367,14 +376,14 @@ window.cookieconsent.initialise(json)
   </div>
   <div class="row text-center">
     <a class="col-xs-3 col-md-3" href="https://space.bilibili.com/3546650047941291"><img src="images/Bilibili.svg" style="width: 100px;margin-top: 20px;" /></a>
-    
+
     <a class="col-xs-3 col-md-3" href="https://github.com/arcsysu/YatCC"><img src="images/GitHub.svg" style="width: 80px;"/></a>
     <a class="col-xs-3 col-md-3" href="https://arcsysu.github.io/YatCC"><img src="images/doc.svg" style="width: 80px; margin-top: 10px;"/></a>
     <a class="col-xs-3 col-md-3" href="https://autograder-docs.howardlau.me/"><img src="images/grader.png" style="width: 400px; margin-top: 30px;"/></a>
   </div>
-  
+
     </div>
-  
+
     <!-- <div class="table-wrapper">
       <table>
         <thead>
@@ -394,25 +403,25 @@ window.cookieconsent.initialise(json)
           </tr>
         </tbody>
       </table> -->
-    </div> 
     </div>
-  
+    </div>
+
     <div class="container">
       <hr/>
     <div class="row text-center">
       <div class="col-xs-12">
         <h2>Stay Tuned</h2>
         <br/>
-        
+
       </div>
     </div>
     <ul style="font-size: large;font-weight: 200;">
-        <li><b>More Intelligent</b>: LLMs will be incorporated, particularly on LLVM-expert LLM and LLM Compiler. 
+        <li><b>More Intelligent</b>: More cases of LLM-based LLVM pass and assembly code generation will be added. <!--LLMs will be incorporated, particularly on LLVM-expert LLM and LLM Compiler.-->
         </li>
-        <li><b>More Prevalent</b>: Various processor architectures are to be supported, including ARM, RISC-V and GPU. 
+        <li><b>More Prevalent</b>: Various processor architectures are to be supported, including ARM, RISC-V and GPU.
         </li>
-        <li><b>More Convenient</b>: The experiments will be deployed on Supercomputer/Cloud and packaged as service for users.
-        </li>
+        <!--<li><s><b>More Convenient</b>: The experiments will be deployed on Supercomputer/Cloud and packaged as service for users.</s>
+        </li>-->
     </ul>
     <hr />
     <footer>
@@ -425,21 +434,21 @@ window.cookieconsent.initialise(json)
   </div>
   <!-- <blockquote class="info">
     <p>Exam clobbering formulas. You do not need to understand anything in this box.</p>
-  
+
     <ol>
       <li>
         <p>Compute your z-score on the final exam:</p>
-  
+
   <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>final&nbsp;exam&nbsp;z-score</mtext><mo>=</mo><mfrac><mrow><mo stretchy="false">(</mo><mtext>your&nbsp;final&nbsp;exam&nbsp;score&nbsp;–&nbsp;final&nbsp;exam&nbsp;mean</mtext><mo stretchy="false">)</mo></mrow><mtext>final&nbsp;exam&nbsp;standard&nbsp;deviation</mtext></mfrac></mrow><annotation encoding="application/x-tex">\text{final exam z-score} = \frac{(\text{your final exam score} \ – \ \text{final exam mean})}{\text{final exam standard deviation}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.6944em;"></span><span class="mord text"><span class="mord">final&nbsp;exam&nbsp;z-score</span></span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span></span><span class="base"><span class="strut" style="height: 2.113em; vertical-align: -0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.427em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mord text"><span class="mord">final&nbsp;exam&nbsp;standard&nbsp;deviation</span></span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mopen">(</span><span class="mord text"><span class="mord">your&nbsp;final&nbsp;exam&nbsp;score</span></span><span class="mspace">&nbsp;</span><span class="mord">–</span><span class="mspace">&nbsp;</span><span class="mord text"><span class="mord">final&nbsp;exam&nbsp;mean</span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.686em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span>
       </li>
       <li>
         <p>Compute the equivalent score on the midterm distribution:</p>
-  
+
   <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>scaled&nbsp;midterm&nbsp;score</mtext><mo>=</mo><mo stretchy="false">(</mo><mtext>final&nbsp;exam&nbsp;z-score</mtext><mo>×</mo><mtext>midterm&nbsp;standard&nbsp;deviation</mtext><mo stretchy="false">)</mo><mo>+</mo><mtext>midterm&nbsp;mean</mtext></mrow><annotation encoding="application/x-tex">\text{scaled midterm score} = (\text{final exam z-score} \times \text{midterm standard deviation}) + \text{midterm mean}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.6944em;"></span><span class="mord text"><span class="mord">scaled&nbsp;midterm&nbsp;score</span></span><span class="mspace" style="margin-right: 0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.2778em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord">final&nbsp;exam&nbsp;z-score</span></span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord text"><span class="mord">midterm&nbsp;standard&nbsp;deviation</span></span><span class="mclose">)</span><span class="mspace" style="margin-right: 0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right: 0.2222em;"></span></span><span class="base"><span class="strut" style="height: 0.6944em;"></span><span class="mord text"><span class="mord">midterm&nbsp;mean</span></span></span></span></span></span></span>
       </li>
       <li>
         <p>Your midterm score is:</p>
-  
+
   <span><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mtext>your&nbsp;midterm&nbsp;score</mtext><mo separator="true">,</mo><mtext>scaled&nbsp;midterm&nbsp;score</mtext><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\max(\text{your midterm score}, \text{scaled midterm score})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord text"><span class="mord">your&nbsp;midterm&nbsp;score</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.1667em;"></span><span class="mord text"><span class="mord">scaled&nbsp;midterm&nbsp;score</span></span><span class="mclose">)</span></span></span></span></span></span>
       </li>
       <li>
@@ -448,7 +457,7 @@ window.cookieconsent.initialise(json)
     </ol>
   </blockquote> -->
   </div>
-  
+
 </div>
 
 <!-- JS scripts at end of page to reduce load time -->
