@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 406.64 171.41">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        stroke: #5464a3;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3, .cls-7 {
+        fill: #5464a3;
+      }
+
+      .cls-3, .cls-5, .cls-6 {
+        stroke-width: 2px;
+      }
+
+      .cls-8 {
+        fill: #658bc7;
+        font-size: 8px;
+        opacity: .69;
+      }
+
+      .cls-8, .cls-7, .cls-9 {
+        font-family: CooperBlack, 'Cooper Black';
+      }
+
+      .cls-10 {
+        stroke-width: 0px;
+      }
+
+      .cls-10, .cls-4, .cls-6 {
+        fill: none;
+      }
+
+      .cls-4 {
+        opacity: .65;
+        stroke: url(#_褪色的天空);
+        stroke-width: 8px;
+      }
+
+      .cls-11 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-7, .cls-9 {
+        font-size: 48px;
+      }
+
+      .cls-5 {
+        fill: url(#_褪色的天空-2);
+        stroke: url(#_褪色的天空-3);
+      }
+
+      .cls-12 {
+        letter-spacing: 0em;
+      }
+
+      .cls-13 {
+        letter-spacing: 0em;
+      }
+
+      .cls-14 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        opacity: .35;
+        stroke: #727171;
+      }
+
+      .cls-9 {
+        fill: #64a73d;
+      }
+
+      .cls-15 {
+        letter-spacing: -.01em;
+      }
+    </style>
+    <linearGradient id="_褪色的天空" data-name="褪色的天空" x1="75.41" y1="73" x2="87.55" y2="73" gradientTransform="translate(-.02 2.15) rotate(.02) scale(1 .96) skewX(.04)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#187fc4"/>
+      <stop offset="1" stop-color="#187fc4" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="_褪色的天空-2" data-name="褪色的天空" x1="83.68" y1="30.35" x2="86.85" y2="30.35" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#_褪色的天空"/>
+    <linearGradient id="_褪色的天空-3" data-name="褪色的天空" x1="82.58" y1="25.88" x2="87.96" y2="25.88" gradientTransform="matrix(1,0,0,1,0,0)" xlink:href="#_褪色的天空"/>
+  </defs>
+  <text class="cls-7" transform="translate(0 89.95)"><tspan x="0" y="0">A</tspan></text>
+  <text class="cls-7" transform="translate(40.9 88.98)"><tspan x="0" y="0">R</tspan></text>
+  <text class="cls-7" transform="translate(98.45 89.11)"><tspan x="0" y="0">S</tspan></text>
+  <text class="cls-7" transform="translate(129.64 89.67)"><tspan x="0" y="0">Y</tspan></text>
+  <text class="cls-7" transform="translate(166.95 88.59)"><tspan x="0" y="0">S</tspan></text>
+  <text class="cls-9" transform="translate(197.58 88.83)"><tspan x="0" y="0">U</tspan></text>
+  <line class="cls-10" x1="152.97" y1="41.34" x2="146.6" y2="41.31"/>
+  <line class="cls-10" x1="87.97" y1="41.04" x2="64.96" y2="40.94"/>
+  <line class="cls-10" x1="70.06" y1="102.97" x2="159.07" y2="103.36"/>
+  <line class="cls-10" x1="154.37" y1="41.2" x2="146.56" y2="41.23"/>
+  <line class="cls-10" x1="87.75" y1="41.45" x2="78.69" y2="41.48"/>
+  <line class="cls-10" x1="72.09" y1="103.75" x2="148.76" y2="103.47"/>
+  <path class="cls-6" d="M92.53,41.18c-1.67,4.34-5.04,14.47-5.17,28.57-.16,17.36,4.71,29.76,6.48,33.86"/>
+  <path class="cls-6" d="M88.32,41.13c-1.63,4.35-4.92,14.48-5.04,28.61-.14,17.39,4.62,29.8,6.35,33.91"/>
+  <path class="cls-6" d="M84.25,41.14c-1.52,4.34-4.6,14.47-4.7,28.59-.11,17.38,4.37,29.8,6,33.91"/>
+  <path class="cls-4" d="M79.82,41.71c1.63,6.23,3.64,16.18,3.73,28.71.11,14.57-2.43,26-4.27,32.57"/>
+  <path class="cls-3" d="M103.33,46.55c-.18.23-.49.28-.86.15-9.29,5.8-15.05,15.99-14.09,27.04.93,10.61,7.81,19.35,17.34,23.68.21.01.39.1.51.26.45.61-.01,2.09-1.05,3.29s-2.24,1.68-2.7,1.07c-.18-.24-.22-.61-.13-1.05l-.27.28c-10.91-5.13-18.71-15.1-19.77-27.14-1.12-12.78,5.68-24.6,16.65-31.41l.54.56c-.2-.62-.2-1.14.02-1.42.45-.57,1.67,0,2.71,1.29,1.04,1.29,1.53,2.81,1.07,3.38Z"/>
+  <polygon class="cls-5" points="85.27 22.52 83.68 38.18 86.85 38.18 85.27 22.52"/>
+  <text class="cls-8" transform="translate(109.56 101.48)"><tspan class="cls-15" x="0" y="0">R</tspan><tspan x="6.09" y="0">e</tspan><tspan class="cls-14" x="10.34" y="0">f</tspan><tspan x="13.78" y="0">ines Co</tspan><tspan class="cls-12" x="42.63" y="0">m</tspan><tspan x="50.32" y="0">puting </tspan><tspan class="cls-2" x="79.61" y="0">S</tspan><tspan class="cls-11" x="84.71" y="0">Y</tspan><tspan class="cls-13" x="90.71" y="0">S</tspan><tspan class="cls-1" x="95.87" y="0">t</tspan><tspan x="99.52" y="0">em Uses</tspan></text>
+</svg>
