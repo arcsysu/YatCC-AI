@@ -1,0 +1,17 @@
+name: Generate ol.html
+
+on:
+  push:
+    branches: [ main ]  # 触发分支（可自定义）
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Generate ol.html with dynamic URL
+        run: |
+          # 生成 ol.html, 并替换 URL 为变量值
+          echo '<meta http-equiv="refresh" content="0; url=${{ vars.YATCC-AI-STU-WEB }}" />' > ol.html
