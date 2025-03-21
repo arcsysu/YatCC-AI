@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+  <title>YatCC-AI: Introduction</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="includes/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="includes/font-awesome.min.css">
+  <link rel="stylesheet" href="includes/style.css">
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="images/yat.png" type="image/x-icon">
+</head>
+
+<body>
+<nav class="navbar navbar-fixed-top">
+    <div class="container" id="navCont">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#iscaNavBar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Yat Compiler</a>
+        </div>
+        <div class="collapse navbar-collapse" id="iscaNavBar">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+            <a href="https://yatcc.github.io/ol.html" target="_blank">&#128640; Get Started!</a>
+            </li>
+
+            <li class="dropdown">
+              <a href="./introduction.html" target="_blank">Introduction</a>
+            </li>
+
+            <li class="dropdown">
+              <a href="./news.html" target="_blank">News</a>
+            </li>
+
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="https://arcsysu.github.io/YatCC" target="_blank"><span class="glyphicon glyphicon-book"></span> Documents</a></li>
+                <!--<li><a href="https://autograder-docs.howardlau.me/" target="_blank"><span class="glyphicon glyphicon-cog"></span> Evaluation</a></li>-->
+                <li><a href="https://space.bilibili.com/3546650047941291" target="_blank"><span class="glyphicon glyphicon-film"></span> Videoclips</a></li>
+            </ul>
+            </li>
+    
+            <li class="dropdown">
+            <a href="https://github.com/arcsysu/YatCC" target="_blank">Source Code</a>
+            </li>
+    
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">People<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="https://xianweiz.github.io/#pple" target="_blank"><span class="glyphicon glyphicon-star"></span> arcSYSu</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-star-empty"></span> Contributors</a></li>
+            </ul>
+            </li>
+    
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Series<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="teach/s2025.html" target="_blank"><span class="glyphicon glyphicon-hand-right"></span> 2025</a></li>
+                <li><a href="https://arcsysu.github.io/teach/dcs290/s2024.html" target="_blank"><span class="glyphicon glyphicon-education"></span> 2024</a></li>
+                <li><a href="https://arcsysu.github.io/teach/dcs290/s2023.html" target="_blank"><span class="glyphicon glyphicon-education"></span> 2023</a></li>
+                <li><a href="https://arcsysu.github.io/teach/dcs290/s2022.html" target="_blank"><span class="glyphicon glyphicon-education"></span> 2022</a></li>
+                <li><a href="https://arcsysu.github.io/teach/dcs290/s2021.html" target="_blank"><span class="glyphicon glyphicon-education"></span> 2021</a></li>
+            </ul>
+            </li>
+            <li class="dropdown">
+            <a href="teach/s2025.html" target="_blank"><span class="glyphicon glyphicon-hand-right"></span> 2025</a>
+            </li>
+    
+    
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <!-- <li class="hidden-xs hidden-sm"><a href="https://twitter.com/ISCAConfOrg"><span class="fa fa-twitter"></span> @ISCAConfOrg</a></li>
+            <li class="hidden-xs hidden-sm"><a href="https://www.iscaconf.org/"><span class="glyphicon glyphicon-globe"></span> iscaconf.org</a></li> -->
+            <!-- <li><a href="."><span class="glyphicon glyphicon-home" ></span><span class="hidden-sm hidden-md hidden-lg"> Home</span></a></li> -->
+            <li><a href="index.html"><span class="glyphicon glyphicon-home" style="font-size:20px;color:#6CACE4;"  ></span><span class="hidden-sm hidden-md hidden-lg"> Home</span></a></li>
+        </ul>
+        </div>
+    </div>
+</nav>
+
+<a class="anchor" name="top"></a>
+
+<!-- <div style="height: 50px;"></div> -->
+<div class="jumbotron" >
+  <div class="container " style="background-color:  #ebdef0;">
+      <div class="row">
+      <div class="col-xs-12">
+          <div class="vertical-align">
+          <div class="col-xs-12 text-center short-jumbotron-text ">
+              <h1 id="conferenceShortName">Yat Compiler</h1>
+              <img  src="images/yat2.webp" alt="yatcc architecture" height="85px" />
+              <h3><font color="#d4efdf"><b>Y</b></font>our <font color="#d4efdf"><b>A</b></font>I <font color="#d4efdf"><b>T</b></font>ime <font color="#aed6f1"><b>C</b></font>ool <font color="#aed6f1"><b>C</b></font>ompiler (YatCC) </h3>
+              <h3><font color="#d4efdf"><b>Yat</b></font> <font color="#aed6f1"><b>C</b></font>ompiler <font color="#aed6f1"><b>C</b></font>onstruction with <font color="#e74c3c"><b>AI</b></font> (YatCC-AI)</h3>
+              <h2 id="conferenceLocation"></h2>
+          </div>
+          </div>
+      </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <h1 style="text-align: center;">DeepSeek+超算：<br>
+    中山大学YatCC-AI平台赋能编译实践课程建设</h1>
+  <h2>一、平台简介</h2>
+  <p>
+    随着以DeepSeek大模型为代表的人工智能（AI）技术和以超算为代表的高性能计算（HPC）技术的飞速发展，计算机领域正经历着前所未有的深度变革。如何将这些前沿技术融入课程教学，培养适应未来智能时代需求的创新型人才，成为教育界亟待解决的关键问题。在此背景下，中山大学计算机学院张献伟副教授联合国家超算广州中心，成功研发并上线了YatCC-AI智能编译教学实践平台（https://yatcc-ai.com）。该平台将HPC与AI技术深度融合，为编译实验课程注入了新的活力，为学生提供智能化、现代化的学习体验，助力培养具备“利用智能、构建智能、提升智能”综合能力的未来技术人才。
+  </p>
+  <p>
+    编译器作为连接程序与硬件的桥梁，是计算机系统软件的核心组成部分，在多领域应用和高效程序执行中扮演着关键角色。编译实践课程，有助于帮助学生建立从编程到硬件执行的完整知识体系，对学生理解计算机运行机制至关重要。作为教育部 “101”计划 12 门核心课程之一，编译实验类课程是将理论知识转化为实践能力的绝佳途径，对提升学生动手能力和创新能力具有重要意义。
+  </p>
+  <p>
+    YatCC-AI平台以工业界广泛使用的Clang/LLVM编译设施为基础，全面优化实践环节，提供一站式、一体化的便捷体验。学生无需复杂配置，只需通过网页即可一键开启云端编译器开发环境，无论是在教室、实验室还是宿舍，都能随时随地开启智能编译之旅。
+  </p>
+  <div style="text-align: center;">
+    <figure>
+      <img src="images/experiment_overview.svg" style="width: 50%;"/>
+      <figcaption style="text-align: center; margin-top: 10px; color: #666;">图1：YatCC-AI实验框架示意图</figcaption>
+    </figure>
+  </div>
+
+  <h2>二、平台特色</h2>
+  <p>
+    YatCC-AI平台配备了全流程AI赋能体系，提供7x24小时编译知识问答服务，秒解技术难题；支持AI辅助代码开发，实时生成开发建议；使能前沿编译优化方案探索，助力科研创新孵化。依托DeepSeek强大赋能，学生可从入门新手快速向领域专家成长，在AI时代掌握“利用智能、构建智能、提升智能”的综合能力，为未来技术发展奠定坚实基础。
+  </p>
+  <h3>1. DeepSeek全程赋能</h3>
+  <p>
+    <b>本地化智能问答：快人一步，畅享大模型服务。</b>YatCC-AI平台采用DeepSeek-R1本地化部署方案，结合vLLM框架技术，轻松应对高并发场景，为学生提供低延迟、高响应的智能问答服务。平台后台配备Grafana+Prometheus监控系统，实时追踪并发量、响应时间等关键指标，确保服务稳定运行，告别公共访问的拥堵烦恼。YatCC-AI为学生打造高效、稳定的AI学习环境，无论是代码解析、答疑解惑，还是编译优化，都能快速获得精准结果，让智能学习与开发无缝衔接。
+  </p>
+  <p>
+    <b>实时化智能开发：代码辅助，编程学习好助手。</b>DeepSeek-R1与VSCode Roo Code插件深度集成，为YatCC-AI平台注入智能代码助手功能。学生在编写代码时，只需将疑问代码片段发送至对话框，AI助手便能自动解析代码文件，结合上下文进行深入分析，并提供精准答疑。这一功能实现了“即时提问、即时解决”的高效互动模式，为学生实验开展提供更智能、更便捷的路径。
+  </p>
+  <p>
+    <b>精准化智能辅助：因材施教，学习实践更高效。</b>YatCC-AI平台引入RAG（Retrieval-Augmented Generation，检索增强生成）知识库搜索技术，为大模型教学注入全新动能。当学生提出实验问题时，YatCC-AI能够动态检索上传的相关资料（如实验指导文档、教材、讲义、实验报告等），并结合大模型的生成能力，为学生提供精准、稳定的实验指导。YatCC-AI具备“可定制，个性服务”、“深检索，可靠解答”、“低成本，高效赋能”、“可追溯，透明可信”等多方面优势，助力学生高效学习。
+  </p>
+  <p>
+    <b>前沿化智能编译：优化探索，开启编译新篇章。</b>YatCC-AI平台创新性地将AI技术与编译实验深度融合，通过将DeepSeek API服务封装到编译实验框架中，实现“LLM for Compiling”的智能化实验模式。在实验中，学生可以直接调用DeepSeek-R1，对中间表示（IR）进行智能分析，获取科学、高效的优化路径建议。传统编译实验中的优化技术往往依赖手动分析和经验积累，而DeepSeek-R1能够自动识别IR中的优化机会，例如循环展开、自动向量化等高级技术。这种创新模式，不仅让学生快速掌握编译优化的核心方法，还为他们提供了探索智能优化新路径的机会，并在实践中验证优化效果，推动编译技术从传统经验驱动向智能化、自动化方向迈进，为未来的研究和应用开辟了更广阔的可能性。
+  </p>
+  <div style="text-align: center;">
+    <figure>
+      <img src="images/LLM_example.gif" style="width: 50%;"/>
+      <figcaption style="text-align: center; margin-top: 10px; color: #666;">图2：DeepSeek辅助代码开发</figcaption>
+    </figure>
+  </div>
+  <h3>2. 超算平台算力支撑</h3>
+  <p>
+    <b>强劲算力，支撑大规模教学</b>：YatCC-AI平台依托国家超级计算广州中心的新一代系统“天河星逸”，充分利用其强大的超算、智算能力和高性能存储资源，为平台提供坚实的算力保障。YatCC-AI目前已稳定支持300人规模的课程实验教学，为学生提供流畅的学习实践体验。压力测试和理论计算表明，单个YatCC-OL服务实例可满足1000人规模的教学需求，并支持通过增加实例数量进一步扩充服务容量，轻松应对大规模教学挑战。
+  </p>
+  <p>
+    <b>先进平台，网页即开即用</b>：YatCC-AI基于广州超算自研的“星光”应用支撑平台构建，通过Web API 便捷访问算力资源，并借助超算中心网关实现与公共互联网的连接。YatCC-AI平台由YatCC-OL中控核心、YatCC-CS和YatCC-AJ实例、YatCC-LLM和YatCC-RAG大模型支撑等模块组成，共同打造了一体化的智能云实验开发环境，学生只需打开网页即可轻松开启编译实践。
+  </p>
+  <p>
+    <b>标准化环境，公平高效</b>：YatCC实验采用工业级的LLVM框架进行开发，其编译与运行对计算机硬件要求较高。平台依托超算中心提供统一、标准的实验环境，不仅降低了对学生个人电脑的配置要求，简化了实验上手过程，更保证了课程内容对所有学生的公平性。同时，教师和助教可远程连接到学生代码空间实现同步在线开发和调试，打破时空限制，帮助学生快速高效解决实验过程中的问题和疑问。
+  </p>
+  <p>
+    <b>全流程自动，解放师生</b>：YatCC-CS实例为学生提供基于VSCode的代码空间服务，集成了实验资源、课程评测、超算访问、AI支持等功能，为学生提供端到端的便捷开发环境。YatCC-OL中控核心负责管理学生代码空间，实现空闲代码空间的暂停和回收，节约算力资源。平台还支持按需启动YatCC-AJ实例，对学生提交的作业进行自动化评测与打分，实现课程全流程自动化，极大解放师生，提升教学效率。
+  </p>
+  <div style="text-align: center;">
+    <figure>
+      <img src="images/yatcc-cs.png" style="width: 50%;"/>
+      <figcaption style="text-align: center; margin-top: 10px; color: #666;">图3：YatCC-AI平台框架示意图</figcaption>
+    </figure>
+  </div>
+
+  <h2>三、课堂教学</h2>
+  <p>
+    《编译器构造实验》课程依托YatCC-AI智能教学平台，深度融合DeepSeek大模型与超算技术，构建"智能引导-实践创新-多维反馈"的教学闭环，形成具有示范价值的编译实践教学模式。
+  </p>
+  <h3>1. “三阶段”教学设计，全链条教学辅助</h3>
+  <p>
+    课程采用"三阶段"教学设计：课前通过B站视频教程和DeepSeek样例Prompt实现知识预建构；课中采用"理论精讲+智能编码+分组研讨"的立体化教学，借助RAG技术构建的LLVM知识库支持实时检索；课后依托自动评分系统提供多维度即时反馈。智能工具链贯穿全流程，支持语法树可视化、智能补全等进阶功能，实现"超算资源+AI辅助"的沉浸式学习体验。
+  </p>
+  <h3>2. 层次化培养体系，产学研深度融合</h3>
+  <p>
+    课程以LLVM编译实践为核心，构建"基础实验-系统优化-创新应用"三级能力培养体系。通过模块化实验设计，学生从零基础逐步掌握智能代码开发、编译错误诊断等核心技能。平台实践教学助力学生参加“中国大学生编译系统设计赛” ，获得全国一等奖等多个奖项；同时，学院多名学生进入华为等企业编译部门实习、参与编译相关研究项目，实现教学与产业需求的无缝对接。
+  </p>
+  <h3>3. 过程性评价机制，正反馈改进教学</h3>
+  <p>
+    课程创新性采用过程性评价机制以促进课堂教学持续改进。过程性课堂调查问卷显示，超过90%学生认可"零配置开发环境"和智能工具链的高效性，大多数同学主动使用DeepSeek进行复杂任务分解。
+  </p>
+</div>
+
+<div class="container">
+<hr/>
+<footer>
+  <div class="row">
+    <div class="col-xs-12 col-md-8 footer-name">© Yat Compiler @ Sun Yat-sen University</div>
+    <div class="col-xs-12 col-md-4 footer-privacy">Template credited to <a href="https://iscaconf.org/isca2025/">ISCA 2025</a></div>
+  </div>
+</footer>
+
+</div>
+</div>
+
+</div>
+
+<script src="includes/jquery.min.js"></script> 
+<script src="includes/bootstrap.min.js" crossorigin="anonymous"></script>
+
+</body>
+</html>

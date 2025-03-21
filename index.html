@@ -8,6 +8,23 @@
         img.silver {width: 75%;height:auto;}
         img.bronze {width: 60%;height:auto;}
         img.small {width: 60%;height:auto;}
+        .more-icon {
+            transition: transform 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            font-size: 0.5em;
+            margin-bottom: 0.3em;
+            color: #337ab7;
+        }
+        .more-icon:hover {
+            transform: translateX(3px);
+            text-decoration: none;
+            color: #23527c;
+        }
+        .more-text {
+            font-size: 1em;
+        }
     </style>
 
 <!-- <script src="https://s3-us-west-2.amazonaws.com/ieeeshutpages/gdpr/settings.js"></script>
@@ -23,7 +40,7 @@ window.cookieconsent.initialise(json)
 
 <html lang="en-us">
 <head>
-  <title>Yat-CC: Home</title>
+  <title>YatCC-AI: Home</title>
 
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,6 +85,14 @@ window.cookieconsent.initialise(json)
       <ul class="nav navbar-nav">
         <li class="dropdown">
           <a href="https://yatcc.github.io/ol.html" target="_blank">&#128640; Get Started!</a>
+        </li>
+
+        <li class="dropdown">
+          <a href="./introduction.html" target="_blank">Introduction</a>
+        </li>
+
+        <li class="dropdown">
+          <a href="./news.html" target="_blank">News</a>
         </li>
 
         <li class="dropdown">
@@ -169,12 +194,6 @@ window.cookieconsent.initialise(json)
             cutting-edge code optimization strategies with ease.
         </p>
         <h3 style="text-align:right;"><em>Welcome to join us!</em></h3>
-        <!--
-        The <b>International Symposium on Computer Architecture</b> (ISCA) is the premier forum for new ideas and experimental results in computer architecture.
-        The conference seeks particularly forward-looking and novel submissions. In 2024, the 51<sup>st</sup> edition of ISCA will be held in Buenos Aires, Argentina,
-        at the Hilton Buenos Aires during June 29 – July 3, 2024. This is a historic event as ISCA <strong>will be held in Latin America for the first time ever</strong>.
-        <em>Let’s make history together!</em>
-        -->
     </div>
 
 
@@ -186,40 +205,53 @@ window.cookieconsent.initialise(json)
 
 
     <div class="row">
-
         <div class="col-xs-12 col-md-7">
-        <h2>News</h2>
-            <div class="newsitem">
-              <p>
-                [2025.2] [<font color="red"><b>&#128293;&#x1F525;&#128293;Release!</b></font>] YatCC-AI Featuring Web Access and DeepSeek Integration Now Ready for Use.
-              </p>
-           </div>
-
-            <div class="newsitem">
-                <!-- <div class="title row">
-                <h3 class="col-xs-7 col-md-9">Award</h3>
-                </div> -->
-                <p>
-                    [2024.7] [<b>Award</b>] First Prize, Best Teaching Case at the 2024 China Computer Education Conference (CCEC).
-                </p>
-            </div>
-
-            <div class="newsitem">
-                <!-- <div class="title row">
-                <h3 class="col-xs-7 col-md-9">Prize </h3>
-                </div> -->
-                <p>
-                    [2023.8] [<b>Prize</b>] First Prize, 2023 Huawei Bisheng Cup Compiler System Design Competition (CSC).
-                </p>
-            </div>
-            <div class="newsitem">
-                <!-- <div class="title row">
-                <h3 class="col-xs-7 col-md-9">Paper </h3>
-                </div> -->
-                <p>
-                    [2022.7] [<b>Paper</b>] "SYsU-lang: Construct Compilation View based on Clang/LLVM" (First Prize of CCEC2022).
-                </p>
-            </div>
+        <h2 style="display: flex; justify-content: space-between; align-items: flex-end;">
+            News
+            <a href="./news.html" class="more-icon">
+                <span class="more-text">more</span>
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </h2>
+        <div class="newsitem">
+          <p>
+            [2025.3] [<b>Announcement</b>] DeepSeek + Supercomputing: YatCC-AI Empowers Compiler Practice at Sun Yat-sen University. &#128073; <a href="https://mp.weixin.qq.com/s/zz68W9xMw9L_WcqMjhNf8A">Learn More</a>
+          </p>
+        </div>
+        <div class="newsitem">
+          <p>
+            [2025.2] [<b>Announcement</b>] "Intelligent Compilation" Practice Teaching Launched at Sun Yat-sen University. &#128073; <a href="https://mp.weixin.qq.com/s/UiXcaOTAOure8YTmyMWJ8Q">Learn More</a>
+          </p>
+        </div>
+        <div class="newsitem">
+          <p>
+            [2025.2] [<font color="red"><b>&#128293;&#x1F525;&#128293;Release!</b></font>] YatCC-AI Featuring Web Access and DeepSeek Integration Now Ready for Use.
+          </p>
+        </div>
+        <div class="newsitem">
+            <!-- <div class="title row">
+            <h3 class="col-xs-7 col-md-9">Award</h3>
+            </div> -->
+            <p>
+                [2024.7] [<b>Award</b>] First Prize, Best Teaching Case at the 2024 China Computer Education Conference (CCEC).
+            </p>
+        </div>
+        <div class="newsitem">
+            <!-- <div class="title row">
+            <h3 class="col-xs-7 col-md-9">Prize </h3>
+            </div> -->
+            <p>
+                [2023.8] [<b>Prize</b>] First Prize, 2023 Huawei Bisheng Cup Compiler System Design Competition (CSC).
+            </p>
+        </div>
+        <div class="newsitem">
+            <!-- <div class="title row">
+            <h3 class="col-xs-7 col-md-9">Paper </h3>
+            </div> -->
+            <p>
+                [2022.7] [<b>Paper</b>] "SYsU-lang: Construct Compilation View based on Clang/LLVM" (First Prize of CCEC2022).
+            </p>
+        </div>
 
         </div>
         <div class="col-xs-12 col-md-5">
@@ -392,7 +424,7 @@ window.cookieconsent.initialise(json)
     <a class="col-xs-3 col-md-3" href="https://autograder-docs.howardlau.me/"><img src="images/grader.png" style="width: 400px; margin-top: 30px;"/></a>
   </div>
 
-    </div>
+  </div>
 
     <!-- <div class="table-wrapper">
       <table>
@@ -434,7 +466,7 @@ window.cookieconsent.initialise(json)
         </li>
     </ul>
     <hr />
-    <footer>
+  <footer>
     <div class="row">
       <div class="col-xs-12 col-md-8 footer-name">© Yat Compiler @ Sun Yat-sen University</div>
       <div class="col-xs-12 col-md-4 footer-privacy">Template credited to <a href="https://iscaconf.org/isca2025/">ISCA 2025</a></div>
