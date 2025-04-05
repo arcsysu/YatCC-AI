@@ -1,0 +1,6 @@
+/zty-key/*
+*.pem
+server.py
+zty-server.py
+zty-server80.py
+__pycache__/*
