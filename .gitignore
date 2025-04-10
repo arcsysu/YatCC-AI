@@ -1,6 +1,48 @@
+# 密钥和证书
 /zty-key/*
 *.pem
+*.key
+*.crt
+*.cert
+
+# 服务器脚本
 server.py
 zty-server.py
 zty-server80.py
-__pycache__/*
+
+# 维护脚本目录
+/scripts/
+
+# 日志文件
+*.log
+/logs/
+restart_nginx.log
+
+# 缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+.cache/
+
+# 临时文件
+*.swp
+*.bak
+*~
+.DS_Store
+Thumbs.db
+.tmp/
+.temp/
+
+# 依赖和构建文件
+/node_modules/
+/build/
+/dist/
+.env
+
+# IDE配置
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
