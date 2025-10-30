@@ -452,11 +452,11 @@
     <hr />
   <footer>
     <div class="row">
-      <div class="col-xs-12 col-md-8 footer-name">© Yat Compiler @ Sun Yat-sen University</div>
-      <div class="col-xs-12 col-md-4 footer-privacy">
-        Template credited to <a href="https://iscaconf.org/isca2025/">ISCA 2025</a> 
-        <span id="icp-info"> | <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2025390388号</a></span>
+      <div class="col-xs-12 col-md-4 footer-name">© Yat Compiler @ Sun Yat-sen University</div>
+      <div class="col-xs-12 col-md-4 text-center">
+        <a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备2025390388号</a>
       </div>
+      <div class="col-xs-12 col-md-4 footer-privacy">Template credited to <a href="https://iscaconf.org/isca2025/">ISCA 2025</a></div>
     </div>
   </footer>
 
@@ -469,24 +469,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js" integrity="sha384-vhJnz1OVIdLktyixHY4Uk3OHEwdQqPppqYR8+5mjsauETgLOcEynD9oPHhhz18Nw" crossorigin="anonymous"></script> -->
 <script src="includes/jquery.min.js"></script> 
 <script src="includes/bootstrap.min.js" crossorigin="anonymous"></script>
-<script>
-// 在页面加载完成后检查是否显示ICP信息
-window.addEventListener('DOMContentLoaded', function() {
-  // 发送请求检查环境变量
-  fetch('/check-env-cn')
-    .then(response => response.json())
-    .then(data => {
-      // 如果环境变量不存在，隐藏ICP信息
-      if (!data.showICP) {
-        document.getElementById('icp-info').style.display = 'none';
-      }
-    })
-    .catch(error => {
-      // 出错时默认隐藏ICP信息
-      document.getElementById('icp-info').style.display = 'none';
-    });
-});
-</script>
 
 </body>
 </html>
