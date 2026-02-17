@@ -15,3 +15,10 @@ jobs:
         run: |
           # 生成 ol.html, 并替换 URL 为变量值
           echo '<meta http-equiv="refresh" content="0; url=${{ vars.YATCC-AI-STU-WEB }}" />' > ol.html
+
+      # 持续自动化部署
+      - name: Trigger Deployment
+        run: |
+          curl -f -v -X POST https://portal.m.arcsysu.cn/trigger/yatcc \
+            -H "X-API-KEY: ${{ secrets.TRIGGER_KEY }}" \
+            -H "Content-Type: application/json"
