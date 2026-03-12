@@ -1,0 +1,94 @@
+---
+import Layout from "../layouts/Layout.astro";
+import GlobalVars from "./GlobalVars.astro";
+import "../styles/satoshi.css";
+import "../styles/clash-grotesk.css";
+import "../styles/harmonyos-sans.css";
+---
+
+<style define:vars={{}}>
+  .container {
+    @apply flex flex-col items-center text-center px-4 py-20;
+
+    padding: 1rem;
+  }
+
+  .fluid-title {
+    font-family: "Satoshi-Bold";
+    font-weight: bold;
+    font-variation-settings: normal;
+    font-optical-sizing: auto;
+    font-feature-settings:
+      "salt" 1,
+      "ss02" 1;
+    font-size: clamp(10vw, 70rem, 90%); /* 保持原样 */
+
+    letter-spacing: -0.02em;
+    margin-top: 0.7em;
+    margin-bottom: 0.01em;
+    width: fit-content;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    user-select: none;
+
+    /* 1. 颜色首尾一致：#715ec2 既是开始也是结束，保证无缝循环 */
+    background-image: linear-gradient(
+      to right,
+      #715ec2,
+      #a451bf,
+      #ebb5a5,
+      #715ec2
+    );
+
+    /* 2. 宽度设为 200%，足够平移出一个完整的周期 */
+    background-size: 200% auto;
+
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* 3. 使用 linear 确保匀速，方向一致 */
+    animation: flowDirectional 4s linear infinite;
+  }
+
+  @keyframes flowDirectional {
+    from {
+      /* 从左侧开始 */
+      background-position: 0% center;
+    }
+    to {
+      /* 移动到 200% 的位置，视觉上正好回到起点 */
+      background-position: -200% center;
+    }
+  }
+
+  .fluid-subtitle {
+    font-family: "HarmonyOS-Sans-SC-Medium", sans-serif;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.5rem);
+    @apply mt-6 text-slate-400 max-w-2xl leading-relaxed;
+    color: var(--sub-text-color);
+    letter-spacing: -0.01em;
+    margin: 0.3rem;
+
+    user-select: none;
+  }
+
+  /* 针对超大屏幕的微调 */
+  @media (min-width: 1536px) {
+    .fluid-title {
+      font-size: clamp(10vw, 70rem, 99%);
+      letter-spacing: -0.06em;
+    }
+  }
+</style>
+
+<div>
+  <div class="container">
+    <h1 class="fluid-title">YatCC AI</h1>
+    <div class="fluid-subtitle">
+      一个基于工业级 LLVM 构建的现代化编译实验框架
+    </div>
+  </div>
+</div>

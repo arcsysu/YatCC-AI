@@ -1,0 +1,60 @@
+---
+interface Props {
+  href: string;
+  gradient?: string;
+}
+
+const {
+  href,
+  gradient = "linear-gradient(-45deg, #715ec2, #a451bf, #ebb5a5, #715ec2)",
+} = Astro.props;
+---
+
+<a href={href} class="custom-link">
+  <slot />
+</a>
+
+<style define:vars={{ gradient }}>
+  .custom-link {
+    position: relative;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600; /* 加粗一点点，渐变效果更明显 */
+    text-decoration: none;
+
+    /* 1. 默认颜色 */
+    color: var(--text-secondary, #64748b);
+    transition:
+      color 0.3s ease,
+      transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* 2. Hover 时的突变效果 */
+  .custom-link:hover {
+    /* 关键：将背景裁剪到文字上 */
+    background: var(--gradient);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* 触发动画 */
+    animation: text-gradient-flow 2s linear infinite;
+  }
+
+  /* 3. 定义流动动画 */
+  @keyframes text-gradient-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* 4. 点击反馈 */
+  .custom-link:active {
+    transform: scale(0.95);
+  }
+</style>

@@ -1,0 +1,172 @@
+---
+type Props = {
+  themeIconRelationship?: "match" | "opposite";
+};
+
+const { themeIconRelationship = "opposite" } = Astro.props;
+---
+
+<theme-toggle-button data-relationship={themeIconRelationship}>
+  <button type="button" class="theme-btn">
+    <div class="icon-container">
+      <svg viewBox="0 0 24 24" class="icon-moon" aria-hidden="true">
+        <path
+          d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+        ></path>
+      </svg>
+      <svg viewBox="0 0 24 24" class="icon-sun" aria-hidden="true">
+        <path
+          d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+        ></path>
+      </svg>
+    </div>
+  </button>
+</theme-toggle-button>
+
+<style>
+  .theme-btn {
+    /* 基础布局 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    /* 尺寸与边框 */
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0.5rem;
+    border: none;
+    background: transparent;
+    border-radius: 0.75rem; /* 稍大一点的圆角更现代 */
+
+    /* 颜色与过渡 */
+    cursor: pointer;
+    color: #64748b; /* slate-500 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+  }
+
+  /* 适配黑暗模式的文字颜色 */
+  :global([data-theme="dark"]) .theme-btn {
+    color: #94a3b8; /* slate-400 */
+  }
+
+  /* 悬停时的“淡淡光晕”效果 */
+  .theme-btn:hover {
+    color: #3b82f6; /* 悬停时图标变蓝色 */
+    background-color: rgba(59, 130, 246, 0.05); /* 极淡的蓝色背景 */
+
+    /* 核心：外发光/光晕 */
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+
+    /* 也可以使用 filter 实现更柔和的光晕 */
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.3));
+
+    transform: translateY(-1px); /* 轻微上移，增加动感 */
+  }
+
+  /* 点击时的反馈 */
+  .theme-btn:active {
+    transform: scale(0.92);
+  }
+
+  .icon-container {
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-container svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8; /* 稍微加粗一点图标，更有质感 */
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    display: none;
+    /* 增加图标切换时的平滑感 */
+    transition: transform 0.3s ease-in-out;
+  }
+
+  /* 逻辑控制显隐 */
+  theme-toggle-button.is-dark .icon-moon {
+    display: block;
+    animation: rotate-in 0.5s ease;
+  }
+  theme-toggle-button:not(.is-dark) .icon-sun {
+    display: block;
+    animation: tilt-in 0.5s ease;
+  }
+
+  /* 切换时的微动画 */
+  @keyframes rotate-in {
+    from {
+      transform: rotate(-45deg) scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: rotate(0) scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes tilt-in {
+    from {
+      transform: translateY(5px) scale(0.8);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  class ThemeToggleButton extends HTMLElement {
+    constructor() {
+      super();
+      const updateUI = () => {
+        // @ts-ignore
+        const current = window.theme.getTheme();
+        const isSystemDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const isActuallyDark =
+          current === "dark" || (current === "auto" && isSystemDark);
+
+        // 直接在自定义元素上切换 class
+        this.classList.toggle("is-dark", isActuallyDark);
+      };
+
+      this.querySelector("button")?.addEventListener("click", () => {
+        // @ts-ignore
+        const current = window.theme.getTheme();
+        const isSystemDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        const next =
+          current === "auto"
+            ? isSystemDark
+              ? "light"
+              : "dark"
+            : current === "light"
+              ? "dark"
+              : "light";
+        // @ts-ignore
+        window.theme.setTheme(next);
+      });
+
+      document.addEventListener("theme-changed", updateUI);
+      updateUI();
+    }
+  }
+
+  if (!customElements.get("theme-toggle-button")) {
+    customElements.define("theme-toggle-button", ThemeToggleButton);
+  }
+</script>

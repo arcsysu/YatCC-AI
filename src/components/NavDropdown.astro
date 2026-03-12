@@ -1,0 +1,128 @@
+---
+interface Props {
+  title: string;
+  href?: string;
+}
+const { title, href = "#" } = Astro.props;
+---
+
+<div class="dropdown-container">
+  <a href={href} class="dropdown-trigger">
+    {title}
+    <svg
+      class="chevron"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+        clip-rule="evenodd"></path>
+    </svg>
+  </a>
+
+  <div class="popup-wrapper">
+    <div class="popup-card">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .dropdown-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary, #64748b);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0.4rem; /* 这里的 padding 保证了 Topbar 的垂直居中 */
+  }
+
+  .chevron {
+    width: 1rem;
+    height: 1rem;
+    opacity: 0.6;
+    transition:
+      transform 0.3s ease,
+      color 0.3s ease;
+  }
+
+  /* --- 核心：第二版的悬浮流光效果 --- */
+  /* 当容器被 hover 时，触发文字流光和箭头旋转 */
+  .dropdown-container:hover .dropdown-trigger {
+    background-image: linear-gradient(
+      to right,
+      #715ec2,
+      #a451bf,
+      #ebb5a5,
+      #715ec2
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: flowDirectional 4s linear infinite;
+  }
+
+  .dropdown-container:hover .chevron {
+    transform: rotate(180deg);
+    color: #a451bf; /* 箭头设为实色，防止随文字一起变透明 */
+    opacity: 1;
+  }
+
+  @keyframes flowDirectional {
+    from {
+      background-position: 0% center;
+    }
+    to {
+      background-position: -200% center;
+    }
+  }
+
+  /* --- 弹出层布局：第一版的逻辑 --- */
+  .popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    padding-top: 0.5rem; /* 这里的 padding 是感应桥梁，防止鼠标滑下时消失 */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 100;
+  }
+
+  .popup-card {
+    min-width: 12rem;
+    background: rgba(var(--bg-rgb, 255, 255, 255), 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 0.75rem;
+    padding: 0.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  :global([data-theme="dark"]) .popup-card {
+    background: rgba(15, 23, 42, 0.85);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown-container:hover .popup-wrapper {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+</style>

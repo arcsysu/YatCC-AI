@@ -1,11 +1,92 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import HomeTitle from "../components/HomeTitle.astro";
+import Layout from "../layouts/Layout.astro";
+import Topbar from "../components/Topbar.astro";
+import Link from "../components/Link.astro";
+import NavDropdown from "../components/NavDropdown.astro";
+import DragonParticles from "../components/DragonParticles.astro";
 ---
 
 <Layout>
-	<Welcome />
+    <Topbar logoText="YatCC AI">
+        <Fragment slot="nav-items">
+            <Link href="/about">关于</Link>
+            <NavDropdown title="相关资源">
+                <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
+                <Link href="https://space.bilibili.com/3546650047941291"
+                    >视频</Link
+                >
+                <Link href="https://github.com/arcsysu/YatCC">源码</Link>
+                <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
+            </NavDropdown>
+            <NavDropdown title="团队成员">
+                <Link href="https://arcsysu.tech/">arcsysu</Link>
+                <Link href="https://arcsysu.github.io/YatCC/#/contributors"
+                    >贡献者</Link
+                >
+            </NavDropdown>
+            <NavDropdown title="往期教学">
+                <Link href="https://yatcc-ai.com/teach/s2026.html">2026</Link>
+                <Link href="https://yatcc-ai.com/teach/s2025.html">2025</Link>
+                <Link href="https://yatcc-ai.com/teach/s2024.html">2024</Link>
+                <Link href="https://yatcc-ai.com/teach/s2023.html">2023</Link>
+                <Link href="https://yatcc-ai.com/teach/s2022.html">2022</Link>
+                <Link href="https://yatcc-ai.com/teach/s2021.html">2021</Link>
+            </NavDropdown>
+        </Fragment>
+    </Topbar>
+    <div class="home-container">
+        <div class="content-wrapper">
+            <HomeTitle />
+            <div class="dragon-positioner">
+                <DragonParticles />
+            </div>
+        </div>
+    </div>
+    <div></div>
 </Layout>
+
+<style>
+    .home-container {
+        position: relative; /* 必须加这个，作为粒子的参考系 */
+        padding: calc(0rem + 80px) 12px 12px;
+        margin: calc(4rem * -1) auto 0;
+        display: block;
+        width: clamp(30vw, 80rem, 95%);
+        min-width: 280px;
+        box-sizing: border-box;
+        /* 确保文字在粒子上方 */
+        z-index: 1;
+    }
+
+    .content-wrapper {
+        position: relative;
+        z-index: 2; /* 明确文字层级比粒子高 */
+        pointer-events: auto;
+    }
+
+    @media (max-width: 450px) {
+        .home-container {
+            width: 100%;
+        }
+    }
+
+    .dragon-positioner {
+        position: absolute;
+        top: 0;
+        right: 0;
+        /* 在这里定制龙的大小 */
+        width: 600px;
+        height: 600px;
+        z-index: 1; /* 位于 content-wrapper 之下 */
+        pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+        .dragon-positioner {
+            width: 100%; /* 移动端铺满 */
+            height: 400px;
+            opacity: 0.6;
+        }
+    }
+</style>

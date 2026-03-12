@@ -1,23 +1,58 @@
+---
+import ThemeManager from "../components/ThemeManager.astro";
+
+interface Props {
+  transitionSpeed?: string;
+}
+
+const { transitionSpeed = "0.5s" } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <ThemeManager />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  :root {
+    /* 默认颜色定义 */
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --sub-text-color: #5e5c5c;
+    min-width: 280px;
+  }
+
+  [data-theme="dark"] {
+    --bg-color: #020203;
+    --text-color: #f8fafc;
+    --sub-text-color: #aeb0b1;
+  }
+
+  /* 关键：将过渡挂载到最高层级 */
+  html {
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* 确保所有受变量影响的背景都有过渡 */
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
 </style>

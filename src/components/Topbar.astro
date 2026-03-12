@@ -1,0 +1,133 @@
+---
+import ThemeToggleButton from "./ThemeToggleButton.astro";
+
+interface Props {
+  logoText?: string;
+}
+
+const { logoText = "YatCC AI" } = Astro.props;
+---
+
+<header class="topbar-container">
+  <nav class="topbar-nav">
+    <div class="nav-left">
+      <a href="/" class="logo">
+        <div class="logo-box">
+          <!--🚀-->
+          <div class="icon">
+            <img src="../../public/yatcc-icon.png" width="60em" />
+          </div>
+        </div>
+        <span class="logo-text">{logoText}</span>
+      </a>
+    </div>
+
+    <div class="nav-right">
+      <div class="nav-items">
+        <slot name="nav-items" />
+      </div>
+
+      <div class="divider"></div>
+
+      <ThemeToggleButton themeIconRelationship="opposite" />
+    </div>
+  </nav>
+</header>
+
+<style>
+  .topbar-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    /* 重点：背景色跟随全局渐变变量，并加入毛玻璃 */
+    background-color: rgba(var(--bg-rgb, 255, 255, 255), 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    /* 继承全局渐变时间 */
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+  }
+
+  /* 黑暗模式适配（基于 data-theme） */
+  :global([data-theme="dark"]) .topbar-container {
+    --bg-rgb: 15, 23, 42; /* slate-900 */
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .topbar-nav {
+    max-width: 85rem;
+    margin: 0 auto;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+  }
+
+  /* 左侧样式 */
+  .nav-left .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .logo-box {
+    font-size: 1.5rem;
+  }
+
+  .logo-text {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.025em;
+    /* 你之前提到的字体 */
+    font-family: "Satoshi-Bold", sans-serif;
+  }
+
+  /* 右侧及插槽样式 */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-items {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #64748b; /* slate-500 */
+    transition: color 0.3s ease;
+  }
+
+  :global([data-theme="dark"]) .nav-items {
+    color: #94a3b8;
+  }
+
+  .divider {
+    width: 1px;
+    height: 1.25rem;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  :global([data-theme="dark"]) .divider {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  /* 响应式：手机端隐藏中间链接 */
+  @media (max-width: 640px) {
+    .nav-items {
+      display: none;
+    }
+  }
+
+  .icon {
+    margin-top: 10px;
+  }
+</style>
