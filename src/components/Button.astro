@@ -1,0 +1,75 @@
+---
+interface Props {
+  backgroundColor?: string;
+  borderRadius?: string;
+  padding?: string;
+  href?: string;
+}
+
+const {
+  backgroundColor = "#715ec2",
+  borderRadius = "clamp(4px, 1em, 20px)",
+  padding = "0.6em 1.5em",
+  href = "#",
+} = Astro.props;
+---
+
+<a href={href} class="button-container">
+  <button class="button">
+    <slot />
+  </button>
+</a>
+
+<style
+  define:vars={{
+    backgroundColor: backgroundColor,
+    padding: padding,
+    borderRadius: borderRadius,
+  }}
+>
+  .button-container {
+    display: inline-flex;
+    text-decoration: none;
+    width: fit-content;
+  }
+
+  .button {
+    /* 基础重置 */
+    border: none;
+    outline: none;
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    /* 颜色与布局 */
+    background: var(--backgroundColor);
+    padding: var(--padding);
+    border-radius: var(--borderRadius);
+    color: rgb(233, 225, 246);
+    font-weight: bold;
+    /* width: fit-content; */
+    width: auto;
+    height: auto;
+    font-size: 1vw;
+
+    /* 核心动画设置：在这里开启监听 */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(1); /* 必须显式声明初始缩放 */
+  }
+
+  /* 悬停状态：直接改属性，transition 会自动补全动画 */
+  .button:hover {
+    background: color-mix(in srgb, var(--backgroundColor), white 15%);
+    transform: scale(1.05);
+  }
+
+  /* 点击状态：把 :click 改为 :active */
+  .button:active {
+    transform: scale(0.96);
+    background: color-mix(in srgb, var(--backgroundColor), black 10%);
+    /* 点击反馈要快，所以覆盖基础的 0.4s */
+    transition: all 0.1s ease;
+  }
+</style>

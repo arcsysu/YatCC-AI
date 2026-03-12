@@ -5,85 +5,98 @@ import Topbar from "../components/Topbar.astro";
 import Link from "../components/Link.astro";
 import NavDropdown from "../components/NavDropdown.astro";
 import DragonParticles from "../components/DragonParticles.astro";
+import Button from "../components/Button.astro";
 ---
 
 <Layout>
-    <Topbar logoText="YatCC AI">
-        <Fragment slot="nav-items">
-            <Link href="/about">关于</Link>
-            <NavDropdown title="相关资源">
-                <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
-                <Link href="https://space.bilibili.com/3546650047941291"
-                    >视频</Link
-                >
-                <Link href="https://github.com/arcsysu/YatCC">源码</Link>
-                <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
-            </NavDropdown>
-            <NavDropdown title="团队成员">
-                <Link href="https://arcsysu.tech/">arcsysu</Link>
-                <Link href="https://arcsysu.github.io/YatCC/#/contributors"
-                    >贡献者</Link
-                >
-            </NavDropdown>
-            <NavDropdown title="往期教学">
-                <Link href="https://yatcc-ai.com/teach/s2026.html">2026</Link>
-                <Link href="https://yatcc-ai.com/teach/s2025.html">2025</Link>
-                <Link href="https://yatcc-ai.com/teach/s2024.html">2024</Link>
-                <Link href="https://yatcc-ai.com/teach/s2023.html">2023</Link>
-                <Link href="https://yatcc-ai.com/teach/s2022.html">2022</Link>
-                <Link href="https://yatcc-ai.com/teach/s2021.html">2021</Link>
-            </NavDropdown>
-        </Fragment>
-    </Topbar>
-    <div class="home-container">
-        <div class="content-wrapper">
-            <HomeTitle />
-            <div class="dragon-positioner">
-                <DragonParticles />
-            </div>
-        </div>
+  <Topbar logoText="YatCC AI">
+    <Fragment slot="nav-items">
+      <Link href="/about">关于</Link>
+      <NavDropdown title="相关资源">
+        <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
+        <Link href="https://space.bilibili.com/3546650047941291">视频</Link>
+        <Link href="https://github.com/arcsysu/YatCC">源码</Link>
+        <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
+      </NavDropdown>
+      <NavDropdown title="团队成员">
+        <Link href="https://arcsysu.tech/">arcsysu</Link>
+        <Link href="https://arcsysu.github.io/YatCC/#/contributors">贡献者</Link
+        >
+      </NavDropdown>
+      <NavDropdown title="往期教学">
+        <Link href="https://yatcc-ai.com/teach/s2026.html">2026</Link>
+        <Link href="https://yatcc-ai.com/teach/s2025.html">2025</Link>
+        <Link href="https://yatcc-ai.com/teach/s2024.html">2024</Link>
+        <Link href="https://yatcc-ai.com/teach/s2023.html">2023</Link>
+        <Link href="https://yatcc-ai.com/teach/s2022.html">2022</Link>
+        <Link href="https://yatcc-ai.com/teach/s2021.html">2021</Link>
+      </NavDropdown>
+    </Fragment>
+  </Topbar>
+  <div class="home-container">
+    <div class="content-wrapper">
+      <HomeTitle />
+      <Button href="https://docs.yatcc-ai.com/#/"
+        ><div class="button-text">🔨 开始实验</div></Button
+      >
+      <div class="dragon-positioner">
+        <DragonParticles />
+      </div>
     </div>
+  </div>
 </Layout>
 
 <style>
+  .home-container {
+    position: relative;
+    padding: calc(0rem + 80px) 12px 12px;
+    margin: calc(4rem * -1) auto 0;
+    display: flex;
+    flex-direction: column;
+    width: clamp(30vw, 80rem, 95%);
+    min-width: 280px;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.1vh, 30px, 2rem);
+  }
+
+  @media (max-width: 450px) {
     .home-container {
-        position: relative;
-        padding: calc(0rem + 80px) 12px 12px;
-        margin: calc(4rem * -1) auto 0;
-        display: block;
-        width: clamp(30vw, 80rem, 95%);
-        min-width: 280px;
-        box-sizing: border-box;
-        z-index: 1;
+      width: 100%;
     }
-
     .content-wrapper {
-        position: relative;
-        z-index: 2;
-        pointer-events: auto;
+      gap: 1vh;
     }
+  }
 
-    @media (max-width: 450px) {
-        .home-container {
-            width: 100%;
-        }
-    }
+  .dragon-positioner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    z-index: 1;
+    pointer-events: none;
+  }
 
+  @media (max-width: 768px) {
     .dragon-positioner {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 600px;
-        height: 600px;
-        z-index: 1;
-        pointer-events: none;
+      width: 100%;
+      height: 400px;
+      opacity: 0.6;
     }
+  }
 
-    @media (max-width: 768px) {
-        .dragon-positioner {
-            width: 100%;
-            height: 400px;
-            opacity: 0.6;
-        }
-    }
+  .button-text {
+    font-size: clamp(10px, 1vw, 1vw);
+    padding: clamp(2px, 5%, 1.2rem);
+  }
 </style>
