@@ -17,7 +17,7 @@ const { transitionSpeed = "0.5s" } = Astro.props;
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <ThemeManager />
-    <title>Astro Basics</title>
+    <title>YatCC AI</title>
   </head>
   <body>
     <slot />
@@ -26,33 +26,35 @@ const { transitionSpeed = "0.5s" } = Astro.props;
 
 <style is:global>
   :root {
-    /* 默认颜色定义 */
+    /* 默认明亮模式 */
     --bg-color: #ffffff;
+    --bg-color-dimmer: #f4eef8;
+    --bg-color-dimmer-dimmer: #e8dfef;
     --text-color: #1a1a1a;
-    --sub-text-color: #5e5c5c;
-    min-width: 280px;
+    --text-color-dimmer: #2b2830;
+    --accent-color: #8f3bf6;
+    --accent-color-extralight: #f3ecfc;
+    --navbar-height: 4rem;
+    --small-device-width: 450px;
   }
 
   [data-theme="dark"] {
+    /* 黑暗模式 */
     --bg-color: #020203;
+    --bg-color-dimmer: #29282a;
+    --bg-color-dimmer-dimmer: #464346;
     --text-color: #f8fafc;
-    --sub-text-color: #aeb0b1;
-  }
-
-  /* 关键：将过渡挂载到最高层级 */
-  html {
-    background-color: var(--bg-color);
-    transition: background-color 0.3s ease;
+    --text-color-dimmer: #dbd3df;
+    --accent-color: #af60fa;
+    --accent-color-extralight: #eadff5;
   }
 
   body {
-    margin: 0;
-    min-height: 100vh;
     background-color: var(--bg-color);
     color: var(--text-color);
-    /* 确保所有受变量影响的背景都有过渡 */
     transition:
       background-color 0.3s ease,
       color 0.3s ease;
+    overflow: hidden;
   }
 </style>
