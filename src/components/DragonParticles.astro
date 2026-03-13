@@ -1,7 +1,3 @@
----
-// src/components/DragonParticles.astro
----
-
 <div id="particle-canvas-container"></div>
 
 <script>
@@ -16,18 +12,26 @@
   const container = document.getElementById("particle-canvas-container");
   const IMAGE_SRC = "/dragon-logo.png";
 
+  // --- 视觉参数调节面板 (通过 uniforms 传递，避免编译错误) ---
+  const CONFIG = {
+    particleCount: 8000, // 粒子数量
+    uBaseSize: 20.0, // 基准尺寸
+    uCoreRadius: 0.46, // 核心硬度 (0.4-0.49)
+    uGlowIntensity: 0.4, // 光晕强度
+    uGlowFalloff: 3.5, // 光晕衰减速度
+  };
+
   const vertexShader = `
     varying vec3 vColor;
     uniform float uPixelRatio;
     uniform float uTime;
+    uniform float uBaseSize;
     void main() {
       vColor = mix(vec3(0.44, 0.37, 0.76), vec3(0.92, 0.71, 0.65), position.y * 0.5 + 0.5);
       vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
       
-      // 粒子尺寸大幅调小：基准值改为 25.0
-      // 依然保留微弱的呼吸感，让星星看起来在闪烁
-      float blink = 1.0 + sin(uTime * 2.0 + position.x * 10.0) * 0.2;
-      gl_PointSize = 25.0 * blink * uPixelRatio * (1.0 / -mvPosition.z); 
+      float blink = 1.0 + sin(uTime * 2.5 + position.x * 8.0) * 0.2;
+      gl_PointSize = uBaseSize * blink * uPixelRatio * (1.0 / -mvPosition.z); 
       
       gl_Position = projectionMatrix * mvPosition;
     }
@@ -35,12 +39,26 @@
 
   const fragmentShader = `
     varying vec3 vColor;
+    uniform float uCoreRadius;
+    uniform float uGlowIntensity;
+    uniform float uGlowFalloff;
     void main() {
       float r = distance(gl_PointCoord, vec2(0.5));
       if (r > 0.5) discard;
-      // 即使是小粒子，边缘也要微弱羽化，看起来才不刺眼
-      float strength = pow(1.0 - r * 2.0, 1.2);
-      gl_FragColor = vec4(vColor, strength * 0.9); 
+
+      // 刚体核心：产生实心圆感
+      float core = smoothstep(0.5, uCoreRadius, r);
+      
+      // 微弱泛光：使用指数函数模拟物理衰减
+      float glow = pow(max(0.0, 1.0 - r * 2.0), uGlowFalloff);
+      
+      // 颜色混合：core 部分为 1.0 亮度，glow 提供微弱溢出
+      vec3 finalColor = vColor * (1.0 + glow * uGlowIntensity);
+      
+      // 透明度：core 保证中心不透，glow 负责边缘极微弱的羽化
+      float alpha = core + (glow * 0.2);
+      
+      gl_FragColor = vec4(finalColor, alpha); 
     }
   `;
 
@@ -77,9 +95,13 @@
       uniforms: {
         uPixelRatio: { value: renderer.getPixelRatio() },
         uTime: { value: 0 },
+        uBaseSize: { value: CONFIG.uBaseSize },
+        uCoreRadius: { value: CONFIG.uCoreRadius },
+        uGlowIntensity: { value: CONFIG.uGlowIntensity },
+        uGlowFalloff: { value: CONFIG.uGlowFalloff },
       },
       transparent: true,
-      blending: THREE.AdditiveBlending,
+      blending: THREE.NormalBlending, // 关键：非叠加模式保持粒子独立感
       depthTest: false,
     });
 
@@ -110,8 +132,7 @@
       const data = ctx.getImageData(0, 0, 128, 128).data;
       const tempCoords = [];
 
-      // 保持 5000 个粒子，形成细腻的质感
-      for (let i = 0; i < 5000; i++) {
+      for (let i = 0; i < CONFIG.particleCount; i++) {
         const x = Math.floor(Math.random() * 128);
         const y = Math.floor(Math.random() * 128);
         if (data[(y * 128 + x) * 4 + 3] > 100) {
@@ -125,7 +146,7 @@
             vx: 0,
             vy: 0,
             phase: Math.random() * Math.PI * 2,
-            speed: 0.2 + Math.random() * 0.3, // 降低飘动速度，更优雅
+            speed: 0.2 + Math.random() * 0.3,
             amp: 0.05 + Math.random() * 0.05,
           });
         }
@@ -139,12 +160,11 @@
     requestAnimationFrame(animate);
     if (!isReady) return;
 
-    // --- 物理参数调节面板 ---
-    const STRENGTH = 0.009; // [力量] 越小越温柔，建议范围 0.005 - 0.02
-    const RADIUS = 2.0; // [范围] 鼠标感应半径，建议范围 2.0 - 4.0
-    const SOFTNESS = 0.8; // [中心平滑度] 越大中心越不留白，建议范围 0.5 - 1.5
-    const RETENTION = 0.02; // [回弹速度] 越小粒子回位越慢，产生粘滞感，建议范围 0.01 - 0.05
-    // -----------------------
+    // 物理参数保持原样
+    const STRENGTH = 0.009;
+    const RADIUS = 2.0;
+    const SOFTNESS = 0.8;
+    const RETENTION = 0.02;
 
     const time = performance.now() * 0.001;
     particleSystem.material.uniforms.uTime.value = time;
@@ -154,33 +174,24 @@
 
     for (let i = 0; i < coords.length; i++) {
       const p = coords[i];
-
-      // 基础随机漂浮
       const driftX = Math.sin(time * p.speed + p.phase) * p.amp;
       const driftY = Math.cos(time * p.speed * 1.1 + p.phase) * p.amp;
-
       const dx = p.x - mouse.x * 5.0;
       const dy = p.y - mouse.y * 5.0;
       const d = Math.sqrt(dx * dx + dy * dy);
 
       if (d < RADIUS) {
-        // 核心物理公式优化：使用 Smoothstep 衰减，避免中心点突变
         const t = d / RADIUS;
         const f = STRENGTH * (1.0 - t * t * (3.0 - 2.0 * t));
-
-        // 加入 SOFTNESS 因子，让靠近鼠标中心的粒子受力变得极其平缓
         const invDist = 1.0 / (d + SOFTNESS);
         p.vx += dx * invDist * f;
         p.vy += dy * invDist * f;
       }
 
-      // 回弹与阻尼
       p.vx += (p.ox + driftX - p.x) * RETENTION;
       p.vy += (p.oy + driftY - p.y) * RETENTION;
-
       p.vx *= 0.92;
       p.vy *= 0.92;
-
       p.x += p.vx;
       p.y += p.vy;
 
@@ -202,7 +213,7 @@
 <style>
   #particle-canvas-container {
     position: absolute;
-    inset: 0; /* 铺满父元素 .dragon-positioner */
+    inset: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
