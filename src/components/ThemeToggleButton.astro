@@ -53,16 +53,15 @@ const { themeIconRelationship = "opposite" } = Astro.props;
 
   /* 悬停时的“淡淡光晕”效果 */
   .theme-btn:hover {
-    color: #3b82f6; /* 悬停时图标变蓝色 */
-    background-color: rgba(59, 130, 246, 0.05); /* 极淡的蓝色背景 */
+    color: var(--accent-color);
+    background-color: var(--accent-color-extralight);
 
     /* 核心：外发光/光晕 */
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+    box-shadow: 0 0 15px var(--accent-color-extralight);
 
-    /* 也可以使用 filter 实现更柔和的光晕 */
-    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.3));
+    filter: drop-shadow(0 0 8px var(--accent-color-extralight));
 
-    transform: translateY(-1px); /* 轻微上移，增加动感 */
+    transform: translateY(-1px);
   }
 
   /* 点击时的反馈 */
