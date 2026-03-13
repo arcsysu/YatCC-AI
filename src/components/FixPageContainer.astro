@@ -1,0 +1,29 @@
+---
+interface Props {
+  gap?: string;
+}
+
+const { gap = "160px" } = Astro.props;
+---
+
+<div class="fix-page-container">
+  <slot />
+</div>
+
+<style define:vars={{ gap }}>
+  .fix-page-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: calc(100dvh - var(--navbar-height));
+    overflow-y: scroll;
+    gap: var(--gap);
+
+    scrollbar-width: none;
+  }
+
+  .snap-container::-webkit-scrollbar {
+    display: none;
+  }
+</style>

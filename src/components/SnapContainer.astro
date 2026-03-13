@@ -1,0 +1,25 @@
+---
+
+---
+
+<div class="snap-container">
+  <slot />
+</div>
+
+<style>
+  .snap-container {
+    display: flex;
+    flex-direction: column;
+
+    height: calc(100dvh - 64px);
+    overflow-y: scroll;
+
+    scroll-snap-type: y mandatory;
+
+    scrollbar-width: none;
+  }
+
+  .snap-container::-webkit-scrollbar {
+    display: none;
+  }
+</style>

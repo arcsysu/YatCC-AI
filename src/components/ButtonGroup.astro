@@ -1,0 +1,20 @@
+---
+interface Props {
+  direction?: string;
+}
+
+const { direction = "row" } = Astro.props;
+---
+
+<div class="button-group">
+  <slot />
+</div>
+
+<style define:vars={{ direction }}>
+  .button-group {
+    display: flex;
+    flex-direction: var(--direction);
+
+    gap: clamp(2px, 0.5em, 2vw);
+  }
+</style>

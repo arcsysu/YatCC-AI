@@ -1,0 +1,31 @@
+---
+interface Props {
+  height?: string;
+}
+
+const { height = "640px" } = Astro.props;
+---
+
+<div class="fix-page">
+  <slot />
+</div>
+
+<style define:vars={{ height: height }}>
+  .fix-page {
+    flex-shrink: 0;
+    left: 0;
+    right: 0;
+    min-height: var(--height);
+    padding: 0 10vw;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 768px) {
+    .fix-page {
+      padding: 0 0.1rem;
+    }
+  }
+</style>

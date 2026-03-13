@@ -1,0 +1,37 @@
+---
+import FixPage from "./FixPage.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<FixPage>
+  <div class="container">
+    <div class="title">{title}</div>
+    <slot />
+  </div>
+</FixPage>
+
+<style>
+  .container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 4rem;
+    font-family: "Satoshi-Bold", "Harmony-OS-Sans-SC-Bold";
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0;
+    }
+  }
+</style>

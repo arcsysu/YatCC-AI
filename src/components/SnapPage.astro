@@ -1,0 +1,24 @@
+---
+
+---
+
+<div class="page">
+  <slot />
+</div>
+
+<style>
+  .page {
+    flex-shrink: 0;
+    width: 100%;
+    height: calc(100vh - 4rem);
+
+    scroll-snap-align: start;
+    scroll-snap-type: y mandatory;
+
+    scroll-behavior: smooth;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
