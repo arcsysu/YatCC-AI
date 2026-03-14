@@ -1,13 +1,15 @@
 ---
 interface Props {
-  backgroundColor?: string;
+  lightColor?: string;
+  darkColor?: string;
   borderRadius?: string;
   padding?: string;
   href?: string;
 }
 
 const {
-  backgroundColor = "#715ec2",
+  lightColor = "#715ec2",
+  darkColor = "#af60fa",
   borderRadius = "clamp(4px, 1em, 20px)",
   padding = "0.6em 1.5em",
   href = "#",
@@ -22,9 +24,10 @@ const {
 
 <style
   define:vars={{
-    backgroundColor: backgroundColor,
-    padding: padding,
-    borderRadius: borderRadius,
+    lightColor,
+    darkColor,
+    padding,
+    borderRadius,
   }}
 >
   .button-container {
@@ -34,8 +37,8 @@ const {
   }
 
   .button {
-    /* 基础重置 */
-    border: none;
+    --color: var(--lightColor); /* 基础重置 */
+    border: 0.15em solid var(--color);
     outline: none;
     cursor: pointer;
     white-space: nowrap;
@@ -43,28 +46,33 @@ const {
     align-items: center;
     justify-content: center;
 
-    background: var(--backgroundColor);
+    background: transparent;
     padding: var(--padding);
     border-radius: var(--borderRadius);
-    color: rgb(245, 242, 250);
+    color: var(--color);
     font-weight: bold;
     width: auto;
     height: auto;
-    /* font-size: 1vw; */
-    font-size: clamp(10px, 1rem, 10vw);
+    font-size: 1vw;
 
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform: scale(1);
   }
 
+  [data-theme="dark"] {
+    .button {
+      --color: var(--darkColor);
+    }
+  }
+
   .button:hover {
-    background: color-mix(in srgb, var(--backgroundColor), white 15%);
+    /* background: color-mix(in srgb, var(--color), white 15%); */
     transform: scale(1.05);
   }
 
   .button:active {
     transform: scale(0.96);
-    background: color-mix(in srgb, var(--backgroundColor), black 10%);
+    /* background: color-mix(in srgb, var(--color), black 10%); */
 
     transition: all 0.1s ease;
   }

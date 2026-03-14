@@ -16,16 +16,35 @@ const { title } = Astro.props;
 </FixPage>
 
 <style>
+  @keyframes fade-slide-in {
+    0% {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+      filter: blur(0);
+    }
+  }
+
   .container {
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    view-timeline-name: --subjectReveal;
+    view-timeline-axis: block;
+    animation: fade-slide-in both;
+
+    animation-timeline: --subjectReveal;
+    animation-range: entry 40% cover 60%;
   }
 
   .title {
     font-weight: bold;
-    font-size: 4rem;
+    font-size: clamp(40px, 4rem, 8vw);
     font-family: "Satoshi-Bold", "Harmony-OS-Sans-SC-Bold";
   }
 

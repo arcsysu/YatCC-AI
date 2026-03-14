@@ -1,0 +1,52 @@
+---
+import "@styles/global.css";
+import ThemeManager from "@components/ThemeManager.astro";
+import Topbar from "@components/Topbar.astro";
+import Link from "@components/Link.astro";
+import NavDropdown from "@components/NavDropdown.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <ThemeManager />
+    <title>YatCC AI</title>
+  </head>
+  <body>
+    <div>
+      <Topbar logoText="YatCC AI">
+        <Fragment slot="nav-items">
+          <Link href="/zh/about">关于</Link>
+          <NavDropdown title="相关资源">
+            <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
+            <Link href="https://space.bilibili.com/3546650047941291">视频</Link>
+            <Link href="https://github.com/arcsysu/YatCC">源码</Link>
+            <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
+          </NavDropdown>
+          <NavDropdown title="团队成员">
+            <Link href="https://arcsysu.tech/">arcsysu</Link>
+            <Link href="https://arcsysu.github.io/YatCC/#/contributors"
+              >贡献者</Link
+            >
+          </NavDropdown>
+          <NavDropdown title="往期教学">
+            <Link href="https://yatcc-ai.com/teach/s2026.html">2026</Link>
+            <Link href="https://yatcc-ai.com/teach/s2025.html">2025</Link>
+            <Link href="https://yatcc-ai.com/teach/s2024.html">2024</Link>
+            <Link href="https://yatcc-ai.com/teach/s2023.html">2023</Link>
+            <Link href="https://yatcc-ai.com/teach/s2022.html">2022</Link>
+            <Link href="https://yatcc-ai.com/teach/s2021.html">2021</Link>
+          </NavDropdown>
+        </Fragment>
+      </Topbar>
+      <div>
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>

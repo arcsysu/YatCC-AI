@@ -1,30 +1,27 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import "../styles/satoshi.css";
-import "../styles/harmonyos-sans.css";
+import Layout from "@layouts/Layout.astro";
+import "@styles/satoshi.css";
+import "@styles/harmonyos-sans.css";
 ---
 
 <style define:vars={{}}>
   @keyframes flowDirectional {
     from {
-      /* 从左侧开始 */
       background-position: 0% center;
     }
     to {
-      /* 移动到 200% 的位置，视觉上正好回到起点 */
-      background-position: -200% center;
+      background-position: -150% center;
     }
   }
 
   @keyframes fade-slide-in {
     0% {
       opacity: 0;
-      transform: translateX(-30px); /* 从左边 30px 处开始 */
-      /* filter: blur(5px); */
+      transform: translateX(-30px);
     }
     100% {
       opacity: 1;
-      transform: translateX(0); /* 回到原位 */
+      transform: translateX(0);
       filter: blur(0);
     }
   }
@@ -53,7 +50,9 @@ import "../styles/harmonyos-sans.css";
 
     user-select: none;
 
-    /* 1. 颜色首尾一致：#715ec2 既是开始也是结束，保证无缝循环 */
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
     background-image: linear-gradient(
       to right,
       #715ec2,
@@ -62,15 +61,12 @@ import "../styles/harmonyos-sans.css";
       #a451bf,
       #715ec2
     );
-
-    /* 2. 宽度设为 200%，足够平移出一个完整的周期 */
     background-size: 150% auto;
 
     color: transparent;
     -webkit-background-clip: text;
     background-clip: text;
 
-    /* 3. 使用 linear 确保匀速，方向一致 */
     animation:
       flowDirectional 4s linear infinite,
       fade-slide-in 0.8s ease-out forwards;

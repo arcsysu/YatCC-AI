@@ -1,5 +1,6 @@
 ---
-import ThemeManager from "../components/ThemeManager.astro";
+import "@styles/global.css";
+import ThemeManager from "@components/ThemeManager.astro";
 
 interface Props {
   transitionSpeed?: string;
@@ -23,38 +24,3 @@ const { transitionSpeed = "0.5s" } = Astro.props;
     <slot />
   </body>
 </html>
-
-<style is:global>
-  :root {
-    /* 默认明亮模式 */
-    --bg-color: #ffffff;
-    --bg-color-dimmer: #f4eef8;
-    --bg-color-dimmer-dimmer: #e8dfef;
-    --text-color: #1a1a1a;
-    --text-color-dimmer: #2b2830;
-    --accent-color: #8f3bf6;
-    --accent-color-extralight: #f3ecfc;
-    --navbar-height: 4rem;
-    --small-device-width: 450px;
-  }
-
-  [data-theme="dark"] {
-    /* 黑暗模式 */
-    --bg-color: #020203;
-    --bg-color-dimmer: #29282a;
-    --bg-color-dimmer-dimmer: #464346;
-    --text-color: #f8fafc;
-    --text-color-dimmer: #dbd3df;
-    --accent-color: #af60fa;
-    --accent-color-extralight: #eadff5;
-  }
-
-  body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
-    overflow: hidden;
-  }
-</style>

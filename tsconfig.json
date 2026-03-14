@@ -5,7 +5,13 @@
     "allowJs": true,
     "types": ["three"],
     "paths": {
-      "three": ["./node_modules/three"]
+      "three": ["./node_modules/three"],
+      "@/*": ["./src/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@public/*": ["./public/*"]
     }
   }
 }

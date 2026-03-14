@@ -20,7 +20,11 @@ const { backgroundColor, icon = "🚀", title } = Astro.props;
 
 <style define:vars={{ backgroundColor }}>
   .card-box {
-    background: var(--bg-color-dimmer);
+    background-color: color-mix(
+      in srgb,
+      var(--bg-color-dimmer) 50%,
+      transparent
+    );
     border-radius: 1em;
     width: 100%;
     height: 100%;
@@ -29,6 +33,10 @@ const { backgroundColor, icon = "🚀", title } = Astro.props;
     flex-direction: column;
     padding: 1.2em;
     gap: 1em;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--border-color);
   }
 
   .card-title-line {
@@ -39,6 +47,7 @@ const { backgroundColor, icon = "🚀", title } = Astro.props;
     flex-direction: row;
     align-items: center;
     gap: 0.8rem;
+    opacity: 1;
   }
 
   .card-title {
@@ -56,9 +65,12 @@ const { backgroundColor, icon = "🚀", title } = Astro.props;
     display: grid;
     place-items: center;
     font-size: 1.5rem;
+
+    user-select: none;
   }
 
   .card-content {
+    opacity: 1;
     font-size: 14px;
     color: var(--text-color-dimmer);
   }

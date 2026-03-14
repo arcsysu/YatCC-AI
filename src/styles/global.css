@@ -1,15 +1,29 @@
 :root {
   /* 默认明亮模式 */
   --bg-color: #ffffff;
+  --bg-color-dimmer: #f4eef8;
+  --bg-color-dimmer-dimmer: #e8dfef;
   --text-color: #1a1a1a;
-  --accent-color: #3b82f6;
+  --sub-text-color: #3a3a3a;
+  --text-color-dimmer: #2b2830;
+  --accent-color: #8f3bf6;
+  --accent-color-extralight: #f3ecfc;
+  --navbar-height: 4rem;
+  --small-device-width: 450px;
+  --border-color: rgba(56, 56, 56, 0.201);
 }
 
 [data-theme="dark"] {
   /* 黑暗模式 */
   --bg-color: #020203;
+  --bg-color-dimmer: #29282a;
+  --bg-color-dimmer-dimmer: #464346;
   --text-color: #f8fafc;
-  --accent-color: #60a5fa;
+  --sub-text-color: rgb(212, 210, 215);
+  --text-color-dimmer: #dbd3df;
+  --accent-color: #af60fa;
+  --accent-color-extralight: #eadff5;
+  --border-color: rgba(255, 255, 255, 0.3);
 }
 
 body {
@@ -18,4 +32,5 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+  overflow: hidden;
 }

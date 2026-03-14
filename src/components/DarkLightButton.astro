@@ -1,13 +1,11 @@
 ---
 interface Props {
-  backgroundColor?: string;
   borderRadius?: string;
   padding?: string;
   href?: string;
 }
 
 const {
-  backgroundColor = "#715ec2",
   borderRadius = "clamp(4px, 1em, 20px)",
   padding = "0.6em 1.5em",
   href = "#",
@@ -22,7 +20,6 @@ const {
 
 <style
   define:vars={{
-    backgroundColor: backgroundColor,
     padding: padding,
     borderRadius: borderRadius,
   }}
@@ -34,7 +31,6 @@ const {
   }
 
   .button {
-    /* 基础重置 */
     border: none;
     outline: none;
     cursor: pointer;
@@ -43,10 +39,10 @@ const {
     align-items: center;
     justify-content: center;
 
-    background: var(--backgroundColor);
+    background: var(--bg-color-dimmer);
     padding: var(--padding);
     border-radius: var(--borderRadius);
-    color: rgb(245, 242, 250);
+    color: var(--text-color);
     font-weight: bold;
     width: auto;
     height: auto;
@@ -58,13 +54,13 @@ const {
   }
 
   .button:hover {
-    background: color-mix(in srgb, var(--backgroundColor), white 15%);
+    background: color-mix(in srgb, var(--bg-color-dimmer), white 15%);
     transform: scale(1.05);
   }
 
   .button:active {
     transform: scale(0.96);
-    background: color-mix(in srgb, var(--backgroundColor), black 10%);
+    background: color-mix(in srgb, var(--bg-color-dimmer), black 10%);
 
     transition: all 0.1s ease;
   }
