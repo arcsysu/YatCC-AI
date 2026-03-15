@@ -4,6 +4,7 @@ interface Props {
   borderRadius?: string;
   padding?: string;
   href?: string;
+  id?: string;
 }
 
 const {
@@ -11,11 +12,12 @@ const {
   borderRadius = "clamp(4px, 1em, 20px)",
   padding = "0.6em 1.5em",
   href = "#",
+  id,
 } = Astro.props;
 ---
 
 <a href={href} class="button-container">
-  <button class="button">
+  <button id={id} class="button">
     <slot />
   </button>
 </a>

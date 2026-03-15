@@ -1,0 +1,227 @@
+---
+import "@styles/global.css";
+import Topbar from "@components/Topbar.astro";
+import Link from "@components/Link.astro";
+import NavDropdown from "@components/NavDropdown.astro";
+import ThemeManager from "@components/ThemeManager.astro";
+import { getLangFromUrl } from "../i18n/utils";
+import Button from "@/components/Button.astro";
+import DarkLightButton from "@/components/DarkLightButton.astro";
+import ChatPannel from "@/components/ChatPannel.astro";
+
+const lang = getLangFromUrl(Astro.url);
+
+interface Props {
+  transitionSpeed?: string;
+}
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>YatCC AI</title>
+    <ThemeManager />
+  </head>
+  <body>
+    <div id="site-canvas" data-ai-open="false">
+      <div class="main-container">
+        <Topbar logoText="YatCC AI">
+          <Fragment slot="nav-items">
+            <Link href="/zh/about">关于</Link>
+            <NavDropdown>
+              <div slot="title">相关资源</div>
+              <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
+              <Link href="https://space.bilibili.com/3546650047941291"
+                >视频</Link
+              >
+              <Link href="https://github.com/arcsysu/YatCC">源码</Link>
+              <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
+            </NavDropdown>
+            <NavDropdown>
+              <div slot="title">团队成员</div>
+              <Link href="https://arcsysu.tech/">arcsysu</Link>
+              <Link href="https://arcsysu.github.io/YatCC/#/contributors"
+                >贡献者</Link
+              >
+            </NavDropdown>
+            <NavDropdown>
+              <div slot="title">往期教学</div>
+              <Link href="https://yatcc-ai.com/teach/s2026.html">2026</Link>
+              <Link href="https://yatcc-ai.com/teach/s2025.html">2025</Link>
+              <Link href="https://yatcc-ai.com/teach/s2024.html">2024</Link>
+              <Link href="https://yatcc-ai.com/teach/s2023.html">2023</Link>
+              <Link href="https://yatcc-ai.com/teach/s2022.html">2022</Link>
+              <Link href="https://yatcc-ai.com/teach/s2021.html">2021</Link>
+            </NavDropdown>
+            <div class="nav-action-wrapper">
+              <div class="nav-action-wrapper ai-trigger-container">
+                <DarkLightButton href=""> 问 AI </DarkLightButton>
+              </div>
+            </div>
+          </Fragment>
+        </Topbar>
+        <slot />
+      </div>
+
+      <aside class="ai-panel">
+        <div class="panel-content">
+          <ChatPannel />
+        </div>
+      </aside>
+
+      <div id="ai-overlay" class="ai-overlay"></div>
+    </div>
+  </body>
+</html>
+
+<style>
+  /* 主内容区动画 */
+  .main-container {
+    transition:
+      transform 0.5s cubic-bezier(0.32, 0.72, 0, 1),
+      border-radius 0.5s ease,
+      opacity 0.5s ease;
+    min-height: 100vh;
+    will-change: transform;
+  }
+
+  /* 侧边栏：初始在右侧并透明 */
+  .ai-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 450px; /* Vercel 面板通常较宽 */
+    height: 100vh;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    z-index: 100;
+    box-shadow: 2px 2px 3px color-mix(in srgb, var(--bg-color), 10% white);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- 联动效果：关键逻辑 --- */
+
+  /* 1. 主内容区缩小并左移 */
+  .site-canvas[data-ai-open="true"] .main-container {
+    transform: scale(0.92) translateX(-80px);
+    border-radius: 1rem;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.6;
+  }
+
+  /* 2. 面板滑入 */
+  .site-canvas[data-ai-open="true"] .ai-panel {
+    transform: translateX(0);
+  }
+
+  .ai-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+  }
+
+  .ai-trigger-wrapper {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 80;
+  }
+
+  /* 移动端适配 */
+  @media (max-width: 640px) {
+    .ai-panel {
+      width: 100%;
+    }
+    .site-canvas[data-ai-open="true"] .main-container {
+      transform: scale(0.9) translateY(-20px);
+    }
+  }
+</style>
+
+<style>
+  /* 初始隐藏侧边栏 */
+  .ai-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 450px;
+    height: 100vh;
+    z-index: 1000; /* 确保足够高 */
+    transform: translateX(100%); /* 藏在右边 */
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    background: transparent;
+    border-radius: 1rem;
+  }
+
+  #site-canvas[data-is-open="true"] .ai-panel {
+    transform: translateX(0);
+  }
+
+  .ai-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s;
+  }
+
+  #site-canvas[data-is-open="true"] .ai-overlay {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+
+<script>
+  function setupSidePanel() {
+    const canvas = document.getElementById("site-canvas");
+
+    // 【核心修复】：不再用 getElementById，而是去类名容器里找 a 标签
+    const triggerBtn = document.querySelector(".ai-trigger-container a");
+
+    const closeBtn = document.getElementById("close-ai");
+    const overlay = document.getElementById("ai-overlay");
+
+    const togglePanel = (e: any) => {
+      if (e) e.preventDefault(); // 阻止 a 标签默认跳转行为
+
+      const isOpen = canvas?.getAttribute("data-is-open") === "true";
+      // 注意：你 HTML 里定义的 ID 是 site-canvas，我们要修改它的属性
+      canvas?.setAttribute("data-is-open", isOpen ? "false" : "true");
+
+      // 锁定/解锁滚动
+      document.body.style.overflow = isOpen ? "" : "hidden";
+      console.log("Panel Toggle Status:", !isOpen); // 调试用：看控制台有没有输出
+    };
+
+    if (triggerBtn) {
+      triggerBtn.addEventListener("click", togglePanel);
+    } else {
+      console.error("找不到触发按钮！请检查 Topbar 里的类名是否正确。");
+    }
+
+    closeBtn?.addEventListener("click", togglePanel);
+    overlay?.addEventListener("click", togglePanel);
+
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        canvas?.getAttribute("data-is-open") === "true"
+      ) {
+        togglePanel(e);
+      }
+    });
+  }
+
+  // 初始化并兼容 Astro 路由切换
+  setupSidePanel();
+  document.addEventListener("astro:after-swap", setupSidePanel);
+</script>

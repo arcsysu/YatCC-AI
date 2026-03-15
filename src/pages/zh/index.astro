@@ -1,48 +1,18 @@
 ---
-import HomeTitle from "@components/HomeTitle.astro";
-import Layout from "@layouts/Layout.astro";
-import Topbar from "@components/Topbar.astro";
-import Link from "@components/Link.astro";
-import NavDropdown from "@components/NavDropdown.astro";
-import DragonParticles from "@components/DragonParticles.astro";
-import Button from "@components/Button.astro";
-import SnapContainer from "@components/SnapContainer.astro";
-import SnapPage from "@components/SnapPage.astro";
-import FixPage from "@components/FixPage.astro";
-import ButtonGroup from "@components/ButtonGroup.astro";
-import FixPageContainer from "@components/FixPageContainer.astro";
-import CardContainer from "@components/CardContainer.astro";
-import Card from "@components/Card.astro";
-import IntroductionPage from "@components/IntroductionPage.astro";
-import OutlinedButton from "@components/OutlinedButton.astro";
-import DarkLightButton from "@components/DarkLightButton.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import FixPage from "@/components/FixPage.astro";
+import FixPageContainer from "@/components/FixPageContainer.astro";
+import HomeTitle from "@/components/HomeTitle.astro";
+import ButtonGroup from "@/components/ButtonGroup.astro";
+import Button from "@/components/Button.astro";
+import DarkLightButton from "@/components/DarkLightButton.astro";
+import CardContainer from "@/components/CardContainer.astro";
+import Card from "@/components/Card.astro";
+import DragonParticles from "@/components/DragonParticles.astro";
+import IntroductionPage from "@/components/IntroductionPage.astro";
 ---
 
-<Layout>
-  <Topbar logoText="YatCC AI">
-    <Fragment slot="nav-items">
-      <Link href="/zh/about">关于</Link>
-      <NavDropdown title="相关资源">
-        <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
-        <Link href="https://space.bilibili.com/3546650047941291">视频</Link>
-        <Link href="https://github.com/arcsysu/YatCC">源码</Link>
-        <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
-      </NavDropdown>
-      <NavDropdown title="团队成员">
-        <Link href="https://arcsysu.tech/">arcsysu</Link>
-        <Link href="https://arcsysu.github.io/YatCC/#/contributors">贡献者</Link
-        >
-      </NavDropdown>
-      <NavDropdown title="往期教学">
-        <Link href="https://yatcc-ai.com/teach/s2026.html">2026</Link>
-        <Link href="https://yatcc-ai.com/teach/s2025.html">2025</Link>
-        <Link href="https://yatcc-ai.com/teach/s2024.html">2024</Link>
-        <Link href="https://yatcc-ai.com/teach/s2023.html">2023</Link>
-        <Link href="https://yatcc-ai.com/teach/s2022.html">2022</Link>
-        <Link href="https://yatcc-ai.com/teach/s2021.html">2021</Link>
-      </NavDropdown>
-    </Fragment>
-  </Topbar>
+<BaseLayout>
   <FixPageContainer>
     <FixPage>
       <div class="home-container">
@@ -82,7 +52,7 @@ import DarkLightButton from "@components/DarkLightButton.astro";
     <IntroductionPage title="YatCC OL"> hello </IntroductionPage>
     <IntroductionPage title="AI Hub"> hello </IntroductionPage>
   </FixPageContainer>
-</Layout>
+</BaseLayout>
 
 <style>
   .home-container {

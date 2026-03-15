@@ -3,13 +3,14 @@ import { Image } from "astro:assets";
 import iconImage from "@assets/yatcc-icon.png";
 import ThemeToggleButton from "@components/ThemeToggleButton.astro";
 import NavDropdown from "@components/NavDropdown.astro";
-import Link from "./Link.astro";
+import Link from "@components/Link.astro";
 import {
   getLangFromUrl,
   useTranslations,
   useTranslatedPath,
 } from "../i18n/utils";
 import { languages } from "../i18n/ui";
+import LanguageIcon from "@assets/language.svg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -42,7 +43,15 @@ const { logoText = "YatCC AI" } = Astro.props;
 
       <div class="divider"></div>
 
-      <NavDropdown title={t("language")}>
+      <NavDropdown>
+        <div class="language-icon" slot="title">
+          <Image
+            src={LanguageIcon}
+            alt={t("language")}
+            width={25}
+            class="language-icon"
+          />
+        </div>
         {
           Object.entries(languages).map(([lang, label]) => (
             <Link href={translatePath("/", lang)}>{label}</Link>
@@ -88,7 +97,6 @@ const { logoText = "YatCC AI" } = Astro.props;
       padding: 0 0.5rem;
     }
 
-    /* 左侧样式 */
     .nav-left .logo {
       display: flex;
       align-items: center;
@@ -105,11 +113,9 @@ const { logoText = "YatCC AI" } = Astro.props;
       font-weight: 700;
       font-size: 1.5rem;
       letter-spacing: -0.025em;
-      /* 你之前提到的字体 */
       font-family: "Satoshi-Bold", sans-serif;
     }
 
-    /* 右侧及插槽样式 */
     .nav-right {
       display: flex;
       align-items: center;
@@ -122,7 +128,7 @@ const { logoText = "YatCC AI" } = Astro.props;
       gap: 1.25rem;
       font-size: 0.875rem;
       font-weight: 500;
-      color: #64748b; /* slate-500 */
+      color: #64748b;
       transition: color 0.3s ease;
     }
 
@@ -148,6 +154,19 @@ const { logoText = "YatCC AI" } = Astro.props;
 
     .icon {
       margin-top: 10px;
+    }
+
+    .language-icon {
+      position: relative;
+      top: 0.2em;
+    }
+
+    .language-icon img {
+      filter: invert(0);
+      transition: all 0.3s ease;
+    }
+    :global([data-theme="dark"]) .language-icon img {
+      filter: invert(1);
     }
   </style>
 </header>

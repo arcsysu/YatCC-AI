@@ -1,14 +1,13 @@
 ---
 interface Props {
-  title: string;
   href?: string;
 }
-const { title, href = "#" } = Astro.props;
+const { href = "#" } = Astro.props;
 ---
 
 <div class="dropdown-container">
   <a href={href} class="dropdown-trigger">
-    {title}
+    <slot name="title" />
     <svg
       class="chevron"
       xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +102,7 @@ const { title, href = "#" } = Astro.props;
 
   .popup-card {
     min-width: 12rem;
-    background: rgba(var(--bg-rgb, 255, 255, 255), 0.8);
+    background: rgba(var(--bg-rgb, 255, 255, 255), 0.1);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(0, 0, 0, 0.05);

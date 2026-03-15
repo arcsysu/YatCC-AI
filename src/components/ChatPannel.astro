@@ -1,0 +1,271 @@
+---
+import "@styles/global.css";
+import "@styles/satoshi.css";
+import Button from "./Button.astro";
+---
+
+<div
+  class="glass-wrapper"
+  data-yat-agent
+  data-search-index-url="/search_index.json"
+  data-current-page={Astro.url.pathname}
+  data-current-title="YatCC AI"
+>
+  <div class="container">
+    <div class="header">
+      <div class="header-left">
+        <div class="title">Chat Assistant</div>
+        <div class="status-dot" data-agent-status data-ready="false"></div>
+      </div>
+      <Button
+        id="close-ai"
+        data-agent-close
+        padding="0.4em 0.8em"
+        backgroundColor="rgba(255,255,255,0.1)"
+      >
+        ✕
+      </Button>
+    </div>
+
+    <div class="messages-container" data-agent-messages>
+      <article class="yat-agent__message yat-agent__message--assistant">
+        <div class="yat-agent__message-body">
+          你好！我是 YatCC 助手，请问有什么可以帮您？
+        </div>
+      </article>
+    </div>
+
+    <form class="input-form" data-agent-form>
+      <textarea
+        name="prompt"
+        placeholder="输入问题..."
+        rows="1"
+        autocomplete="off"></textarea>
+      <button type="submit" class="send-btn">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+  /* 基础容器布局：确保占满 aside 面板 */
+  .glass-wrapper {
+    height: 100vh;
+    width: 100%;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    /* 极致毛玻璃背景 */
+    background: rgba(var(--bg-color), 0.5);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-left: 1px solid rgba(var(--bg-color), 0.1);
+    color: var(--text-color);
+  }
+
+  /* 头部 */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .title {
+    font-family: "Satoshi-Bold", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  /* 状态点 */
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff4d4f; /* 初始红 */
+    transition:
+      background 0.3s,
+      box-shadow 0.3s;
+  }
+  .status-dot[data-ready="true"] {
+    background: #52c41a;
+    box-shadow: 0 0 8px #52c41a;
+  }
+
+  /* 消息区域核心：min-height: 0 配合 flex: 1 是撑满且不溢出的秘诀 */
+  .messages-container {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-right: 0.5rem;
+    margin-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(var(--bg-color), 0.2) transparent;
+  }
+
+  /* --- 适配 doc-agent.js 动态生成的 HTML --- */
+  :global(.yat-agent__message) {
+    max-width: 88%;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.3s ease-out;
+  }
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  :global(.yat-agent__message-body) {
+    padding: 0.75rem 1rem;
+    border-radius: 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+
+  :global(.yat-agent__message--user) {
+    align-self: flex-end;
+  }
+  :global(.yat-agent__message--user .yat-agent__message-body) {
+    background: #715ec2;
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+
+  :global(.yat-agent__message--assistant) {
+    align-self: flex-start;
+  }
+  :global(.yat-agent__message--assistant .yat-agent__message-body) {
+    background: rgba(var(--bg-color), 0.1);
+    border: 2px solid color-mix(in srgb, var(--anti-bg-color) 50%, transparent);
+    border-bottom-left-radius: 4px;
+  }
+
+  /* 思考中动画 */
+  :global(.yat-agent__thinking) {
+    display: flex;
+    gap: 4px;
+    padding: 10px 0;
+  }
+  :global(.yat-agent__thinking span) {
+    width: 6px;
+    height: 6px;
+    background: #715ec2;
+    border-radius: 50%;
+    animation: bounce 1.4s infinite ease-in-out both;
+  }
+  @keyframes bounce {
+    0%,
+    80%,
+    100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1);
+    }
+  }
+
+  /* 参考资料链接 */
+  :global(.yat-agent__sources) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  :global(.yat-agent__source) {
+    font-size: 0.7rem;
+    color: #715ec2;
+    text-decoration: none;
+    padding: 2px 6px;
+    background: rgba(var(--bg-color-dimmer), 0.1);
+    border-radius: 4px;
+  }
+
+  /* 输入框表单 */
+  .input-form {
+    flex-shrink: 0;
+    background: rgba(var(--bg-color), 0.3);
+    border: 1px solid rgba(var(--bg-color), 0.1);
+    border-radius: 1rem;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    transition: border-color 0.2s;
+  }
+  .input-form:focus-within {
+    border-color: #715ec2;
+  }
+
+  textarea {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.95rem;
+    resize: none;
+    padding: 0;
+    line-height: 1.5;
+  }
+
+  .send-btn {
+    background: #715ec2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+      transform 0.2s,
+      background 0.2s;
+  }
+  .send-btn:hover {
+    background: #826fd5;
+    transform: scale(1.05);
+  }
+  .send-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+</style>

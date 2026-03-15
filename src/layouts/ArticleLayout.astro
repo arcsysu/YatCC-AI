@@ -4,6 +4,8 @@ import ThemeManager from "@components/ThemeManager.astro";
 import Topbar from "@components/Topbar.astro";
 import Link from "@components/Link.astro";
 import NavDropdown from "@components/NavDropdown.astro";
+import "@styles/global.css";
+import "@styles/satoshi.css";
 ---
 
 <!doctype html>
@@ -22,19 +24,22 @@ import NavDropdown from "@components/NavDropdown.astro";
       <Topbar logoText="YatCC AI">
         <Fragment slot="nav-items">
           <Link href="/zh/about">关于</Link>
-          <NavDropdown title="相关资源">
+          <NavDropdown>
+            <div slot="title">相关资源</div>
             <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
             <Link href="https://space.bilibili.com/3546650047941291">视频</Link>
             <Link href="https://github.com/arcsysu/YatCC">源码</Link>
             <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
           </NavDropdown>
-          <NavDropdown title="团队成员">
+          <NavDropdown>
+            <div slot="title">团队成员</div>
             <Link href="https://arcsysu.tech/">arcsysu</Link>
             <Link href="https://arcsysu.github.io/YatCC/#/contributors"
               >贡献者</Link
             >
           </NavDropdown>
-          <NavDropdown title="往期教学">
+          <NavDropdown>
+            <div slot="title">往期教学</div>
             <Link href="https://yatcc-ai.com/teach/s2026.html">2026</Link>
             <Link href="https://yatcc-ai.com/teach/s2025.html">2025</Link>
             <Link href="https://yatcc-ai.com/teach/s2024.html">2024</Link>

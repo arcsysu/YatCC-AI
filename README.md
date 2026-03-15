@@ -12,4 +12,4 @@
 
 ## Contribute
 
-TODO: 建立内容更新规范.
+看 [贡献指北](./CONTRIBUTING.md).

@@ -1,6 +1,7 @@
 :root {
   /* 默认明亮模式 */
   --bg-color: #ffffff;
+  --anti-bg-color: #020203;
   --bg-color-dimmer: #f4eef8;
   --bg-color-dimmer-dimmer: #e8dfef;
   --text-color: #1a1a1a;
@@ -16,7 +17,8 @@
 [data-theme="dark"] {
   /* 黑暗模式 */
   --bg-color: #020203;
-  --bg-color-dimmer: #29282a;
+  --anti-bg-color: #ffffff;
+  --bg-color-dimmer: #242027;
   --bg-color-dimmer-dimmer: #464346;
   --text-color: #f8fafc;
   --sub-text-color: rgb(212, 210, 215);
