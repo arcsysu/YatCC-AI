@@ -10,8 +10,5 @@ export default defineConfig({
     preview: {
       allowedHosts: ["dvdbr3o-laptop", "dvdbr3o-laptop.local", ".local"],
     },
-	  adapter: vercel({
-    imageService: true,
-  }),
   },
 });
