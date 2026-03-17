@@ -3,6 +3,7 @@ import "@styles/global.css";
 import "@styles/satoshi.css";
 import Button from "@/components/Button.astro";
 import { tOfUrl } from "@/i18n/utils";
+import DarkLightButton from "./DarkLightButton.astro";
 
 const t = tOfUrl(Astro.url);
 ---
@@ -20,14 +21,14 @@ const t = tOfUrl(Astro.url);
         <div class="title">{t("chat.assistant")}</div>
         <div class="status-dot" data-agent-status data-ready="false"></div>
       </div>
-      <Button
+      <DarkLightButton
         id="close-ai"
         data-agent-close
         padding="0.4em 0.8em"
         backgroundColor="rgba(255,255,255,0.1)"
       >
         ✕
-      </Button>
+      </DarkLightButton>
     </div>
 
     <div class="messages-container" data-agent-messages>
@@ -131,8 +132,8 @@ const t = tOfUrl(Astro.url);
     gap: 1.5rem;
     padding-right: 0.5rem;
     margin-bottom: 1rem;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(var(--bg-color), 0.2) transparent;
+    scrollbar-width: none;
+    /* scrollbar-color: rgba(var(--bg-color), 0.2) transparent; */
   }
 
   /* --- 适配 doc-agent.js 动态生成的 HTML --- */

@@ -1,11 +1,13 @@
 ---
 interface Props {
+  id?: string;
   borderRadius?: string;
   padding?: string;
   href?: string;
 }
 
 const {
+  id,
   borderRadius = "clamp(4px, 1em, 20px)",
   padding = "0.6em 1.5em",
   href = "#",
@@ -13,7 +15,7 @@ const {
 ---
 
 <a href={href} class="button-container">
-  <button class="button">
+  <button id={id} class="button">
     <slot />
   </button>
 </a>
