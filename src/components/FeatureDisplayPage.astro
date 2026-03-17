@@ -233,6 +233,12 @@ const { title, direction = "left" } = Astro.props;
     white-space: nowrap;
     will-change: transform, opacity;
   }
+
+  @media (max-width: 768px) {
+    :global(.feature-label-display) {
+      top: -4.5em;
+    }
+  }
 </style>
 <script>
   function setupCircularPPT() {
