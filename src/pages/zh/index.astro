@@ -10,6 +10,11 @@ import CardContainer from "@/components/CardContainer.astro";
 import Card from "@/components/Card.astro";
 import DragonParticles from "@/components/DragonParticles.astro";
 import IntroductionPage from "@/components/IntroductionPage.astro";
+import FeatureDisplayPage from "@/components/FeatureDisplayPage.astro";
+import FeatureDisplayPageFeature from "@/components/FeatureDisplayPageFeature.astro";
+import imgUseCodespaces from "@public/use-codespaces.gif";
+import imgUseOl from "@public/use-ol.gif";
+import imgLlmConfig from "@public/llm-config.gif";
 ---
 
 <BaseLayout>
@@ -49,7 +54,17 @@ import IntroductionPage from "@/components/IntroductionPage.astro";
         </div>
       </div>
     </FixPage>
-    <IntroductionPage title="YatCC OL"> hello </IntroductionPage>
+    <!-- <IntroductionPage title="YatCC OL"> hello </IntroductionPage> -->
+    <FeatureDisplayPage title="YatCC OL" direction="left">
+      <FeatureDisplayPageFeature label="Feature 1" image={imgUseCodespaces} />
+      <FeatureDisplayPageFeature label="Feature 2" image={imgUseOl} />
+      <FeatureDisplayPageFeature label="Feature 3" image={imgUseCodespaces} />
+    </FeatureDisplayPage>
+    <FeatureDisplayPage title="AI Hub" direction="right">
+      <FeatureDisplayPageFeature label="Feature 1" />
+      <FeatureDisplayPageFeature label="Feature 2" />
+      <FeatureDisplayPageFeature label="Feature 3" />
+    </FeatureDisplayPage>
     <IntroductionPage title="AI Hub"> hello </IntroductionPage>
   </FixPageContainer>
 </BaseLayout>

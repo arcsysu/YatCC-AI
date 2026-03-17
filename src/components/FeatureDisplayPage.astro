@@ -1,0 +1,351 @@
+---
+interface Props {
+  title: string;
+  direction?: "left" | "right";
+}
+
+const { title, direction = "left" } = Astro.props;
+---
+
+<div class={`feature-section ${direction}`} data-feature-section>
+  <div class="scroll-container" data-scroll-height>
+    <div class="sticky-viewport">
+      <div class="center-header">
+        <h2 class="title-text">{title}</h2>
+      </div>
+
+      <div class="main-layout">
+        <div class="image-stage-container">
+          <div class="image-stage">
+            <div class="image-stack" data-image-presenter></div>
+          </div>
+        </div>
+
+        <div class="ring-system-wrapper">
+          <div class="ring-visual">
+            <div class="particle-ring"></div>
+            <div class="particle-dots"></div>
+          </div>
+          <div class="labels-track" data-labels-container>
+            <slot />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .feature-section {
+    position: relative;
+    width: 100%;
+  }
+
+  /* 核心：scroll-container 必须有明确的物理高度，sticky 才会生效 */
+  .scroll-container {
+    position: relative;
+    height: 400vh;
+  }
+
+  .sticky-viewport {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden; /* 必须 hidden，防止内部圆环溢出导致 Sticky 失效 */
+  }
+
+  .center-header {
+    position: absolute;
+    top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+  }
+  .title-text {
+    font-family: "Satoshi-Bold", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--text-color);
+    text-transform: uppercase;
+  }
+
+  .main-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100vh;
+    padding-top: 8rem;
+  }
+
+  @media (max-width: 768px) {
+    .main-layout {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      padding-top: 4rem;
+    }
+    .left .image-stage-container,
+    .right .image-stage-container {
+      order: 1;
+    }
+    .left .ring-system-wrapper,
+    .right .ring-system-wrapper {
+      order: 2;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .left .image-stage-container {
+      order: 1;
+    }
+    .left .ring-system-wrapper {
+      order: 2;
+    }
+    .right .image-stage-container {
+      order: 2;
+    }
+    .right .ring-system-wrapper {
+      order: 1;
+    }
+  }
+
+  .ring-system-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ring-visual {
+    position: absolute;
+    width: 80vh;
+    height: 80vh;
+    pointer-events: none;
+  }
+  .left .ring-visual {
+    right: -10vh;
+  }
+  .right .ring-visual {
+    left: -10vh;
+  }
+
+  .particle-ring {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    /* opacity: 0.5; */
+    mask-image: radial-gradient(circle, transparent 45%, black 100%);
+  }
+  .particle-dots {
+    position: absolute;
+    inset: -20px;
+    background-image: radial-gradient(
+      circle,
+      var(--accent-color) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 40px 40px;
+    opacity: 0.2;
+    border-radius: 50%;
+    animation: rotateRing 150s linear infinite;
+  }
+  @keyframes rotateRing {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .labels-track {
+    position: absolute;
+    inset: 0;
+  }
+
+  :global(.present-img-wrapper) {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: all 0.8s ease;
+  }
+  :global(.present-img-wrapper.active) {
+    opacity: 1;
+    transform: scale(1);
+  }
+  :global(.present-img-wrapper img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .main-layout {
+    display: grid;
+    /* 宽屏比例：图片 60vw，剩下给词条系统 */
+    /* grid-template-columns: 60vw 1fr; */
+    width: 100%;
+    /* 核心：计算除去 header 后的剩余空间并居中 */
+    height: calc(100vh - var(--navbar-height));
+    /* margin-top: 6rem; */
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .left .main-layout {
+      grid-template-columns: 60vw 1fr;
+    }
+    .right .main-layout {
+      grid-template-columns: 1fr 60vw;
+    }
+  }
+
+  .image-stage-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+  }
+
+  .image-stage {
+    position: relative;
+    width: 90%; /* 在 60vw 的容器内占据 90% */
+    aspect-ratio: 16 / 10;
+    background-color: var(--bg-color-dimmer);
+    border-radius: clamp(20px, 3vw, 40px);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  }
+
+  @media (min-width: 768px) {
+    .image-stage-container {
+      transform: translate3d(0, -50px, 0);
+    }
+  }
+
+  /* 词条基础样式确保居中 */
+  :global(.feature-label-display) {
+    position: absolute;
+    left: 50%;
+    top: -2em;
+    white-space: nowrap;
+    will-change: transform, opacity;
+  }
+</style>
+<script>
+  function setupCircularPPT() {
+    const sections = document.querySelectorAll("[data-feature-section]");
+
+    sections.forEach((section) => {
+      const holder = section.querySelector(
+        "[data-scroll-height]",
+      ) as HTMLElement;
+      const labelsContainer = section.querySelector("[data-labels-container]");
+      const presenter = section.querySelector("[data-image-presenter]");
+      if (!holder || !labelsContainer || !presenter) return;
+
+      const sourceItems = labelsContainer.querySelectorAll(
+        ".feature-source-item",
+      );
+      const count = sourceItems.length;
+
+      // --- 体检环节 ---
+      console.log(`[Feature] 初始化: 词条数 ${count}`);
+      holder.style.height = `${count * 100}vh`; // 强制撑开空间
+
+      if (presenter.children.length === 0) {
+        sourceItems.forEach((item) => {
+          const img = item.querySelector("img, picture");
+          if (img) {
+            const w = document.createElement("div");
+            w.className = "present-img-wrapper";
+            w.appendChild(img.cloneNode(true));
+            presenter.appendChild(w);
+          }
+        });
+      }
+
+      const displayLabels = labelsContainer.querySelectorAll(
+        ".feature-label-display",
+      );
+      const imageWrappers = presenter.querySelectorAll(".present-img-wrapper");
+
+      // 核心计算逻辑
+      const update = () => {
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight;
+
+        // 【物理诊断】：计算当前滚动进度
+        // 当 section 贴顶时 rect.top 为 0，往上滚时 rect.top 为负
+        const relativeScroll = -rect.top;
+        const maxScroll = vh * (count - 1);
+
+        // 进度锁定在 0-1 之间
+        const progress = Math.max(
+          0,
+          Math.min(0.999, relativeScroll / (maxScroll || 1)),
+        );
+        const activeIdx = Math.round(progress * (count - 1));
+
+        // 圆弧数学模型
+        const radius = vh * 0.45;
+        const angleStep = Math.PI / 3.5;
+        const isLeft = section.classList.contains("left");
+
+        displayLabels.forEach((label, i) => {
+          const el = label as HTMLElement;
+          const offset = progress * (count - 1) - i;
+          const angle = -offset * angleStep; // 负号确保滚动方向正确
+
+          const xDir = isLeft ? -1 : 1;
+          const tx = xDir * radius * (Math.cos(angle) - 1);
+          const ty = radius * Math.sin(angle);
+
+          const dist = Math.abs(offset);
+          const opacity = Math.max(0, 1 - dist * 1.5);
+          const scale = Math.max(0.5, 1.2 - dist * 0.4);
+
+          // 使用最稳健的 transform 组合
+          el.style.transform = `translate(-50%, -50%) translate(${tx}px, ${ty}px) scale(${scale})`;
+          el.style.opacity = opacity.toString();
+          el.style.filter = `blur(${dist * 6}px)`;
+          el.classList.toggle("active", i === activeIdx);
+        });
+
+        imageWrappers.forEach((img, i) =>
+          img.classList.toggle("active", i === activeIdx),
+        );
+      };
+
+      // --- 关键：使用逐帧引擎替代事件监听 ---
+      let isTracking = false;
+      const loop = () => {
+        if (!isTracking) return;
+        update();
+        requestAnimationFrame(loop);
+      };
+
+      // 只要 section 在视口内（即便只是边缘），就强制开启高频检查
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            isTracking = true;
+            console.log("[Feature] 激活跟踪");
+            loop();
+          } else {
+            isTracking = false;
+            console.log("[Feature] 停止跟踪");
+          }
+        },
+        { threshold: 0, rootMargin: "100px" },
+      );
+
+      observer.observe(section);
+    });
+  }
+
+  setupCircularPPT();
+  document.addEventListener("astro:after-swap", setupCircularPPT);
+</script>

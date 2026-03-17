@@ -1,0 +1,29 @@
+---
+import { Image } from "astro:assets";
+const { label, image } = Astro.props;
+---
+
+<div class="feature-source-item" style="display: none;">
+  {image && <Image src={image} alt={label} width={1200} />}
+</div>
+
+<div class="feature-label-display">
+  {label}
+  <slot name="label-detail" />
+</div>
+
+<style>
+  .feature-label-display {
+    position: absolute;
+    font-family: "Satoshi-Bold", sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    color: var(--text-color);
+    white-space: nowrap;
+    pointer-events: none;
+    will-change: transform, opacity;
+    transition: color 0.4s ease;
+  }
+  .feature-label-display.active {
+    color: var(--accent-color);
+  }
+</style>
