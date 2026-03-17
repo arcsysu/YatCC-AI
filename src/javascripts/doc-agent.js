@@ -7,67 +7,96 @@ const OPENAI_CONFIG = {
   apiKey: "sk-f5393eefb65648f5beed802ba3be1179",
   model: "deepseek-chat",
 };
-const MAX_HISTORY_TURNS = 6;
-const MAX_CONTEXT_DOCS = 6;
+const MAX_HISTORY_TURNS = 5;
 
-// 封装成初始化函数，方便在 Astro 路由切换时再次调用
-function initYatAgent() {
+function initYatCCAgent() {
   const root = document.querySelector("[data-yat-agent]");
   if (!root) return;
 
   const state = {
     history: [],
     isBusy: false,
-    searchIndex: null,
     thinkingEl: null,
   };
 
-  // 1. 重新映射选择器，匹配你的 Astro 组件结构
-  const closeButton = root.querySelector("[data-agent-close]");
   const messagesEl = root.querySelector("[data-agent-messages]");
   const form = root.querySelector("[data-agent-form]");
-  const input = form.querySelector('textarea[name="prompt"]');
-  const submitButton = form.querySelector('button[type="submit"]');
+  const input = form?.querySelector('textarea[name="prompt"]');
+  const submitButton = form?.querySelector('button[type="submit"]');
   const statusEl = root.querySelector("[data-agent-status]");
-  const canvas = document.getElementById("site-canvas");
 
-  // 初始化检查状态
-  checkIndexStatus();
+  if (!form || !input || !messagesEl) return;
 
-  // 2. 绑定事件
+  // 设置初始状态：实时模式下，状态灯默认亮起
+  if (statusEl) {
+    statusEl.dataset.ready = "true";
+    statusEl.title = "实时页面分析模式已就绪";
+  }
+
+  // --- 核心逻辑：提取当前页面内容 ---
+  function getPageContext() {
+    // 优先选择正文容器，根据你的 Astro 模板选择器调整
+    const contentArea =
+      document.querySelector("main") ||
+      document.querySelector("article") ||
+      document.querySelector(".md-content") ||
+      document.body;
+
+    const clone = contentArea.cloneNode(true);
+
+    // 剔除不需要 AI 关注的噪音元素
+    const noiseSelectors = [
+      "nav",
+      "footer",
+      "script",
+      "style",
+      "aside",
+      ".yat-agent", // 排除助手自己
+      ".sidebar",
+      ".table-of-contents",
+      ".ads",
+    ];
+    noiseSelectors.forEach((selector) => {
+      clone.querySelectorAll(selector).forEach((el) => el.remove());
+    });
+
+    // 获取纯文本并压缩空白
+    return clone.innerText.replace(/\s+/g, " ").trim().slice(0, 10000);
+  }
+
+  // --- 事件监听 ---
   form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+    event.preventDefault(); // 严防 URL 出现 ?prompt=
+
     const question = input.value.trim();
     if (!question || state.isBusy) return;
 
     appendMessage("user", question);
     input.value = "";
-    input.style.height = "";
+    input.style.height = "auto";
 
     setBusy(true);
     showThinking();
 
     try {
-      const docs = await ensureSearchIndex();
-      const selectedDocs = selectRelevantDocs(question, docs);
-      const response = await generateAnswer(question, selectedDocs);
+      const pageContext = getPageContext();
+      const response = await generateAnswer(question, pageContext);
 
       clearThinking();
-      appendMessage("assistant", response, selectedDocs);
+      appendMessage("assistant", response);
 
       state.history.push({ role: "user", content: question });
       state.history.push({ role: "assistant", content: response });
       state.history = state.history.slice(-MAX_HISTORY_TURNS * 2);
     } catch (error) {
       clearThinking();
-      console.error("AI Request Error:", error);
-      appendMessage("assistant", `请求失败：${error.message || "未知错误"}`);
+      console.error("Agent Error:", error);
+      appendMessage("assistant", `抱歉，处理您的请求时出错：${error.message}`);
     } finally {
       setBusy(false);
     }
   });
 
-  // 自动高度和快捷键
   input.addEventListener("input", autoResizeInput);
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -76,164 +105,108 @@ function initYatAgent() {
     }
   });
 
-  // 状态检查：如果索引加载成功，圆点变绿
-  async function checkIndexStatus() {
-    try {
-      await ensureSearchIndex();
-      if (statusEl) statusEl.dataset.ready = "true";
-    } catch (e) {
-      console.warn("Search index not ready yet.");
-    }
-  }
-
-  function setBusy(busy) {
-    state.isBusy = busy;
-    submitButton.disabled = busy;
-    input.disabled = busy;
-    if (statusEl) statusEl.style.opacity = busy ? "0.5" : "1";
-  }
-
-  function autoResizeInput() {
-    input.style.height = "auto";
-    input.style.height = `${Math.min(input.scrollHeight, 120)}px`;
-  }
-
-  async function ensureSearchIndex() {
-    if (state.searchIndex) return state.searchIndex;
-    const url = root.dataset.searchIndexUrl;
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("无法加载搜索索引");
-    const payload = await response.json();
-    state.searchIndex = Array.isArray(payload.docs) ? payload.docs : [];
-    return state.searchIndex;
-  }
-
-  // --- 逻辑函数（保持原样，但确保内部引用正确） ---
-
-  function selectRelevantDocs(question, docs) {
-    const currentPage = root.dataset.currentPage || "";
-    const normalizedQuestion = normalize(question);
-    const terms = buildTerms(normalizedQuestion);
-
-    const ranked = docs
-      .map((doc) => ({
-        doc,
-        score: scoreDoc(doc, normalizedQuestion, terms, currentPage),
-      }))
-      .filter((entry) => entry.score > 0)
-      .sort((left, right) => right.score - left.score)
-      .slice(0, MAX_CONTEXT_DOCS)
-      .map((entry) => ({
-        title: entry.doc.title || "相关页面",
-        location: entry.doc.location || "",
-        text: buildExcerpt(entry.doc.text || "", terms),
-      }));
-
-    return ranked.length ? ranked : [];
-  }
-
-  function scoreDoc(doc, question, terms, currentPage) {
-    const title = normalize(doc.title || "");
-    const text = normalize(doc.text || "");
-    const location = normalize(doc.location || "");
-    let score = 0;
-    if (question && title.includes(question)) score += 24;
-    if (question && text.includes(question)) score += 12;
-    for (const term of terms) {
-      if (term.length < 2) continue;
-      if (title.includes(term)) score += 8;
-      if (text.includes(term)) score += 2;
-    }
-    return score;
-  }
-
-  function buildTerms(text) {
-    return Array.from(
-      new Set(text.match(/[a-z0-9_./-]+|[\u4e00-\u9fff]{2,}/g) || []),
-    ).slice(0, 24);
-  }
-
-  function buildExcerpt(text, terms) {
-    const plain = text.replace(/\s+/g, " ").trim();
-    return plain.slice(0, 300) + "...";
-  }
-
-  async function generateAnswer(question, docs) {
+  // --- API 交互 ---
+  async function generateAnswer(question, context) {
     const client = new OpenAI({
       apiKey: OPENAI_CONFIG.apiKey,
       baseURL: OPENAI_CONFIG.baseURL,
       dangerouslyAllowBrowser: true,
     });
 
-    const contextBlock = docs.length
-      ? docs.map((d, i) => `[${i + 1}] ${d.title}: ${d.text}`).join("\n")
-      : "未找到相关文档内容。";
+    const conversation = state.history
+      .map((h) => `${h.role === "user" ? "用户" : "助手"}: ${h.content}`)
+      .join("\n");
 
-    const prompt = `文档内容：\n${contextBlock}\n\n问题：${question}`;
+    const systemPrompt = `# Role
+你是一个名为 "YatCC-AI" 的智能助手。你的目标是为中山大学（Sun Yat-sen University）编译实验框架 YatCC-AI 的用户提供专业、友好的技术支持。
+
+# Context & Scope
+- **定义**: YatCC-AI (Your AI Time Cool Compiler) 是一个基于工业级 LLVM 构建的现代化编译实验框架，致力于为编译课程提供现代、友好和前沿的实践体验。
+- **架构**: 采用高度模块化的架构设计，将编译器前端与后端逻辑解耦。
+- **核心能力**:
+  - **智能化**: 深度整合 DeepSeek 等大语言模型能力，提供全程赋能。
+  - **便捷化**: “零配置” Web 化实践平台，浏览器即开即用。
+  - **自动化**: 内置单元测试体系与双模式（本地/云端）自动化评测机制。
+- **项目愿景**: 从 "Yet Another Tiny C Compiler" 演进为 AI 驱动的创新平台，衔接高校教学与工业界实践。
+
+# Guidelines
+1. **身份一致性**: 始终以 YatCC-AI 官方助手的身份回答。
+2. **回答依据**: 优先根据当前页面的文档内容回答。如果涉及 LLVM、编译器设计模式、C++ 开发等通用技术，需保持与 YatCC-AI 工业级、模块化设计理念一致。
+3. **技术栈关注点**: 
+   - 强调 LLVM 基础、模块化扩展、自动化评测及 AI 辅助编程。
+   - 关注 Web 端即开即用的体验及环境配置问题的简化。
+4. **语气风格**: 专业、鼓励创新、简洁明了。
+5. **局限性说明**: 如果用户询问非编译、非 YatCC 相关的话题，请委婉引导回编译技术或本平台相关内容。
+
+# Response Protocol
+- 回答末尾应根据需要提示相关资源（如：参考手册、历年课程归档、实现源码或教学视频）。
+- 对于代码实现问题，应遵循 LLVM 代码风格和模块化拆分的原则。
+
+当前页面标题: ${document.title}`;
+
+    const userMessage = `【当前页面内容提取】:
+${context}
+
+【历史对话】:
+${conversation}
+
+【用户提问】:
+${question}`;
 
     const completion = await client.chat.completions.create({
       model: OPENAI_CONFIG.model,
       messages: [
-        {
-          role: "system",
-          content: "你是 YatCC 智能助手。请基于提供的文档回答，保持简洁专业。",
-        },
-        { role: "user", content: prompt },
+        { role: "system", content: systemPrompt },
+        { role: "user", content: userMessage },
       ],
+      temperature: 0.7,
     });
 
-    return (
-      completion.choices?.[0]?.message?.content || "抱歉，我无法回答这个问题。"
-    );
+    return completion.choices?.[0]?.message?.content || "模型未返回有效信息。";
+  }
+
+  // --- UI 工具 ---
+  function setBusy(busy) {
+    state.isBusy = busy;
+    if (submitButton) submitButton.disabled = busy;
+    if (input) input.disabled = busy;
+  }
+
+  function autoResizeInput() {
+    input.style.height = "auto";
+    input.style.height = `${Math.min(input.scrollHeight, 150)}px`;
   }
 
   function showThinking() {
     const article = document.createElement("article");
     article.className = "yat-agent__message yat-agent__message--assistant";
-    article.innerHTML =
-      '<div class="yat-agent__message-body"><div class="yat-agent__thinking"><span></span><span></span><span></span></div></div>';
+    article.innerHTML = `<div class="yat-agent__message-body"><div class="yat-agent__thinking"><span></span><span></span><span></span></div></div>`;
     messagesEl.appendChild(article);
     messagesEl.scrollTop = messagesEl.scrollHeight;
     state.thinkingEl = article;
   }
 
   function clearThinking() {
-    if (state.thinkingEl) state.thinkingEl.remove();
+    state.thinkingEl?.remove();
+    state.thinkingEl = null;
   }
 
-  function appendMessage(role, text, docs = []) {
+  function appendMessage(role, text) {
     const article = document.createElement("article");
     article.className = `yat-agent__message yat-agent__message--${role}`;
 
     const body = document.createElement("div");
     body.className = "yat-agent__message-body";
+    // 仅对助手回复进行 Markdown 解析
     body.innerHTML =
       role === "assistant" ? DOMPurify.sanitize(marked.parse(text)) : text;
+
     article.appendChild(body);
-
-    if (role === "assistant" && docs.length) {
-      const sources = document.createElement("div");
-      sources.className = "yat-agent__sources";
-      docs.forEach((doc) => {
-        const a = document.createElement("a");
-        a.className = "yat-agent__source";
-        a.href = doc.location;
-        a.textContent = doc.title;
-        sources.appendChild(a);
-      });
-      article.appendChild(sources);
-    }
-
     messagesEl.appendChild(article);
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
-
-  function normalize(v) {
-    return String(v || "").toLowerCase();
-  }
 }
 
-// 执行初始化
-initYatAgent();
-// 兼容 Astro 路由
-document.addEventListener("astro:after-swap", initYatAgent);
+// 初始化及生命周期绑定
+initYatCCAgent();
+document.addEventListener("astro:after-swap", initYatCCAgent);

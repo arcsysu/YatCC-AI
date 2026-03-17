@@ -16,6 +16,7 @@ export const ui = {
     "button.start": "Get started",
     "button.docs": "Read docs",
     "button.details": "Learn more",
+    "chat.assistant": "Chat Assistant",
   },
   zh: {
     lang: "简体中文",
@@ -26,5 +27,6 @@ export const ui = {
     "button.start": "开始实验",
     "button.docs": "阅读文档",
     "button.details": "了解更多",
+    "chat.assistant": "聊天助手",
   },
 } as const;

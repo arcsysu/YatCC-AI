@@ -1,7 +1,10 @@
 ---
 import "@styles/global.css";
 import "@styles/satoshi.css";
-import Button from "./Button.astro";
+import Button from "@/components/Button.astro";
+import { tOfUrl } from "@/i18n/utils";
+
+const t = tOfUrl(Astro.url);
 ---
 
 <div
@@ -14,7 +17,7 @@ import Button from "./Button.astro";
   <div class="container">
     <div class="header">
       <div class="header-left">
-        <div class="title">Chat Assistant</div>
+        <div class="title">{t("chat.assistant")}</div>
         <div class="status-dot" data-agent-status data-ready="false"></div>
       </div>
       <Button
@@ -237,7 +240,7 @@ import Button from "./Button.astro";
     background: transparent;
     border: none;
     outline: none;
-    color: #fff;
+    color: var(--text-color);
     font-family: inherit;
     font-size: 0.95rem;
     resize: none;
@@ -269,3 +272,5 @@ import Button from "./Button.astro";
     cursor: not-allowed;
   }
 </style>
+
+<script src="@/javascripts/doc-agent.js"></script>
