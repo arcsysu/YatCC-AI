@@ -224,11 +224,11 @@ const t = tOfUrl(Astro.url);
   .input-form {
     flex-shrink: 0;
     background: rgba(var(--bg-color), 0.3);
-    border: 1px solid rgba(var(--bg-color), 0.1);
+    border: 2px solid color-mix(in srgb, var(--anti-bg-color) 50%, transparent);
     border-radius: 1rem;
     padding: 0.75rem 1rem;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 0.5rem;
     transition: border-color 0.2s;
   }
@@ -254,8 +254,8 @@ const t = tOfUrl(Astro.url);
     color: white;
     border: none;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -264,6 +264,7 @@ const t = tOfUrl(Astro.url);
       transform 0.2s,
       background 0.2s;
   }
+
   .send-btn:hover {
     background: #826fd5;
     transform: scale(1.05);
