@@ -1,6 +1,6 @@
 ---
 import "@styles/global.css";
-import Topbar from "@components/Topbar.astro";
+import YatccTopbar from "@components/Yatcc/YatccTopbar.astro";
 import Link from "@components/Link.astro";
 import NavDropdown from "@components/NavDropdown.astro";
 import ThemeManager from "@components/ThemeManager.astro";
@@ -31,35 +31,7 @@ interface Props {
   <body>
     <div id="site-canvas" data-ai-open="false">
       <div class="main-container">
-        <Topbar logoText="YatCC AI">
-          <Fragment slot="nav-items">
-            <Link href="/zh/about">关于</Link>
-            <NavDropdown>
-              <div slot="title">相关资源</div>
-              <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
-              <Link href="https://space.bilibili.com/3546650047941291"
-                >视频</Link
-              >
-              <Link href="https://github.com/arcsysu/YatCC">源码</Link>
-              <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
-            </NavDropdown>
-            <NavDropdown>
-              <div slot="title">团队成员</div>
-              <Link href="https://arcsysu.tech/">arcsysu</Link>
-              <Link href="https://docs.yatcc-ai.com/contributors/">贡献者</Link>
-            </NavDropdown>
-            <NavDropdown>
-              <div slot="title">服务案例</div>
-              <Link href="#">智能教学</Link>
-              <Link href="#">TODO</Link>
-            </NavDropdown>
-            <div class="nav-action-wrapper">
-              <div class="nav-action-wrapper ai-trigger-container">
-                <DarkLightButton href=""> 问 AI </DarkLightButton>
-              </div>
-            </div>
-          </Fragment>
-        </Topbar>
+        <YatccTopbar />
         <slot />
       </div>
 
