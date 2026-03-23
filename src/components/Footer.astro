@@ -1,0 +1,48 @@
+<footer class="site-footer">
+  <div class="footer-content">
+    <span>&copy; Yat Compiler @ Sun Yat-sen University</span>
+    <span class="divider" aria-hidden="true">|</span>
+    <span>粤ICP备2025390388号</span>
+    <span class="divider" aria-hidden="true">|</span>
+    <span>Template credited to ISCA 2025</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    width: 100%;
+    padding: 18px 24px 28px;
+    box-sizing: border-box;
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.75rem;
+    color: var(--sub-text-color);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  .divider {
+    color: var(--border-color);
+  }
+
+  @media (max-width: 640px) {
+    .site-footer {
+      padding: 16px 16px 24px;
+    }
+
+    .divider {
+      display: none;
+    }
+
+    .footer-content {
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+  }
+</style>

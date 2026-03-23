@@ -8,6 +8,7 @@ import { getLangFromUrl } from "../i18n/utils";
 import Button from "@/components/Button.astro";
 import DarkLightButton from "@/components/DarkLightButton.astro";
 import ChatPannel from "@/components/ChatPannel.astro";
+import Footer from "@/components/Footer.astro";
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -32,7 +33,10 @@ interface Props {
     <div id="site-canvas" data-ai-open="false">
       <div class="main-container">
         <YatccTopbar />
-        <slot />
+        <main class="page-content">
+          <slot />
+        </main>
+        <Footer />
       </div>
 
       <aside class="ai-panel">
@@ -49,12 +53,20 @@ interface Props {
 <style>
   /* 主内容区动画 */
   .main-container {
+    display: flex;
+    flex-direction: column;
     transition:
       transform 0.5s cubic-bezier(0.32, 0.72, 0, 1),
       border-radius 0.5s ease,
       opacity 0.5s ease;
     min-height: 100vh;
     will-change: transform;
+  }
+
+  .page-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
   /* 侧边栏：初始在右侧并透明 */
