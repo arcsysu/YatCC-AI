@@ -1,4 +1,6 @@
 ---
+import "@styles/harmonyos-sans.css";
+
 interface Props {
   title: string;
   direction?: "left" | "right";
@@ -36,6 +38,10 @@ const { title, direction = "left" } = Astro.props;
 </div>
 
 <style>
+  :root {
+    --feature-content-padding: clamp(24px, 4vw, 56px);
+  }
+
   .feature-section {
     position: relative;
     width: 100%;
@@ -64,8 +70,14 @@ const { title, direction = "left" } = Astro.props;
     z-index: 100;
   }
   .title-text {
-    font-family: "Satoshi-Bold", sans-serif;
+    font-family:
+      "Satoshi-Bold",
+      "HarmonyOS-Sans-SC-Bold",
+      "PingFang SC",
+      "Microsoft YaHei",
+      sans-serif;
     font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 600;
     color: var(--text-color);
     text-transform: uppercase;
     margin: 0;
@@ -76,14 +88,15 @@ const { title, direction = "left" } = Astro.props;
     grid-template-columns: 1fr 1fr;
     width: 100%;
     height: 100vh;
-    padding-top: 8rem;
+    padding: 9rem var(--feature-content-padding) 0;
+    box-sizing: border-box;
   }
 
   @media (max-width: 768px) {
     .main-layout {
       grid-template-columns: 1fr;
       grid-template-rows: auto auto;
-      padding-top: 4rem;
+      padding-top: 5.5rem;
     }
     .left .image-stage-container,
     .right .image-stage-container {
@@ -116,6 +129,7 @@ const { title, direction = "left" } = Astro.props;
     align-items: center;
     justify-content: center;
   }
+
   .ring-visual {
     position: absolute;
     width: 80vh;
@@ -170,17 +184,29 @@ const { title, direction = "left" } = Astro.props;
     position: absolute;
     inset: 0;
     opacity: 0;
-    transform: scale(1.1) 
-    transition: all 0.8s ease;
+    transform: scale(1.06);
+    filter: blur(18px);
+    transition:
+      opacity 0.7s ease,
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.8s ease;
   }
   :global(.present-img-wrapper.active) {
     opacity: 1;
     transform: scale(1);
+    filter: blur(0);
   }
   :global(.present-img-wrapper img) {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
   }
 
   .main-layout {
@@ -196,10 +222,10 @@ const { title, direction = "left" } = Astro.props;
 
   @media (min-width: 768px) {
     .left .main-layout {
-      grid-template-columns: 60vw 1fr;
+      grid-template-columns: minmax(0, 55vw) minmax(280px, 1fr);
     }
     .right .main-layout {
-      grid-template-columns: 1fr 60vw;
+      grid-template-columns: minmax(280px, 1fr) minmax(0, 55vw);
     }
   }
 
@@ -213,7 +239,7 @@ const { title, direction = "left" } = Astro.props;
 
   .image-stage {
     position: relative;
-    width: 90%; /* 在 60vw 的容器内占据 90% */
+    width: min(100%, 840px);
     aspect-ratio: 16 / 10;
     background-color: var(--bg-color-dimmer);
     border-radius: clamp(20px, 3vw, 40px);
@@ -224,7 +250,7 @@ const { title, direction = "left" } = Astro.props;
 
   @media (min-width: 768px) {
     .image-stage-container {
-      transform: translate3d(0, -50px, 0);
+      transform: translate3d(0, -32px, 0);
     }
   }
 
@@ -232,20 +258,44 @@ const { title, direction = "left" } = Astro.props;
   :global(.feature-label-display) {
     position: absolute;
     left: 50%;
-    top: -2em;
-    white-space: nowrap;
+    top: -6em;
     will-change: transform, opacity;
+    transition:
+      transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.28s ease,
+      filter 0.42s ease;
+  }
+  .left :global(.feature-copy) {
+    text-align: right;
+    align-items: flex-end;
+  }
+  .right :global(.feature-copy) {
+    text-align: left;
+    align-items: flex-start;
   }
 
   @media (max-width: 768px) {
     :global(.feature-label-display) {
-      top: -4.5em;
+      top: -5.25em;
+    }
+
+    .left :global(.feature-copy),
+    .right :global(.feature-copy) {
+      text-align: center;
+      align-items: center;
+    }
+
+    .left .ring-system-wrapper,
+    .right .ring-system-wrapper {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 </style>
 <script>
   function setupCircularPPT() {
     const sections = document.querySelectorAll("[data-feature-section]");
+    const scrollUnitsPerItem = 72;
 
     sections.forEach((section) => {
       const holder = section.querySelector(
@@ -259,10 +309,12 @@ const { title, direction = "left" } = Astro.props;
         ".feature-source-item",
       );
       const count = sourceItems.length;
+      let visualIndex = 0;
+      let targetIndex = 0;
 
       // --- 体检环节 ---
       console.log(`[Feature] 初始化: 词条数 ${count}`);
-      holder.style.height = `${count * 100}vh`; // 强制撑开空间
+      holder.style.height = `${Math.max(count * scrollUnitsPerItem, 220)}vh`; // 缩短每段滚动距离，保留 sticky 手感
 
       if (presenter.children.length === 0) {
         sourceItems.forEach((item) => {
@@ -285,27 +337,37 @@ const { title, direction = "left" } = Astro.props;
       const update = () => {
         const rect = section.getBoundingClientRect();
         const vh = window.innerHeight;
+        const isMobile = window.innerWidth <= 768;
 
         // 【物理诊断】：计算当前滚动进度
         // 当 section 贴顶时 rect.top 为 0，往上滚时 rect.top 为负
         const relativeScroll = -rect.top;
-        const maxScroll = vh * (count - 1);
+        const maxScroll = Math.max(holder.offsetHeight - vh, 1);
 
         // 进度锁定在 0-1 之间
         const progress = Math.max(
           0,
           Math.min(0.999, relativeScroll / (maxScroll || 1)),
         );
-        const activeIdx = Math.round(progress * (count - 1));
+        targetIndex = Math.round(progress * (count - 1));
+        visualIndex += (targetIndex - visualIndex) * 0.16;
+
+        if (Math.abs(targetIndex - visualIndex) < 0.002) {
+          visualIndex = targetIndex;
+        }
+
+        const activeIdx = targetIndex;
 
         // 圆弧数学模型
         const radius = vh * 0.45;
         const angleStep = Math.PI / 3.5;
         const isLeft = section.classList.contains("left");
+        const anchorX = isMobile ? "-50%" : isLeft ? "-10%" : "-90%";
+        const biasX = isMobile ? 0 : isLeft ? -12 : 12;
 
         displayLabels.forEach((label, i) => {
           const el = label as HTMLElement;
-          const offset = progress * (count - 1) - i;
+          const offset = visualIndex - i;
           const angle = -offset * angleStep; // 负号确保滚动方向正确
 
           const xDir = isLeft ? -1 : 1;
@@ -317,7 +379,7 @@ const { title, direction = "left" } = Astro.props;
           const scale = Math.max(0.5, 1.2 - dist * 0.4);
 
           // 使用最稳健的 transform 组合
-          el.style.transform = `translate(-50%, -50%) translate(${tx}px, ${ty}px) scale(${scale})`;
+          el.style.transform = `translate(${anchorX}, -50%) translate(${tx + biasX}px, ${ty}px) scale(${scale})`;
           el.style.opacity = opacity.toString();
           el.style.filter = `blur(${dist * 6}px)`;
           el.classList.toggle("active", i === activeIdx);

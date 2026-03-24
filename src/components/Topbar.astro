@@ -95,6 +95,8 @@ const { logoText = "YatCC AI" } = Astro.props;
       align-items: center;
       justify-content: space-between;
       padding: 0 0.5rem;
+      gap: 1rem;
+      flex-wrap: nowrap;
     }
 
     .nav-left .logo {
@@ -114,12 +116,15 @@ const { logoText = "YatCC AI" } = Astro.props;
       font-size: 1.5rem;
       letter-spacing: -0.025em;
       font-family: "Satoshi-Bold", sans-serif;
+      white-space: nowrap;
     }
 
     .nav-right {
       display: flex;
       align-items: center;
       gap: 1.5rem;
+      min-width: 0;
+      flex-wrap: nowrap;
     }
 
     .nav-items {
@@ -130,6 +135,8 @@ const { logoText = "YatCC AI" } = Astro.props;
       font-weight: 500;
       color: #64748b;
       transition: color 0.3s ease;
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
     :global([data-theme="dark"]) .nav-items {
@@ -146,7 +153,7 @@ const { logoText = "YatCC AI" } = Astro.props;
       background-color: rgba(255, 255, 255, 0.1);
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 760px) {
       .nav-items {
         display: none;
       }

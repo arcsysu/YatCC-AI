@@ -1,29 +1,80 @@
 ---
 import { Image } from "astro:assets";
-const { label, image } = Astro.props;
+
+interface Props {
+  image?: any;
+  alt?: string;
+}
+
+const { image, alt = "Feature illustration" } = Astro.props as Props;
 ---
 
 <div class="feature-source-item" style="display: none;">
-  {image && <Image src={image} alt={label} width={1200} />}
+  {image && <Image src={image} alt={alt} width={1200} />}
 </div>
 
 <div class="feature-label-display">
-  {label}
-  <slot name="label-detail" />
+  <div class="feature-copy">
+    <div class="feature-title">
+      <slot name="title" />
+    </div>
+    <div class="feature-description">
+      <slot name="description" />
+    </div>
+  </div>
 </div>
 
 <style>
   .feature-label-display {
     position: absolute;
-    font-family: "Satoshi-Bold", sans-serif;
-    font-size: clamp(1.8rem, 5vw, 3.5rem);
-    color: var(--text-color);
-    white-space: nowrap;
+    color: var(--accent-color);
     pointer-events: none;
     will-change: transform, opacity;
     transition: color 0.4s ease;
   }
+
+  .feature-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    width: clamp(220px, 18vw, 300px);
+    max-width: clamp(220px, 18vw, 300px);
+    white-space: normal;
+  }
+
+  .feature-title {
+    font-family: "Satoshi-Bold", "Harmony-OS-Sans-SC-Bold", sans-serif;
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+    font-weight: bold;
+    line-height: 1.12;
+    text-wrap: balance;
+    color: inherit;
+  }
+
+  .feature-description {
+    font-size: clamp(0.8rem, 0.95vw, 0.95rem);
+    line-height: 1.5;
+    color: var(--text-color-dimmer);
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .feature-label-display.active {
     color: var(--accent-color);
+  }
+
+  .feature-label-display.active .feature-description {
+    color: var(--sub-text-color);
+  }
+
+  @media (max-width: 768px) {
+    .feature-copy {
+      width: min(76vw, 24rem);
+      max-width: min(76vw, 24rem);
+    }
+
+    .feature-title {
+      text-align: center;
+    }
   }
 </style>

@@ -9,23 +9,37 @@ import DarkLightButton from "../DarkLightButton.astro";
   <Topbar logoText="YatCC AI">
     <Fragment slot="nav-items">
       <Link href="/zh/about">关于</Link>
-      <NavDropdown>
-        <div slot="title">相关资源</div>
-        <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
-        <Link href="https://space.bilibili.com/3546650047941291">视频</Link>
-        <Link href="https://github.com/arcsysu/YatCC">源码</Link>
-        <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
-      </NavDropdown>
-      <NavDropdown>
-        <div slot="title">团队成员</div>
-        <Link href="https://arcsysu.tech/">arcsysu</Link>
-        <Link href="https://docs.yatcc-ai.com/contributors/">贡献者</Link>
-      </NavDropdown>
-      <NavDropdown>
-        <div slot="title">服务案例</div>
-        <Link href="#">智能教学</Link>
-        <Link href="#">TODO</Link>
-      </NavDropdown>
+      <div class="nav-dropdown-item nav-dropdown-tech">
+        <NavDropdown>
+          <div slot="title">相关资源</div>
+          <Link href="https://docs.yatcc-ai.com/#/">文档</Link>
+          <Link href="https://space.bilibili.com/3546650047941291">视频</Link>
+          <Link href="https://github.com/arcsysu/YatCC">源码</Link>
+          <Link href="https://portal.aihub.arcsysu.cn/">AI Hub</Link>
+        </NavDropdown>
+      </div>
+      <div class="nav-dropdown-item nav-dropdown-team">
+        <NavDropdown>
+          <div slot="title">团队成员</div>
+          <Link href="https://arcsysu.tech/">arcsysu</Link>
+          <Link href="https://docs.yatcc-ai.com/contributors/">贡献者</Link>
+        </NavDropdown>
+      </div>
+      <div class="nav-dropdown-item nav-dropdown-cases">
+        <NavDropdown>
+          <div slot="title">服务案例</div>
+          <Link href="#">智能教学</Link>
+          <Link href="#">TODO</Link>
+        </NavDropdown>
+      </div>
+      <div class="nav-dropdown-item nav-dropdown-impl">
+        <NavDropdown>
+          <div slot="title">技术实现</div>
+          <Link href="https://ol.yatcc.arcsysu.cn">OL Lab</Link>
+          <Link href="https://portal.aihub.arcsysu.cn">AI Hub</Link>
+          <Link href="#">DT Fab</Link>
+        </NavDropdown>
+      </div>
       <div class="nav-action-wrapper">
         <div class="nav-action-wrapper ai-trigger-container">
           <DarkLightButton href=""> 问 AI </DarkLightButton>
@@ -34,3 +48,47 @@ import DarkLightButton from "../DarkLightButton.astro";
     </Fragment>
   </Topbar>
 </div>
+
+<style>
+  :global(.topbar-nav),
+  :global(.nav-right),
+  :global(.nav-items) {
+    flex-wrap: nowrap;
+  }
+
+  :global(.nav-items) > *,
+  :global(.nav-right) > * {
+    flex-shrink: 0;
+  }
+
+  :global(.logo-text),
+  :global(.nav-items a),
+  :global(.dropdown-trigger),
+  .nav-action-wrapper {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1320px) {
+    .nav-dropdown-cases {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .nav-dropdown-impl {
+      display: none;
+    }
+  }
+
+  @media (max-width: 1080px) {
+    .nav-dropdown-team {
+      display: none;
+    }
+  }
+
+  @media (max-width: 980px) {
+    .nav-dropdown-tech {
+      display: none;
+    }
+  }
+</style>

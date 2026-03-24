@@ -56,14 +56,38 @@ import imgLlmConfig from "@public/llm-config.gif";
     </FixPage>
     <!-- <IntroductionPage title="YatCC OL"> hello </IntroductionPage> -->
     <FeatureDisplayPage title="YatCC OL" direction="left">
-      <FeatureDisplayPageFeature label="便捷化" image={imgUseCodespaces} />
-      <FeatureDisplayPageFeature label="自动化" image={imgUseOl} />
-      <FeatureDisplayPageFeature label="智能化" image={imgUseCodespaces} />
+      <FeatureDisplayPageFeature image={imgUseCodespaces} alt="YatCC OL 便捷化演示">
+        <span slot="title">便捷化</span>
+        <span slot="description">
+          通过云端开发环境与预置工具链，快速进入实验状态，减少本地环境搭建与排障成本。
+        </span>
+      </FeatureDisplayPageFeature>
+      <FeatureDisplayPageFeature image={imgUseOl} alt="YatCC OL 自动化演示">
+        <span slot="title">自动化</span>
+        <span slot="description">
+          评测、提交与反馈流程统一串联，让实验过程更稳定、更高效，也更容易复现。
+        </span>
+      </FeatureDisplayPageFeature>
+      <FeatureDisplayPageFeature image={imgUseCodespaces} alt="YatCC OL 智能化演示">
+        <span slot="title">智能化</span>
+        <span slot="description">
+          将 AI 能力嵌入教学与实践场景，在编译器构建过程中提供更自然的辅助与引导。
+        </span>
+      </FeatureDisplayPageFeature>
     </FeatureDisplayPage>
     <FeatureDisplayPage title="AI Hub" direction="right">
-      <FeatureDisplayPageFeature label="Feature 1" />
-      <FeatureDisplayPageFeature label="Feature 2" />
-      <FeatureDisplayPageFeature label="Feature 3" />
+      <FeatureDisplayPageFeature>
+        <span slot="title">Feature 1</span>
+        <span slot="description">Description for Feature 1.</span>
+      </FeatureDisplayPageFeature>
+      <FeatureDisplayPageFeature>
+        <span slot="title">Feature 2</span>
+        <span slot="description">Description for Feature 2.</span>
+      </FeatureDisplayPageFeature>
+      <FeatureDisplayPageFeature>
+        <span slot="title">Feature 3</span>
+        <span slot="description">Description for Feature 3.</span>
+      </FeatureDisplayPageFeature>
     </FeatureDisplayPage>
     <!-- <IntroductionPage title="Join Us" /> -->
   </FixPageContainer>
