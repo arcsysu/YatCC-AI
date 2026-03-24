@@ -47,7 +47,9 @@ const { image, alt = "Feature illustration" } = Astro.props as Props;
     font-size: clamp(1.6rem, 3.2vw, 2.6rem);
     font-weight: bold;
     line-height: 1.12;
-    text-wrap: balance;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: inherit;
   }
 
