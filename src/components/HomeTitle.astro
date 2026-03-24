@@ -1,7 +1,16 @@
 ---
-import Layout from "@layouts/Layout.astro";
 import "@styles/satoshi.css";
 import "@styles/harmonyos-sans.css";
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "YatCC AI",
+  subtitle = "一个基于工业级 LLVM 构建的现代化编译实验框架",
+} = Astro.props;
 ---
 
 <style define:vars={{}}>
@@ -101,9 +110,9 @@ import "@styles/harmonyos-sans.css";
 
 <div>
   <div class="container">
-    <h1 class="fluid-title">YatCC AI</h1>
+    <h1 class="fluid-title">{title}</h1>
     <div class="fluid-subtitle">
-      一个基于工业级 LLVM 构建的现代化编译实验框架
+      {subtitle}
     </div>
   </div>
 </div>
