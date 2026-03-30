@@ -1,0 +1,31 @@
+name: YatCC-AI new websites cicd
+
+on:
+  push:
+    branches: main
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 持续自动化部署
+      - name: Trigger Deployment
+        continue-on-error: true
+        run: |
+          set -eu
+          if curl --fail --show-error --silent \
+            --connect-timeout 10 \
+            --max-time 30 \
+            --retry 2 \
+            --retry-delay 3 \
+            -X POST https://portal.m.arcsysu.cn/trigger/yatcc-ai-new \
+            -H "X-API-KEY: ${{ secrets.TRIGGER_KEY }}" \
+            -H "Content-Type: application/json"; then
+            echo "External deployment trigger succeeded."
+          else
+            echo "Warning: external deployment trigger failed or timed out; GitHub Pages deployment remains unaffected."
+          fi
+
