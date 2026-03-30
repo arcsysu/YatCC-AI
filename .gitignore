@@ -1,5 +1,6 @@
 # build output
 dist/
+package-lock.json
 
 # generated types
 .astro/
@@ -24,3 +25,6 @@ pnpm-debug.log*
 .idea/
 .vercel
 .env*.local
+
+# .vscode related
+.vscode/
