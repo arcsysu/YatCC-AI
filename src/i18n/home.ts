@@ -37,7 +37,7 @@ export const homeContent = {
       title: "YatCC AI",
       subtitle: "一个基于工业级 LLVM 构建的现代化编译实验框架",
       buttons: {
-        start: "🔨 开始实验",
+        start: "🔨 进入平台",
         docs: "📄 阅读文档",
         details: "❔ 了解更多",
       },
