@@ -123,7 +123,7 @@ export const homeContent = {
       subtitle:
         "A modern compiler experimentation framework built on industrial-grade LLVM.",
       buttons: {
-        start: "🔨 Start Lab",
+        start: "🔨 Enter platform",
         docs: "📄 Read Docs",
         details: "❔ Learn More",
       },
