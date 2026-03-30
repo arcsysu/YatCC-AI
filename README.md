@@ -13,3 +13,19 @@
 ## Contribute
 
 看 [贡献指北](./CONTRIBUTING.md).
+
+## Deploy
+
+1. 先安装依赖
+
+    ```bash
+    npm install
+    ```
+
+2. 构建静态产物
+
+    ```bash
+    npm run build
+    ```
+
+3. 用 http server serve `dist/` 文件夹下的产物即可
