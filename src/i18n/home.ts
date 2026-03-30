@@ -46,7 +46,7 @@ export const homeContent = {
     cards: [
       {
         icon: "📦",
-        title: "高度模块化",
+        title: "设计模块化",
         description:
           "将设计实现逻辑有效解耦，实现结构清晰、灵活扩展与便捷演进，为教学和科研提供坚实支撑",
       },

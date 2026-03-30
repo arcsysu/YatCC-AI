@@ -13,7 +13,7 @@ const translatePath = useTranslatedPath(lang);
 <div>
   <Topbar logoText="YatCC AI">
     <Fragment slot="nav-items">
-      <Link href="https://ol.yatcc.arcsysu.cn/">进入平台</Link>
+      <Link href="https://ol.yatcc.arcsysu.cn/" target="_blank">&#128640; 进入平台</Link>
       <div class="nav-dropdown-item nav-dropdown-impl">
         <NavDropdown>
           <div slot="title">{t("nav.implementation")}</div>
@@ -25,7 +25,7 @@ const translatePath = useTranslatedPath(lang);
       <div class="nav-dropdown-item nav-dropdown-team">
         <NavDropdown>
           <div slot="title">{t("nav.team")}</div>
-          <Link href="https://arcsysu.tech/">arcsysu</Link>
+          <Link href="https://arcsysu.tech/people">arcsysu</Link>
           <Link href="https://docs.yatcc-ai.com/contributors/"
             >{t("nav.contributors")}</Link
           >
@@ -45,7 +45,7 @@ const translatePath = useTranslatedPath(lang);
         <NavDropdown>
           <div slot="title">{t("nav.cases")}</div>
           <Link href="#">{t("nav.teaching")}</Link>
-          <Link href="#">前沿研究</Link>
+          <Link href="https://arcsysu.tech/">前沿研究</Link>
         </NavDropdown>
       </div>
       <div class="nav-action-wrapper">
