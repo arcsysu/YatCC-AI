@@ -13,16 +13,13 @@ const translatePath = useTranslatedPath(lang);
 <div>
   <Topbar logoText="YatCC AI">
     <Fragment slot="nav-items">
-      <Link href={translatePath("/about")}>{t("nav.about")}</Link>
-      <div class="nav-dropdown-item nav-dropdown-tech">
+      <Link href="https://ol.yatcc.arcsysu.cn/">进入平台</Link>
+      <div class="nav-dropdown-item nav-dropdown-impl">
         <NavDropdown>
-          <div slot="title">{t("nav.resources")}</div>
-          <Link href="https://docs.yatcc-ai.com/#/">{t("nav.docs")}</Link>
-          <Link href="https://space.bilibili.com/3546650047941291"
-            >{t("nav.videos")}</Link
-          >
-          <Link href="https://github.com/arcsysu/YatCC">{t("nav.source")}</Link>
-          <Link href="https://ol.yatcc.arcsysu.cn/">进入平台</Link>
+          <div slot="title">{t("nav.implementation")}</div>
+          <Link href="https://ol.yatcc.arcsysu.cn">OL Lab</Link>
+          <Link href="https://portal.aihub.arcsysu.cn">AI Hub</Link>
+          <Link href="#">DT Fab</Link>
         </NavDropdown>
       </div>
       <div class="nav-dropdown-item nav-dropdown-team">
@@ -34,19 +31,21 @@ const translatePath = useTranslatedPath(lang);
           >
         </NavDropdown>
       </div>
+      <div class="nav-dropdown-item nav-dropdown-tech">
+        <NavDropdown>
+          <div slot="title">{t("nav.resources")}</div>
+          <Link href="https://docs.yatcc-ai.com/#/">{t("nav.docs")}</Link>
+          <Link href="https://space.bilibili.com/3546650047941291"
+            >{t("nav.videos")}</Link
+          >
+          <Link href="https://github.com/arcsysu/YatCC">{t("nav.source")}</Link>
+        </NavDropdown>
+      </div>
       <div class="nav-dropdown-item nav-dropdown-cases">
         <NavDropdown>
           <div slot="title">{t("nav.cases")}</div>
           <Link href="#">{t("nav.teaching")}</Link>
-          <Link href="#">TODO</Link>
-        </NavDropdown>
-      </div>
-      <div class="nav-dropdown-item nav-dropdown-impl">
-        <NavDropdown>
-          <div slot="title">{t("nav.implementation")}</div>
-          <Link href="https://ol.yatcc.arcsysu.cn">OL Lab</Link>
-          <Link href="https://portal.aihub.arcsysu.cn">AI Hub</Link>
-          <Link href="#">DT Fab</Link>
+          <Link href="#">前沿研究</Link>
         </NavDropdown>
       </div>
       <div class="nav-action-wrapper">

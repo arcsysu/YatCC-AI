@@ -42,7 +42,7 @@ export const ui = {
     "nav.videos": "视频",
     "nav.source": "源码",
     "nav.contributors": "贡献者",
-    "nav.teaching": "智能教学",
+    "nav.teaching": "教学实践",
     "nav.ask_ai": "问 AI",
     "button.start": "开始实验",
     "button.docs": "阅读文档",
