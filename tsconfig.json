@@ -3,7 +3,7 @@
   "compilerOptions": {
     "moduleResolution": "Bundler",
     "allowJs": true,
-    "types": ["three"],
+    "types": ["three", "node"],
     "paths": {
       "three": ["./node_modules/three"],
       "@/*": ["./src/*"],
@@ -15,3 +15,4 @@
     }
   }
 }
+
