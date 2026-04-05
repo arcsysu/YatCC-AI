@@ -44,7 +44,9 @@ const translatePath = useTranslatedPath(lang);
       <div class="nav-dropdown-item nav-dropdown-cases">
         <NavDropdown>
           <div slot="title">{t("nav.cases")}</div>
-          <Link href="#">{t("nav.teaching")}</Link>
+          <Link href={translatePath("/teaching-practice")}>
+            {t("nav.teaching")}
+          </Link>
           <Link href="https://arcsysu.tech/">前沿研究</Link>
         </NavDropdown>
       </div>

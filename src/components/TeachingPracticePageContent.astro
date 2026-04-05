@@ -1,0 +1,303 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import HomeTitle from "@/components/HomeTitle.astro";
+import ButtonGroup from "@/components/ButtonGroup.astro";
+import Button from "@/components/Button.astro";
+import DarkLightButton from "@/components/DarkLightButton.astro";
+import CardContainer from "@/components/CardContainer.astro";
+import Card from "@/components/Card.astro";
+import type { TeachingPracticeContent } from "@/i18n/teaching";
+
+interface Props {
+  content: TeachingPracticeContent;
+}
+
+const { content } = Astro.props;
+---
+
+<BaseLayout>
+  <div class="practice-page">
+    <section class="hero-section">
+      <div class="hero-shell">
+        <HomeTitle title={content.hero.title} subtitle={content.hero.subtitle} />
+        <div class="hero-actions">
+          <ButtonGroup>
+            <Button href={content.hero.primaryHref}>{content.hero.primaryLabel}</Button>
+            <DarkLightButton href={content.hero.secondaryHref}>
+              {content.hero.secondaryLabel}
+            </DarkLightButton>
+          </ButtonGroup>
+        </div>
+      </div>
+    </section>
+
+    <section class="overview-section">
+      <div class="section-copy">
+        <p class="eyebrow">{content.overview.eyebrow}</p>
+        <h2>{content.overview.title}</h2>
+        <p>{content.overview.description}</p>
+      </div>
+
+      <CardContainer>
+        {
+          content.cards.map((card) => (
+            <Card icon={card.icon} title={card.title}>
+              {card.description}
+            </Card>
+          ))
+        }
+      </CardContainer>
+    </section>
+
+    <section class="showcase-section">
+      {
+        content.showcases.map((item, index) => (
+          <article class={`showcase-card ${index % 2 === 0 ? "left" : "right"}`}>
+            <div class="showcase-copy">
+              <p class="eyebrow">{item.eyebrow}</p>
+              <h3>{item.title}</h3>
+              <p class="showcase-description">{item.description}</p>
+              <ul class="showcase-list">
+                {item.bullets.map((bullet) => <li>{bullet}</li>)}
+              </ul>
+            </div>
+
+            <div class="showcase-placeholder">
+              <div class="placeholder-panel">
+                <span class="placeholder-badge">Placeholder</span>
+                <h4>{item.placeholderTitle}</h4>
+                <p>{item.placeholderDescription}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .practice-page {
+    width: min(1200px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 32px 0 96px;
+    display: flex;
+    flex-direction: column;
+    gap: 72px;
+  }
+
+  .hero-section {
+    padding-top: 12px;
+  }
+
+  .hero-shell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .hero-shell :global(.container) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-inline: 0;
+  }
+
+  .hero-shell :global(.fluid-title) {
+    width: min(100%, 12ch);
+    text-align: center;
+    font-size: clamp(2.8rem, 8vw, 4.4rem);
+    line-height: 1.05;
+    margin-bottom: 0;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .hero-shell :global(.fluid-subtitle) {
+    width: min(100%, 42rem);
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: min(42rem, 100%);
+    text-align: center;
+    font-size: clamp(0.95rem, 1vw + 0.5rem, 1.15rem);
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .overview-section,
+  .showcase-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .section-copy {
+    max-width: 760px;
+  }
+
+  .section-copy h2 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-family: "Satoshi-Bold", sans-serif;
+    color: var(--text-color);
+  }
+
+  .section-copy p:last-child {
+    margin: 16px 0 0;
+    color: var(--sub-text-color);
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+  }
+
+  .showcase-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    gap: 28px;
+    padding: 28px;
+    border-radius: 28px;
+    border: 1px solid var(--border-color);
+    background:
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--bg-color-dimmer) 72%, transparent),
+        color-mix(in srgb, var(--bg-color) 88%, transparent)
+      );
+    box-sizing: border-box;
+  }
+
+  .showcase-card.right .showcase-copy {
+    order: 2;
+  }
+
+  .showcase-card.right .showcase-placeholder {
+    order: 1;
+  }
+
+  .showcase-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .showcase-copy h3 {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--text-color);
+  }
+
+  .showcase-description {
+    margin: 14px 0 0;
+    color: var(--sub-text-color);
+    line-height: 1.75;
+  }
+
+  .showcase-list {
+    margin: 18px 0 0;
+    padding-left: 1.1rem;
+    color: var(--text-color-dimmer);
+    line-height: 1.75;
+  }
+
+  .showcase-placeholder {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .placeholder-panel {
+    width: 100%;
+    min-height: 260px;
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px dashed color-mix(in srgb, var(--accent-color) 40%, transparent);
+    background:
+      radial-gradient(
+        circle at top right,
+        color-mix(in srgb, var(--accent-color-extralight) 70%, transparent),
+        transparent 50%
+      ),
+      color-mix(in srgb, var(--bg-color-dimmer) 55%, transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+  }
+
+  .placeholder-badge {
+    width: fit-content;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-color) 14%, transparent);
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .placeholder-panel h4 {
+    margin: 18px 0 10px;
+    font-size: 1.35rem;
+    color: var(--text-color);
+  }
+
+  .placeholder-panel p {
+    margin: 0;
+    color: var(--sub-text-color);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .practice-page {
+      width: min(100%, calc(100% - 20px));
+      gap: 56px;
+      padding-bottom: 72px;
+    }
+
+    .showcase-card {
+      grid-template-columns: 1fr;
+    }
+
+    .showcase-card.right .showcase-copy,
+    .showcase-card.right .showcase-placeholder {
+      order: initial;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .practice-page {
+      padding-top: 20px;
+    }
+
+    .hero-actions {
+      width: 100%;
+    }
+
+    .showcase-card {
+      padding: 20px;
+      border-radius: 22px;
+      gap: 20px;
+    }
+
+    .placeholder-panel {
+      min-height: 220px;
+      padding: 20px;
+    }
+  }
+</style>
