@@ -10,7 +10,6 @@
   --accent-color: #8f3bf6;
   --accent-color-extralight: #f3ecfc;
   --navbar-height: 4rem;
-  --footer-height: 76px;
   --small-device-width: 450px;
   --border-color: rgba(56, 56, 56, 0.201);
 }
@@ -35,11 +34,7 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-@media (max-width: 640px) {
-  :root {
-    --footer-height: 112px;
-  }
-}

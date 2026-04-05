@@ -106,6 +106,29 @@ const {
       letter-spacing: -0.06em;
     }
   }
+
+  @media (max-width: 400px) {
+    .container {
+      padding-top: 3.75rem;
+      padding-bottom: 1.5rem;
+      padding-inline: 0.75rem;
+    }
+
+    .fluid-title {
+      width: 100%;
+      font-size: clamp(2.7rem, 15vw, 4rem);
+      line-height: 1;
+      white-space: normal;
+      text-wrap: balance;
+    }
+
+    .fluid-subtitle {
+      margin-left: 0;
+      margin-top: 1rem;
+      max-width: 100%;
+      font-size: 0.95rem;
+    }
+  }
 </style>
 
 <div>

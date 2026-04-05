@@ -55,9 +55,9 @@ const { title, direction = "left" } = Astro.props;
 
   .sticky-viewport {
     position: sticky;
-    top: 0;
+    top: var(--navbar-height);
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - var(--navbar-height));
     overflow: hidden; /* 必须 hidden，防止内部圆环溢出导致 Sticky 失效 */
   }
 
@@ -214,9 +214,7 @@ const { title, direction = "left" } = Astro.props;
     /* 宽屏比例：图片 60vw，剩下给词条系统 */
     /* grid-template-columns: 60vw 1fr; */
     width: 100%;
-    /* 核心：计算除去 header 后的剩余空间并居中 */
-    height: calc(100vh - var(--navbar-height));
-    /* margin-top: 6rem; */
+    height: 100%;
     align-items: center;
   }
 
@@ -336,12 +334,18 @@ const { title, direction = "left" } = Astro.props;
       // 核心计算逻辑
       const update = () => {
         const rect = section.getBoundingClientRect();
-        const vh = window.innerHeight;
+        const navbarHeight =
+          parseFloat(
+            getComputedStyle(document.documentElement).getPropertyValue(
+              "--navbar-height",
+            ),
+          ) || 0;
+        const vh = window.innerHeight - navbarHeight;
         const isMobile = window.innerWidth <= 768;
 
         // 【物理诊断】：计算当前滚动进度
-        // 当 section 贴顶时 rect.top 为 0，往上滚时 rect.top 为负
-        const relativeScroll = -rect.top;
+        // 当 section 抵达导航栏下沿时开始计入进度
+        const relativeScroll = navbarHeight - rect.top;
         const maxScroll = Math.max(holder.offsetHeight - vh, 1);
 
         // 进度锁定在 0-1 之间

@@ -89,6 +89,7 @@ const featureImages = [imgUseCodespaces, imgUseOl, imgUseCodespaces];
     box-sizing: border-box;
     z-index: 1;
     gap: 60px;
+    overflow-x: clip;
   }
 
   .content-wrapper {
@@ -98,6 +99,7 @@ const featureImages = [imgUseCodespaces, imgUseOl, imgUseCodespaces];
     display: flex;
     flex-direction: column;
     gap: clamp(0.1vh, 50px, 5rem);
+    overflow-x: clip;
   }
 
   @media (max-width: 768px) {
@@ -126,6 +128,17 @@ const featureImages = [imgUseCodespaces, imgUseOl, imgUseCodespaces];
       height: 400px;
       opacity: 1;
       z-index: -1;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .home-container {
+      min-width: 0;
+      padding: 0 8px 12px;
+    }
+
+    :global(.home-container .button-group) {
+      width: 100%;
     }
   }
 </style>

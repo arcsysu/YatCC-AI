@@ -60,13 +60,13 @@ interface Props {
       border-radius 0.5s ease,
       opacity 0.5s ease;
     min-height: 100vh;
-    will-change: transform;
   }
 
   .page-content {
     flex: 1;
     display: flex;
     flex-direction: column;
+    padding-top: var(--navbar-height);
   }
 
   /* 侧边栏：初始在右侧并透明 */
@@ -93,6 +93,7 @@ interface Props {
     pointer-events: none;
     user-select: none;
     opacity: 0.6;
+    will-change: transform;
   }
 
   /* 2. 面板滑入 */
@@ -121,6 +122,7 @@ interface Props {
     }
     .site-canvas[data-ai-open="true"] .main-container {
       transform: scale(0.9) translateY(-20px);
+      will-change: transform;
     }
   }
 </style>

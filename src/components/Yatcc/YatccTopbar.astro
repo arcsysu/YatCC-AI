@@ -99,4 +99,22 @@ const translatePath = useTranslatedPath(lang);
       display: none;
     }
   }
+
+  @media (max-width: 400px) {
+    .nav-action-wrapper {
+      display: none;
+    }
+
+    :global(.nav-right) {
+      gap: 0.5rem;
+    }
+  }
+
+  @media (max-width: 340px) {
+    :global(.logo-text) {
+      max-width: 7.2rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 </style>
