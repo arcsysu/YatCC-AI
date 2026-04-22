@@ -3,10 +3,10 @@ import Topbar from "@/components/Topbar.astro";
 import Link from "../Link.astro";
 import NavDropdown from "../NavDropdown.astro";
 import DarkLightButton from "../DarkLightButton.astro";
-import { tOfUrl, getLangFromUrl, useTranslatedPath } from "@/i18n/utils";
+import { getLangFromUrl, tOfUrl, useTranslatedPath } from "@/i18n/utils";
 
-const t = tOfUrl(Astro.url);
 const lang = getLangFromUrl(Astro.url);
+const t = tOfUrl(Astro.url);
 const translatePath = useTranslatedPath(lang);
 ---
 
@@ -44,9 +44,15 @@ const translatePath = useTranslatedPath(lang);
       <div class="nav-dropdown-item nav-dropdown-cases">
         <NavDropdown>
           <div slot="title">{t("nav.cases")}</div>
-          <Link href={translatePath("/teaching-practice")}>
-            {t("nav.teaching")}
-          </Link>
+          <NavDropdown href={translatePath("/teaching-practice")} direction="left">
+            <div slot="title">{t("nav.teaching")}</div>
+            <Link href="/teach/s2026.html">2026</Link>
+            <Link href="/teach/s2025.html">2025</Link>
+            <Link href="/teach/s2024.html">2024</Link>
+            <Link href="/teach/s2023.html">2023</Link>
+            <Link href="/teach/s2022.html">2022</Link>
+            <Link href="/teach/s2021.html">2021</Link>
+          </NavDropdown>
           <Link href="https://arcsysu.tech/">前沿研究</Link>
         </NavDropdown>
       </div>

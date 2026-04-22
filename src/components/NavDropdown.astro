@@ -1,11 +1,18 @@
 ---
 interface Props {
   href?: string;
+  direction?: "down" | "right" | "left";
 }
-const { href = "#" } = Astro.props;
+const { href = "#", direction = "down" } = Astro.props;
 ---
 
-<div class="dropdown-container">
+<div
+  class:list={[
+    "dropdown-container",
+    direction === "right" && "dropdown-right",
+    direction === "left" && "dropdown-left",
+  ]}
+>
   <a href={href} class="dropdown-trigger">
     <slot name="title" />
     <svg
@@ -57,7 +64,7 @@ const { href = "#" } = Astro.props;
 
   /* --- 核心：第二版的悬浮流光效果 --- */
   /* 当容器被 hover 时，触发文字流光和箭头旋转 */
-  .dropdown-container:hover .dropdown-trigger {
+  .dropdown-container:hover > .dropdown-trigger {
     background-image: linear-gradient(
       to right,
       #715ec2,
@@ -72,7 +79,7 @@ const { href = "#" } = Astro.props;
     animation: flowDirectional 4s linear infinite;
   }
 
-  .dropdown-container:hover .chevron {
+  .dropdown-container:hover > .dropdown-trigger .chevron {
     transform: rotate(180deg);
     color: #a451bf; /* 箭头设为实色，防止随文字一起变透明 */
     opacity: 1;
@@ -100,6 +107,21 @@ const { href = "#" } = Astro.props;
     z-index: 100;
   }
 
+  .dropdown-right > .popup-wrapper {
+    top: 0;
+    left: calc(100% + 0.5rem);
+    transform: translateX(10px);
+    padding-top: 0;
+  }
+
+  .dropdown-left > .popup-wrapper {
+    top: 0;
+    left: auto;
+    right: calc(100% + 0.5rem);
+    transform: translateX(-10px);
+    padding-top: 0;
+  }
+
   .popup-card {
     min-width: 12rem;
     background: rgba(var(--bg-rgb, 255, 255, 255), 0.1);
@@ -119,9 +141,17 @@ const { href = "#" } = Astro.props;
     border-color: rgba(255, 255, 255, 0.1);
   }
 
-  .dropdown-container:hover .popup-wrapper {
+  .dropdown-container:hover > .popup-wrapper {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
+  }
+
+  .dropdown-right:hover > .popup-wrapper {
+    transform: translateX(0);
+  }
+
+  .dropdown-left:hover > .popup-wrapper {
+    transform: translateX(0);
   }
 </style>
