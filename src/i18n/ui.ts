@@ -21,7 +21,7 @@ export const ui = {
     "nav.videos": "Videos",
     "nav.source": "Source",
     "nav.contributors": "Contributors",
-    "nav.teaching": "Intelligent Teaching",
+    "nav.teaching": "Course Teaching",
     "nav.ask_ai": "Ask AI",
     "button.start": "Get started",
     "button.docs": "Read docs",

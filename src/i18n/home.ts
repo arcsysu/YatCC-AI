@@ -39,7 +39,7 @@ export const homeContent = {
       buttons: {
         start: "🔨 进入平台",
         docs: "📄 阅读文档",
-        details: "❔ 2026编译",
+        details: "🎓 2026编译",
       },
       detailsHref: "https://yatcc-ai.com/teach/s2026.html",
     },
@@ -48,19 +48,19 @@ export const homeContent = {
         icon: "📦",
         title: "设计模块化",
         description:
-          "将设计实现逻辑有效解耦，实现结构清晰、灵活扩展与便捷演进，为教学和科研提供坚实支撑",
+          "将设计与代码逻辑有效解耦，实现结构清晰、灵活扩展与便捷演进，为教学和科研提供坚实支撑",
       },
       {
         icon: "✅",
         title: "体验现代化",
         description:
-          "提供容器化支持，打造『零配置』Web化实践平台，用户无需复杂环境搭建，打开浏览器即开即用",
+          "提供容器化支持，打造『零配置』Web 化实践平台，用户无需复杂环境搭建，打开浏览器即开即用",
       },
       {
         icon: "🤖",
         title: "过程智能化",
         description:
-          "深度整合 DeepSeek 等大语言模型能力，提供AI Hub token服务，一键进入Vibe Coding和智能体应用",
+          "深度整合 DeepSeek 等大语言模型能力，提供 AI Hub token 服务，一键进入 Vibe Coding 和 Agent 应用",
       },
       {
         icon: "🦾",
@@ -71,26 +71,26 @@ export const homeContent = {
     ],
     featureSections: [
       {
-        title: "YatCC OL",
+        title: "OL LAB",
         direction: "left",
         items: [
           {
             title: "便捷化",
             description:
-              "通过云端开发环境与预置工具链，快速进入实验状态，减少本地环境搭建与排障成本。",
-            imageAlt: "YatCC OL 便捷化演示",
+              "通过云端开发环境与预置工具链，快速进入系统开发状态，减少本地环境搭建与排障成本。",
+            imageAlt: "OL LAB 便捷化演示",
           },
           {
             title: "自动化",
             description:
-              "评测、提交与反馈流程统一串联，让实验过程更稳定、更高效，也更容易复现。",
-            imageAlt: "YatCC OL 自动化演示",
+              "评测、提交与反馈流程统一串联，让实践过程更稳定、更高效，也更容易复现。",
+            imageAlt: "OL LAB 自动化演示",
           },
           {
             title: "智能化",
             description:
-              "将 AI 能力嵌入教学与实践场景，在编译器构建过程中提供更自然的辅助与引导。",
-            imageAlt: "YatCC OL 智能化演示",
+              "将 AI 能力嵌入教学与科研场景，在系统开发构建过程中提供更自然的辅助与引导。",
+            imageAlt: "OL LAB 智能化演示",
           },
         ],
       },
@@ -101,7 +101,7 @@ export const homeContent = {
           {
             title: "统一模型网关",
             description:
-              "基于 LiteLLM 提供统一的 LLM Gateway，将多模型调用收敛到一致接口之上，便于在同一平台内接入和切换不同模型能力。",
+              "基于 LiteLLM 提供统一 LLM Gateway，将多模型调用收敛到一致接口之上，便于在同一平台内接入和切换不同模型能力。",
           },
           {
             title: "密钥与访问控制",
@@ -121,13 +121,13 @@ export const homeContent = {
     hero: {
       title: "YatCC AI",
       subtitle:
-        "A modern compiler experimentation framework built on industrial-grade LLVM.",
+        "One-stop intelligent platform from apps to compute.",
       buttons: {
-        start: "🔨 Enter platform",
+        start: "🔨 Get Started",
         docs: "📄 Read Docs",
-        details: "❔ Learn More",
+        details: "🎓 2026 Compiler Course",
       },
-      detailsHref: "https://yatcc-ai.com/introduction.html",
+      detailsHref: "https://yatcc-ai.com/teach/s2026.html",
     },
     cards: [
       {
@@ -157,26 +157,26 @@ export const homeContent = {
     ],
     featureSections: [
       {
-        title: "YatCC OL",
+        title: "OL LAB",
         direction: "left",
         items: [
           {
             title: "Accessible",
             description:
               "Start quickly with cloud development environments and preconfigured toolchains, without spending time on local setup.",
-            imageAlt: "YatCC OL accessibility demo",
+            imageAlt: "OL LAB accessibility demo",
           },
           {
             title: "Automated",
             description:
               "Unify submission, evaluation, and feedback into one smooth workflow for more reliable and reproducible lab experiences.",
-            imageAlt: "YatCC OL automation demo",
+            imageAlt: "OL LAB automation demo",
           },
           {
             title: "Intelligent",
             description:
               "Embed AI assistance into compiler education and practice to provide more natural guidance during implementation and experimentation.",
-            imageAlt: "YatCC OL intelligence demo",
+            imageAlt: "OL LAB intelligence demo",
           },
         ],
       },
