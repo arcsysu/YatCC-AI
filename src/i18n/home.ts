@@ -39,9 +39,9 @@ export const homeContent = {
       buttons: {
         start: "🔨 进入平台",
         docs: "📄 阅读文档",
-        details: "❔ 了解更多",
+        details: "❔ 2026编译",
       },
-      detailsHref: "https://yatcc-ai.com/zh/introduction.html",
+      detailsHref: "https://yatcc-ai.com/teach/s2026.html",
     },
     cards: [
       {
