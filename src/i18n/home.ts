@@ -35,11 +35,11 @@ export const homeContent = {
   zh: {
     hero: {
       title: "YatCC AI",
-      subtitle: "从应用到算力的一站式、智能化服务平台",
+      subtitle: "“应用—系统—算力”全栈式、一体化智能服务平台",
       buttons: {
         start: "🔨 进入平台",
         docs: "📄 阅读文档",
-        details: "🎓 2026编译教学",
+        details: "🎓 2026编译实践",
       },
       detailsHref: "https://yatcc-ai.com/teach/s2026.html",
     },
@@ -48,19 +48,19 @@ export const homeContent = {
         icon: "📦",
         title: "设计模块化",
         description:
-          "将设计与代码逻辑有效解耦，实现结构清晰、灵活扩展与便捷演进，为教学和科研提供坚实支撑",
+          "以前沿技术为驱动，将设计与代码逻辑有效解耦，实现结构清晰、灵活扩展与便捷演进，为教学、科研等提供坚实支撑",
       },
       {
         icon: "✅",
         title: "体验现代化",
         description:
-          "提供容器化支持，打造『零配置』Web 化实践平台，用户无需复杂环境搭建，打开浏览器即开即用",
+          "提供容器化支持，打造『零配置』Web 化实践平台，用户无需复杂环境搭建，打开浏览器即开即用，让计算触手可及",
       },
       {
         icon: "🤖",
         title: "过程智能化",
         description:
-          "深度整合 DeepSeek 等大语言模型能力，提供 AI Hub token 服务，一键进入 Vibe Coding 和 Agent 应用",
+          "深度整合 DeepSeek、OpenClaw 等模型及框架，提供 AI Hub token 服务，一键进入 Vibe Coding 和 Agent 应用",
       },
       {
         icon: "🦾",
@@ -125,7 +125,7 @@ export const homeContent = {
       buttons: {
         start: "🔨 Get Started",
         docs: "📄 Read Docs",
-        details: "🎓 2026 Compiler Course",
+        details: "🎓 2026 Compiler",
       },
       detailsHref: "https://yatcc-ai.com/teach/s2026.html",
     },
