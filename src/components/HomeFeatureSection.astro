@@ -1,0 +1,14 @@
+---
+import FeatureDisplayPage from "@/components/FeatureDisplayPage.astro";
+
+interface Props {
+  title: string;
+  direction?: "left" | "right";
+}
+
+const { title, direction = "left" } = Astro.props;
+---
+
+<FeatureDisplayPage title={title} direction={direction}>
+  <slot />
+</FeatureDisplayPage>

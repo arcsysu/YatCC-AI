@@ -1,0 +1,34 @@
+---
+import IndexPage from "@/contents/index.astro";
+import TeachingPracticePage from "@/contents/teaching-practice.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: "zh", slug: undefined } },
+    { params: { lang: "en", slug: undefined } },
+    { params: { lang: "zh", slug: "teaching-practice" } },
+    { params: { lang: "en", slug: "teaching-practice" } },
+  ];
+}
+
+const { lang, slug } = Astro.params;
+
+if (lang !== "zh" && lang !== "en") {
+  return Astro.redirect("/zh/");
+}
+
+const normalizedSlug = slug ?? "";
+
+const pages = {
+  "": IndexPage,
+  "teaching-practice": TeachingPracticePage,
+} as const;
+
+const Page = pages[normalizedSlug as keyof typeof pages];
+
+if (!Page) {
+  return Astro.redirect(`/${lang}/`);
+}
+---
+
+<Page />

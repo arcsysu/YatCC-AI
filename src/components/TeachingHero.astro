@@ -1,0 +1,42 @@
+---
+import HomeTitle from "@/components/HomeTitle.astro";
+import ButtonGroup from "@/components/ButtonGroup.astro";
+import Button from "@/components/Button.astro";
+import DarkLightButton from "@/components/DarkLightButton.astro";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  primaryLabel: string;
+  primaryHref: string;
+  secondaryLabel: string;
+  secondaryHref: string;
+}
+
+const {
+  title,
+  subtitle,
+  primaryLabel,
+  primaryHref,
+  secondaryLabel,
+  secondaryHref,
+} = Astro.props;
+---
+
+<Fragment>
+  <HomeTitle title={title} subtitle={subtitle} />
+  <div class="hero-actions">
+    <ButtonGroup>
+      <Button href={primaryHref}>{primaryLabel}</Button>
+      <DarkLightButton href={secondaryHref}>{secondaryLabel}</DarkLightButton>
+    </ButtonGroup>
+  </div>
+</Fragment>
+
+<style>
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+</style>

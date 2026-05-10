@@ -1,0 +1,170 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  placeholderBadge: string;
+  placeholderTitle: string;
+  placeholderDescription: string;
+  align?: "left" | "right";
+}
+
+const {
+  eyebrow,
+  title,
+  description,
+  placeholderBadge,
+  placeholderTitle,
+  placeholderDescription,
+  align = "left",
+} = Astro.props;
+---
+
+<article class={`showcase-card ${align}`}>
+  <div class="showcase-copy">
+    <p class="eyebrow">{eyebrow}</p>
+    <h3>{title}</h3>
+    <p class="showcase-description">{description}</p>
+    <ul class="showcase-list">
+      <slot />
+    </ul>
+  </div>
+  <div class="showcase-placeholder">
+    <div class="placeholder-panel">
+      <span class="placeholder-badge">{placeholderBadge}</span>
+      <h4>{placeholderTitle}</h4>
+      <p>{placeholderDescription}</p>
+    </div>
+  </div>
+</article>
+
+<style>
+  .showcase-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    gap: 28px;
+    padding: 28px;
+    border-radius: 28px;
+    border: 1px solid var(--border-color);
+    background:
+      linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--bg-color-dimmer) 72%, transparent),
+        color-mix(in srgb, var(--bg-color) 88%, transparent)
+      );
+    box-sizing: border-box;
+  }
+
+  .showcase-card.right .showcase-copy {
+    order: 2;
+  }
+
+  .showcase-card.right .showcase-placeholder {
+    order: 1;
+  }
+
+  .showcase-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .showcase-copy h3 {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--text-color);
+  }
+
+  .showcase-description {
+    margin: 14px 0 0;
+    color: var(--sub-text-color);
+    line-height: 1.75;
+  }
+
+  .showcase-list {
+    margin: 18px 0 0;
+    padding-left: 1.1rem;
+    color: var(--text-color-dimmer);
+    line-height: 1.75;
+  }
+
+  .showcase-placeholder {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .placeholder-panel {
+    width: 100%;
+    min-height: 260px;
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px dashed color-mix(in srgb, var(--accent-color) 40%, transparent);
+    background:
+      radial-gradient(
+        circle at top right,
+        color-mix(in srgb, var(--accent-color-extralight) 70%, transparent),
+        transparent 50%
+      ),
+      color-mix(in srgb, var(--bg-color-dimmer) 55%, transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+  }
+
+  .placeholder-badge {
+    width: fit-content;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--accent-color) 14%, transparent);
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .placeholder-panel h4 {
+    margin: 18px 0 10px;
+    font-size: 1.35rem;
+    color: var(--text-color);
+  }
+
+  .placeholder-panel p {
+    margin: 0;
+    color: var(--sub-text-color);
+    line-height: 1.7;
+  }
+
+  .eyebrow {
+    margin: 0 0 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+  }
+
+  @media (max-width: 900px) {
+    .showcase-card {
+      grid-template-columns: 1fr;
+    }
+
+    .showcase-card.right .showcase-copy,
+    .showcase-card.right .showcase-placeholder {
+      order: initial;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .showcase-card {
+      padding: 20px;
+      border-radius: 22px;
+      gap: 20px;
+    }
+
+    .placeholder-panel {
+      min-height: 220px;
+      padding: 20px;
+    }
+  }
+</style>

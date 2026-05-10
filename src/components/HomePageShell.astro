@@ -1,0 +1,91 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import FixPage from "@/components/FixPage.astro";
+import FixPageContainer from "@/components/FixPageContainer.astro";
+import DragonParticles from "@/components/DragonParticles.astro";
+---
+
+<BaseLayout>
+  <FixPageContainer>
+    <FixPage>
+      <div class="home-container">
+        <div class="content-wrapper">
+          <slot name="hero" />
+          <slot name="cards" />
+          <div class="dragon-positioner">
+            <DragonParticles />
+          </div>
+        </div>
+      </div>
+    </FixPage>
+    <slot name="ol-lab" />
+    <slot name="ai-hub" />
+  </FixPageContainer>
+</BaseLayout>
+
+<style>
+  .home-container {
+    position: relative;
+    padding: 0 12px 12px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    left: 0;
+    right: 0;
+    min-width: 280px;
+    box-sizing: border-box;
+    z-index: 1;
+    gap: 60px;
+    overflow-x: clip;
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.1vh, 50px, 5rem);
+    overflow-x: clip;
+  }
+
+  @media (max-width: 768px) {
+    .home-container {
+      width: 100%;
+    }
+
+    .content-wrapper {
+      gap: 5vh;
+    }
+  }
+
+  .dragon-positioner {
+    position: absolute;
+    top: 0;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .dragon-positioner {
+      width: 100%;
+      height: 400px;
+      opacity: 1;
+      z-index: -1;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .home-container {
+      min-width: 0;
+      padding: 0 8px 12px;
+    }
+
+    :global(.home-container .button-group) {
+      width: 100%;
+    }
+  }
+</style>

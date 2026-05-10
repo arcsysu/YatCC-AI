@@ -1,0 +1,12 @@
+---
+export function getStaticPaths() {
+  return [
+    { params: { slug: undefined } },
+    { params: { slug: "teaching-practice" } },
+  ];
+}
+
+const slug = Astro.params.slug ?? "";
+const suffix = slug ? `/${slug}` : "/";
+return Astro.redirect(`/zh${suffix}`);
+---
