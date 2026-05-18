@@ -7,10 +7,27 @@
    - ubuntu: you got `apt`
    - archlinux: i use `yay`, but `paru` may be better
 
-2. 安装 `pnpm`，其实其他都行但是我用的这个
-   - windows: `scoop install pnpm`
-   - archlinux: `yay -S pnpm`
-   - ubuntu: `sudo apt install -y pnpm`
+2. 安装 `node/npm + pnpm`
+   - 推荐直接运行仓库脚本，一次性补齐 `node`、`npm` 和项目所需主版本的 `pnpm`:
+
+   ```bash
+   ./scripts/install-pnpm.sh
+   ```
+
+   - Windows PowerShell:
+
+   ```bash
+   .\scripts\install-pnpm.ps1
+   ```
+
+   - 如果系统里还没有 `node` / `npm`，脚本会先尝试通过系统包管理器自动安装
+   - `pnpm` 会优先通过 `corepack` 下载并启用
+   - 如果你的环境没有可用的 `corepack`，会回退到 `npm install -g`
+   - 也可以手动指定版本，例如:
+
+   ```bash
+   PNPM_VERSION=pnpm@10 ./scripts/install-pnpm.sh
+   ```
 
 3. 安装依赖
 
