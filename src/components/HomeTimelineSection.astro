@@ -1,6 +1,7 @@
 ---
 import type { BlogEntry, SiteLang } from "@/lib/blog";
 import { formatBlogDate } from "@/lib/blog";
+import Button from "@/components/Button.astro";
 
 interface Props {
   lang: SiteLang;
@@ -16,7 +17,7 @@ const copy = {
     description:
       "用一条时间线把最近的更新节点串起来。点开任意标题，就能进入对应博客页。",
     empty: "当前还没有新闻，稍后再来看看。",
-    cta: "查看全部博客",
+    cta: "查看全部动态",
     link: "查看节点",
   },
   en: {
@@ -39,9 +40,7 @@ const featuredPosts = posts.slice(0, 12);
     <span>{text.eyebrow}</span>
     <h2>{text.title}</h2>
     <!-- <p>{text.description}</p> -->
-    <a class="timeline-cta" href={lang === "zh" ? "/zh/blog" : "/en/blog"}
-      >{text.cta}</a
-    >
+    <Button href={lang === "zh" ? "/zh/blog" : "/en/blog"}>{text.cta}</Button>
   </div>
 
   {
@@ -137,17 +136,8 @@ const featuredPosts = posts.slice(0, 12);
     line-height: 1.75;
   }
 
-  .timeline-cta {
+  .timeline-heading :global(.button-container) {
     width: fit-content;
-    padding: 0.75rem 1rem;
-    border-radius: 999px;
-    text-decoration: none;
-    color: var(--anti-bg-color);
-    background: linear-gradient(
-      120deg,
-      var(--accent-color),
-      color-mix(in srgb, var(--accent-color) 55%, white)
-    );
   }
 
   .timeline-list {
