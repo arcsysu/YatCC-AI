@@ -257,6 +257,7 @@
    2. 文件名尽量和页面 slug 对应
       - 首页: [index.astro](src/contents/index.astro)
       - 教学实践: [teaching-practice.astro](src/contents/teaching-practice.astro)
+      - 博客文章目录: [blog/](src/contents/blog/)
    3. 页面文案 i18n 采用 inline 形式，靠近实际渲染位置，例如：
 
       ```ts
@@ -268,6 +269,77 @@
       ```
 
    4. 不要再新建集中式 page-content dictionary，除非真的有明确复用需求
+
+## 博客系统 quick 'n dirty'
+
+1. 文章目录
+   - 所有博客文章都放在 [src/contents/blog/](src/contents/blog/)
+   - 当前博客系统直接扫描这个目录下的 `.md` 文件，不走 Astro content collection
+   - 因此不要再新建 `src/content/` 之类容易混淆的内容目录
+
+2. 一篇文章最少需要这些 frontmatter
+
+   ```md
+   ---
+   title: "Demo/Test：首页时间线节点联调"
+   summary: 用来测试首页 timeline 的显式 demo 文章，确认节点、跳转和时间排序都正常。
+   date: 2026-05-19
+   lang: zh
+   category: Demo
+   ---
+   ```
+
+   字段说明：
+   - `title`: 文章标题
+   - `summary`: 摘要，会展示在博客列表和部分首页上下文里
+   - `date`: 发布时间，决定排序
+   - `lang`: 语言，只能是 `zh` 或 `en`
+   - `category`: 可选，分类标签
+   - `pinned`: 可选，`true` 时会优先排序
+   - `draft`: 可选，`true` 时不会出现在页面里
+
+3. 路由约定
+   - 博客列表页：
+     - `/zh/blog`
+     - `/en/blog`
+   - 博客详情页：
+     - `/zh/blog/<slug>`
+     - `/en/blog/<slug>`
+   - 无语言前缀的 `/blog` 会重定向到默认语言 `/zh/blog`
+
+4. 首页时间线
+   - 首页 timeline/news 区域会自动读取博客目录中的最新文章
+   - 宽屏下只显示当前布局能容纳的最新几篇
+   - 窄屏下切换为竖向时间线
+   - 新增文章后不需要手动改首页内容
+
+5. 新增文章 quick 'n dirty
+   1. 在 [src/contents/blog/](src/contents/blog/) 新建一个 markdown 文件
+   2. 写好 frontmatter 和正文
+   3. 如果做双语内容，分别新建 `*-zh.md` 和 `*-en.md`
+   4. 运行：
+
+      ```bash
+      pnpm build
+      ```
+
+      或
+
+      ```bash
+      pnpm dev
+      ```
+
+   5. 确认：
+      - `/zh/blog` 或 `/en/blog` 能看到文章
+      - 首页 timeline 能看到对应节点
+      - 点击节点能跳到详情页
+
+6. 相关实现文件
+   - 博客读取逻辑: [src/lib/blog.ts](src/lib/blog.ts)
+   - 首页时间线组件: [src/components/HomeTimelineSection.astro](src/components/HomeTimelineSection.astro)
+   - 博客详情布局: [src/layouts/BlogLayout.astro](src/layouts/BlogLayout.astro)
+   - 博客列表页: [src/pages/[lang]/blog/index.astro](<src/pages/[lang]/blog/index.astro>)
+   - 博客详情页: [src/pages/[lang]/blog/[slug].astro](<src/pages/[lang]/blog/[slug].astro>)
 
 3. 路由 [src/pages](src/pages/)
    1. 无语言前缀路由入口 [\[...slug].astro](<src/pages/[...slug].astro>)
@@ -281,6 +353,8 @@
    3. 目前内容页需要在这个文件里注册 slug，新增页面时记得一起改
 
    4. 现有中文文档页 [src/pages/zh/about.md](src/pages/zh/about.md)
+   5. 博客页已拆到独立路由目录 [src/pages/[lang]/blog/](<src/pages/[lang]/blog/>)
+      - 博客文章不需要再在 [\[lang]/\[...slug].astro](<src/pages/[lang]/[...slug].astro>) 里手动注册
 
 4. i18n [src/i18n](src/i18n/)
    1. [ui.ts](src/i18n/ui.ts)

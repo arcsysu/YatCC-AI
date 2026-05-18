@@ -14,6 +14,8 @@
 
 看 [贡献指北](./CONTRIBUTING.md).
 
+博客系统的使用说明、文章目录约定和 timeline 行为也已经写进 [CONTRIBUTING.md](./CONTRIBUTING.md) 了。
+
 ## Deploy
 
 1. 先安装依赖
