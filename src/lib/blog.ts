@@ -32,7 +32,7 @@ export interface BlogEntry {
   Content: AstroComponentFactory;
 }
 
-const blogModules = import.meta.glob<BlogModule>("../content/blog/*.md", {
+const blogModules = import.meta.glob<BlogModule>("../contents/blog/*.md", {
   eager: true,
 });
 

@@ -9,7 +9,7 @@ pinned: true
 
 这一版博客系统的目标不是先做复杂 CMS，而是先把最核心的内容流打通：
 
-- 在 `src/content/blog/` 中维护 markdown 文章
+- 在 `src/contents/blog/` 中维护 markdown 文章
 - 通过统一布局渲染为博客详情页
 - 在首页的 timeline/news 区域自动读取最新文章
 - 点击时间节点直接跳转到对应博客页面
