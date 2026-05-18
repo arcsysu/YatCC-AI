@@ -35,6 +35,7 @@ const translatePath = useTranslatedPath(lang);
         <NavDropdown>
           <div slot="title">{t("nav.resources")}</div>
           <Link href="https://docs.yatcc-ai.com/#/">{t("nav.docs")}</Link>
+          <Link href={translatePath("/blog")}>{lang === "zh" ? "博客" : "Blog"}</Link>
           <Link href="https://space.bilibili.com/3546650047941291"
             >{t("nav.videos")}</Link
           >

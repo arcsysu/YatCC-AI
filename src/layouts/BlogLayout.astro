@@ -1,0 +1,119 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Link from "@/components/Link.astro";
+import type { SiteLang } from "@/lib/blog";
+import { formatBlogDate } from "@/lib/blog";
+
+interface Props {
+  title: string;
+  summary: string;
+  date: Date;
+  lang: SiteLang;
+  category?: string;
+}
+
+const { title, summary, date, lang, category = "News" } = Astro.props;
+const backHref = lang === "zh" ? "/zh/#news" : "/en/#news";
+---
+
+<BaseLayout>
+  <article class="blog-shell">
+    <div class="blog-header">
+      <Link href={backHref}>
+        {lang === "zh" ? "返回首页时间线" : "Back to timeline"}
+      </Link>
+      <div class="blog-meta">
+        <span>{category}</span>
+        <span>{formatBlogDate(date, lang)}</span>
+      </div>
+      <h1>{title}</h1>
+      <p>{summary}</p>
+    </div>
+
+    <div class="blog-body">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-shell {
+    width: min(860px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 4rem) 0 5rem;
+  }
+
+  .blog-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 1.75rem;
+    background:
+      radial-gradient(circle at top right, color-mix(in srgb, var(--accent-color) 12%, transparent), transparent 30%),
+      linear-gradient(135deg, color-mix(in srgb, var(--bg-color-dimmer) 70%, transparent), var(--bg-color));
+    box-shadow: 0 20px 50px color-mix(in srgb, var(--anti-bg-color) 10%, transparent);
+  }
+
+  .blog-meta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    color: var(--sub-text-color);
+    font-size: 0.95rem;
+  }
+
+  .blog-header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.05;
+  }
+
+  .blog-header p {
+    margin: 0;
+    max-width: 52rem;
+    color: var(--sub-text-color);
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .blog-body {
+    margin-top: 1.75rem;
+    padding: clamp(1.5rem, 4vw, 2.25rem);
+    border-radius: 1.75rem;
+    border: 1px solid var(--border-color);
+    background: color-mix(in srgb, var(--bg-color) 92%, var(--bg-color-dimmer));
+    line-height: 1.85;
+  }
+
+  .blog-body :global(h2),
+  .blog-body :global(h3) {
+    line-height: 1.2;
+    margin-top: 2rem;
+  }
+
+  .blog-body :global(p),
+  .blog-body :global(li) {
+    color: var(--sub-text-color);
+  }
+
+  .blog-body :global(code) {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.95em;
+    padding: 0.15rem 0.35rem;
+    border-radius: 0.35rem;
+    background: var(--bg-color-dimmer);
+  }
+
+  .blog-body :global(pre) {
+    overflow-x: auto;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: var(--bg-color-dimmer);
+  }
+
+  .blog-body :global(a) {
+    color: var(--accent-color);
+  }
+</style>

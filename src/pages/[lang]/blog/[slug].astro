@@ -1,0 +1,32 @@
+---
+import { getAllBlogEntries } from "@/lib/blog";
+import BlogLayout from "@/layouts/BlogLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getAllBlogEntries();
+
+  return posts.map((post) => ({
+    params: {
+      lang: post.data.lang,
+      slug: post.slug,
+    },
+    props: {
+      post,
+    },
+  }));
+}
+
+const lang = Astro.params.lang as "zh" | "en";
+const { post } = Astro.props;
+const Content = post.Content;
+---
+
+<BlogLayout
+  title={post.data.title}
+  summary={post.data.summary}
+  date={post.data.date}
+  lang={lang}
+  category={post.data.category}
+>
+  <Content />
+</BlogLayout>

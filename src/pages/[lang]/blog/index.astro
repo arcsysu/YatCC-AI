@@ -1,0 +1,111 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getBlogEntries, formatBlogDate } from "@/lib/blog";
+
+export async function getStaticPaths() {
+  return [{ params: { lang: "zh" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+
+if (lang !== "zh" && lang !== "en") {
+  return Astro.redirect("/zh/blog");
+}
+
+const posts = await getBlogEntries(lang);
+
+const copy = {
+  zh: {
+    title: "博客与动态",
+    description: "这里会统一展示博客目录中的 markdown 文章，适合记录发布、里程碑和平台更新。",
+    empty: "还没有可展示的文章。",
+  },
+  en: {
+    title: "Blog & Updates",
+    description: "All markdown posts from the blog directory are listed here for announcements, milestones, and product updates.",
+    empty: "No posts are available yet.",
+  },
+} as const;
+
+const text = copy[lang];
+---
+
+<BaseLayout>
+  <section class="blog-index">
+    <div class="blog-index-header">
+      <h1>{text.title}</h1>
+      <p>{text.description}</p>
+    </div>
+
+    {
+      posts.length ? (
+        <div class="blog-grid">
+          {posts.map((post) => (
+            <a class="blog-card" href={`/${lang}/blog/${post.slug}`}>
+              <span>{post.data.category}</span>
+              <h2>{post.data.title}</h2>
+              <p>{post.data.summary}</p>
+              <strong>{formatBlogDate(post.data.date, lang)}</strong>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <p>{text.empty}</p>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .blog-index {
+    width: min(1180px, calc(100% - 24px));
+    margin: 0 auto;
+    padding: clamp(2rem, 4vw, 3rem) 0 4rem;
+  }
+
+  .blog-index-header {
+    margin-bottom: 2rem;
+  }
+
+  .blog-index-header h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+  }
+
+  .blog-index-header p,
+  .blog-card p,
+  .blog-card span,
+  .blog-card strong {
+    color: var(--sub-text-color);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .blog-card {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1.35rem;
+    border-radius: 1.5rem;
+    border: 1px solid var(--border-color);
+    background: color-mix(in srgb, var(--bg-color) 92%, var(--bg-color-dimmer));
+    color: inherit;
+    text-decoration: none;
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px color-mix(in srgb, var(--accent-color) 12%, transparent);
+  }
+
+  .blog-card h2,
+  .blog-card p {
+    margin: 0;
+  }
+</style>

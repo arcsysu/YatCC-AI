@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import { copyFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
+import { fileURLToPath } from "url";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,11 +19,12 @@ export default defineConfig({
       name: "copy-altcha-to-lang-dirs",
       hooks: {
         "astro:build:done": ({ dir }) => {
-          const srcFile = join(dir.pathname, "js", "altcha.js");
+          const outDir = fileURLToPath(dir);
+          const srcFile = join(outDir, "js", "altcha.js");
           const langDirs = ["en", "zh"];
           
           for (const lang of langDirs) {
-            const targetDir = join(dir.pathname, lang, "js");
+            const targetDir = join(outDir, lang, "js");
             const targetFile = join(targetDir, "altcha.js");
             
             // 确保目标目录存在

@@ -5,12 +5,15 @@ import CardContainer from "@/components/CardContainer.astro";
 import Card from "@/components/Card.astro";
 import HomeFeatureSection from "@/components/HomeFeatureSection.astro";
 import FeatureDisplayPageFeature from "@/components/FeatureDisplayPageFeature.astro";
+import HomeTimelineSection from "@/components/HomeTimelineSection.astro";
 import imgUseCodespaces from "@public/use-codespaces.gif";
 import imgUseOl from "@public/use-ol.gif";
 import { getLangFromUrl } from "@/i18n/utils";
+import { getBlogEntries } from "@/lib/blog";
 
 const lang = getLangFromUrl(Astro.url);
 const t = <T,>(value: { zh: T; en: T }) => value[lang];
+const posts = await getBlogEntries(lang);
 ---
 
 <HomePageShell>
@@ -133,4 +136,6 @@ const t = <T,>(value: { zh: T; en: T }) => value[lang];
       </span>
     </FeatureDisplayPageFeature>
   </HomeFeatureSection>
+
+  <HomeTimelineSection slot="news" lang={lang} posts={posts} />
 </HomePageShell>
