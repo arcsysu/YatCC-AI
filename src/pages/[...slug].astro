@@ -7,6 +7,230 @@ export function getStaticPaths() {
 }
 
 const slug = Astro.params.slug ?? "";
+const isRoot = slug === "";
 const suffix = slug ? `/${slug}` : "/";
-return Astro.redirect(`/zh${suffix}`);
 ---
+
+{isRoot ? (
+  <html lang="zh">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta http-equiv="refresh" content="0; url=/zh/" />
+      <title>YatCC AI</title>
+      <style>
+        :root {
+          --bg: #f7f1fb;
+          --panel: rgba(255, 255, 255, 0.78);
+          --panel-border: rgba(113, 94, 194, 0.18);
+          --text: #17141f;
+          --subtext: #4d455e;
+          --accent: #715ec2;
+          --accent-soft: #a98cff;
+          --shadow: rgba(62, 35, 121, 0.16);
+        }
+
+        * {
+          box-sizing: border-box;
+        }
+
+        body {
+          margin: 0;
+          min-height: 100vh;
+          display: grid;
+          place-items: center;
+          padding: 24px;
+          font-family:
+            "Satoshi",
+            "HarmonyOS Sans SC",
+            "Segoe UI",
+            sans-serif;
+          color: var(--text);
+          background:
+            radial-gradient(circle at top left, rgba(169, 140, 255, 0.34), transparent 28%),
+            radial-gradient(circle at bottom right, rgba(113, 94, 194, 0.18), transparent 30%),
+            linear-gradient(180deg, #fcfaff 0%, var(--bg) 100%);
+        }
+
+        .redirect-shell {
+          width: min(680px, 100%);
+          border-radius: 28px;
+          border: 1px solid var(--panel-border);
+          background: var(--panel);
+          backdrop-filter: blur(18px);
+          box-shadow: 0 28px 80px var(--shadow);
+          overflow: hidden;
+        }
+
+        .redirect-banner {
+          height: 10px;
+          background: linear-gradient(90deg, var(--accent), var(--accent-soft), #e3d9ff);
+        }
+
+        .redirect-card {
+          padding: clamp(28px, 5vw, 44px);
+          display: grid;
+          gap: 18px;
+        }
+
+        .eyebrow {
+          margin: 0;
+          color: var(--subtext);
+          font-size: 0.82rem;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+        }
+
+        h1 {
+          margin: 0;
+          font-size: clamp(2rem, 6vw, 3.5rem);
+          line-height: 1;
+        }
+
+        p {
+          margin: 0;
+          color: var(--subtext);
+          line-height: 1.7;
+          font-size: 1.02rem;
+        }
+
+        .status {
+          display: inline-flex;
+          width: fit-content;
+          align-items: center;
+          gap: 10px;
+          padding: 0.8rem 1rem;
+          border-radius: 999px;
+          background: rgba(113, 94, 194, 0.08);
+          color: var(--accent);
+          font-weight: 700;
+        }
+
+        .status::before {
+          content: "";
+          width: 10px;
+          height: 10px;
+          border-radius: 999px;
+          background: var(--accent);
+          box-shadow: 0 0 0 8px rgba(113, 94, 194, 0.14);
+          animation: pulse 1.6s ease-in-out infinite;
+        }
+
+        .actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          padding-top: 6px;
+        }
+
+        .action {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 48px;
+          padding: 0.8rem 1.25rem;
+          border-radius: 18px;
+          text-decoration: none;
+          font-weight: 700;
+          transition:
+            transform 0.18s ease,
+            background-color 0.18s ease,
+            border-color 0.18s ease;
+        }
+
+        .action-primary {
+          color: #f5f2fa;
+          background: #715ec2;
+        }
+
+        .action-primary:hover {
+          transform: translateY(-1px);
+          background: #7f6bda;
+        }
+
+        .action-secondary {
+          color: var(--text);
+          border: 1px solid rgba(113, 94, 194, 0.18);
+          background: rgba(255, 255, 255, 0.6);
+        }
+
+        .action-secondary:hover {
+          transform: translateY(-1px);
+          border-color: rgba(113, 94, 194, 0.34);
+        }
+
+        .footnote {
+          font-size: 0.92rem;
+        }
+
+        @keyframes pulse {
+          0%,
+          100% {
+            box-shadow: 0 0 0 8px rgba(113, 94, 194, 0.14);
+          }
+          50% {
+            box-shadow: 0 0 0 14px rgba(113, 94, 194, 0.06);
+          }
+        }
+
+        @media (max-width: 520px) {
+          body {
+            padding: 14px;
+          }
+
+          .redirect-shell {
+            border-radius: 22px;
+          }
+
+          .actions {
+            flex-direction: column;
+          }
+
+          .action {
+            width: 100%;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      <main class="redirect-shell">
+        <div class="redirect-banner"></div>
+        <div class="redirect-card">
+          <p class="eyebrow">Language Redirect</p>
+          <h1>YatCC AI</h1>
+          <p>
+            正在根据你的浏览器语言偏好跳转到对应站点。
+            <br />
+            Redirecting you to the best language match for your browser.
+          </p>
+          <div class="status">Redirecting...</div>
+          <div class="actions">
+            <a class="action action-primary" href="/zh/">进入中文站</a>
+            <a class="action action-secondary" href="/en/">Continue in English</a>
+          </div>
+          <p class="footnote">
+            如果没有自动跳转，你也可以手动选择语言继续访问。
+          </p>
+        </div>
+      </main>
+      <script is:inline>
+        const preferred = (navigator.languages?.[0] || navigator.language || "zh").toLowerCase();
+        const target = preferred.startsWith("en") ? "/en/" : "/zh/";
+        location.replace(target);
+      </script>
+      <noscript>
+        <div class="redirect-shell">
+          <div class="redirect-card">
+            <p>JavaScript is disabled. Please choose a language manually.</p>
+            <div class="actions">
+              <a class="action action-primary" href="/zh/">进入中文站</a>
+              <a class="action action-secondary" href="/en/">Continue in English</a>
+            </div>
+          </div>
+        </div>
+      </noscript>
+    </body>
+  </html>
+) : (
+  Astro.redirect(`/zh${suffix}`)
+)}
