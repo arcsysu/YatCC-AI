@@ -1,32 +1,26 @@
 ---
-import { getAllBlogEntries } from "@/lib/blog";
-import BlogLayout from "@/layouts/BlogLayout.astro";
-
 export async function getStaticPaths() {
-  const posts = await getAllBlogEntries();
+  const legacyBlogSlugs = [
+    "weekly-newsletter-zh",
+    "weekly-newsletter-en",
+    "teaching-sprint-en",
+    "teaching-sprint-zh",
+    "platform-roadmap-en",
+    "platform-roadmap-zh",
+    "codespaces-preview-zh",
+    "codespaces-preview-en",
+    "demo-test-homepage-en",
+    "demo-test-homepage-zh",
+  ];
 
-  return posts.map((post) => ({
-    params: {
-      lang: post.data.lang,
-      slug: post.slug,
-    },
-    props: {
-      post,
-    },
-  }));
+  return (["zh", "en"] as const).flatMap((lang) =>
+    legacyBlogSlugs.map((slug) => ({
+      params: { lang, slug },
+    })),
+  );
 }
 
-const lang = Astro.params.lang as "zh" | "en";
-const { post } = Astro.props;
-const Content = post.Content;
----
+const { lang } = Astro.params;
 
-<BlogLayout
-  title={post.data.title}
-  summary={post.data.summary}
-  date={post.data.date}
-  lang={lang}
-  category={post.data.category}
->
-  <Content />
-</BlogLayout>
+return Astro.redirect(`/${lang}/news`);
+---

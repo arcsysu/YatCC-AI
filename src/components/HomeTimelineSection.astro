@@ -1,38 +1,33 @@
 ---
-import type { BlogEntry, SiteLang } from "@/lib/blog";
-import { formatBlogDate } from "@/lib/blog";
+import type { SiteLang } from "@/lib/blog";
+import { renderNewsBody, type NewsEntry } from "@/lib/news";
 import Button from "@/components/Button.astro";
 
 interface Props {
   lang: SiteLang;
-  posts: BlogEntry[];
+  news: NewsEntry[];
 }
 
-const { lang, posts } = Astro.props;
+const { lang, news } = Astro.props;
 
 const copy = {
   zh: {
     eyebrow: "Timeline / News",
     title: "近期动态",
-    description:
-      "用一条时间线把最近的更新节点串起来。点开任意标题，就能进入对应博客页。",
+    description: "",
     empty: "当前还没有新闻，稍后再来看看。",
     cta: "查看全部动态",
-    link: "查看节点",
   },
   en: {
     eyebrow: "Timeline / News",
     title: "Latest Updates",
-    description:
-      "A single timeline connects the latest milestones. Open any title to jump to the matching blog post.",
+    description: "",
     empty: "No news posts yet. Check back soon.",
-    cta: "Browse all posts",
-    link: "Open node",
+    cta: "View all updates",
   },
 } as const;
 
 const text = copy[lang];
-const featuredPosts = posts.slice(0, 12);
 ---
 
 <section id="news" class="timeline-section">
@@ -40,43 +35,30 @@ const featuredPosts = posts.slice(0, 12);
     <span>{text.eyebrow}</span>
     <h2>{text.title}</h2>
     <!-- <p>{text.description}</p> -->
-    <Button href={lang === "zh" ? "/zh/blog" : "/en/blog"}>{text.cta}</Button>
+    <Button href={lang === "zh" ? "/zh/news" : "/en/news"}>{text.cta}</Button>
   </div>
 
   {
-    featuredPosts.length ? (
+    news.length ? (
       <ol class="timeline-list">
-        {featuredPosts.map((post, index) => {
-          const href =
-            lang === "zh" ? `/zh/blog/${post.slug}` : `/en/blog/${post.slug}`;
-
-          return (
-            <li
-              class:list={[
-                "timeline-item",
-                index % 2 === 1 && "timeline-item-reverse",
-              ]}
-            >
-              <div class="timeline-entry">
-                <h3>
-                  <a href={href}>{post.data.title}</a>
-                </h3>
-                <time
-                  class="timeline-date"
-                  datetime={post.data.date.toISOString()}
-                >
-                  {formatBlogDate(post.data.date, lang)}
-                </time>
-                <a class="timeline-link" href={href}>
-                  {text.link}
-                </a>
-              </div>
-              <div class="timeline-axis" aria-hidden="true">
-                <span class="timeline-node" />
-              </div>
-            </li>
-          );
-        })}
+        {news.map((item, index) => (
+          <li
+            class:list={[
+              "timeline-item",
+              index % 2 === 1 && "timeline-item-reverse",
+            ]}
+          >
+            <div class="timeline-entry">
+              <time class="timeline-date" datetime={item.date.toISOString()}>
+                {item.rawDate}
+              </time>
+              <p class="timeline-body" set:html={renderNewsBody(item.body)} />
+            </div>
+            <div class="timeline-axis" aria-hidden="true">
+              <span class="timeline-node" />
+            </div>
+          </li>
+        ))}
       </ol>
     ) : (
       <p class="timeline-empty">{text.empty}</p>
@@ -180,13 +162,6 @@ const featuredPosts = posts.slice(0, 12);
     align-content: end;
     min-height: 104px;
     padding: 0.35rem 0.2rem;
-    transition:
-      transform 0.22s ease,
-      opacity 0.22s ease;
-  }
-
-  .timeline-entry:hover {
-    transform: translateY(-2px);
   }
 
   .timeline-item-reverse .timeline-entry {
@@ -198,40 +173,32 @@ const featuredPosts = posts.slice(0, 12);
     grid-row: 1;
   }
 
-  .timeline-entry h3 {
-    margin: 0;
-    font-size: 0.98rem;
-    line-height: 1.35;
-  }
-
-  .timeline-entry h3 a {
-    color: var(--text-color);
-    text-decoration: none;
-  }
-
-  .timeline-entry h3 a:hover {
-    color: var(--accent-color);
-  }
-
-  .timeline-date,
-  .timeline-link {
-    color: var(--sub-text-color);
-    font-size: 0.8rem;
-    letter-spacing: 0.03em;
-  }
-
   .timeline-date {
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     display: block;
   }
 
-  .timeline-link {
-    width: fit-content;
-    text-decoration: none;
+  .timeline-body {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    color: var(--text-color);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .timeline-body :global(a) {
     color: var(--accent-color);
+    text-decoration: none;
     font-weight: 600;
   }
 
-  .timeline-link:hover {
+  .timeline-body :global(a:hover) {
     text-decoration: underline;
   }
 
@@ -279,17 +246,13 @@ const featuredPosts = posts.slice(0, 12);
       0 8px 18px color-mix(in srgb, var(--accent-color) 24%, transparent);
   }
 
-  .timeline-item:nth-child(n + 7) {
+  .timeline-item:nth-child(n + 6) {
     display: none;
   }
 
   @media (max-width: 1180px) {
     .timeline-list {
       grid-template-columns: repeat(5, minmax(0, 1fr));
-    }
-
-    .timeline-item:nth-child(n + 6) {
-      display: none;
     }
   }
 
@@ -341,8 +304,7 @@ const featuredPosts = posts.slice(0, 12);
     }
 
     .timeline-item:nth-child(n + 5),
-    .timeline-item:nth-child(n + 6),
-    .timeline-item:nth-child(n + 7) {
+    .timeline-item:nth-child(n + 6) {
       display: grid;
     }
 
@@ -382,6 +344,10 @@ const featuredPosts = posts.slice(0, 12);
 
     .timeline-item:last-child .timeline-entry {
       padding-bottom: 0;
+    }
+
+    .timeline-body {
+      -webkit-line-clamp: unset;
     }
   }
 </style>

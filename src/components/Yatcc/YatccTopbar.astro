@@ -31,30 +31,30 @@ const translatePath = useTranslatedPath(lang);
           >
         </NavDropdown>
       </div>
-      <div class="nav-dropdown-item nav-dropdown-tech">
-        <NavDropdown>
-          <div slot="title">{t("nav.resources")}</div>
-          <Link href="https://docs.yatcc-ai.com/#/">{t("nav.docs")}</Link>
-          <Link href={translatePath("/blog")}>{lang === "zh" ? "博客" : "Blog"}</Link>
-          <Link href="https://space.bilibili.com/3546650047941291"
-            >{t("nav.videos")}</Link
-          >
-          <Link href="https://github.com/arcsysu/YatCC">{t("nav.source")}</Link>
-        </NavDropdown>
-      </div>
       <div class="nav-dropdown-item nav-dropdown-cases">
         <NavDropdown>
           <div slot="title">{t("nav.cases")}</div>
           <NavDropdown href={translatePath("/teaching-practice")} direction="left">
             <div slot="title">{t("nav.teaching")}</div>
-            <Link href="/teach/s2026.html">2026</Link>
-            <Link href="/teach/s2025.html">2025</Link>
-            <Link href="/teach/s2024.html">2024</Link>
-            <Link href="/teach/s2023.html">2023</Link>
-            <Link href="/teach/s2022.html">2022</Link>
-            <Link href="/teach/s2021.html">2021</Link>
+            <NavDropdown direction="left">
+              <div slot="title">{t("nav.compilerTeaching")}</div>
+              <NavDropdown direction="left">
+                <div slot="title">{t("nav.courseSites")}</div>
+                <Link href="/teach/s2026.html">2026</Link>
+                <Link href="/teach/s2025.html">2025</Link>
+                <Link href="/teach/s2024.html">2024</Link>
+                <Link href="/teach/s2023.html">2023</Link>
+                <Link href="/teach/s2022.html">2022</Link>
+                <Link href="/teach/s2021.html">2021</Link>
+              </NavDropdown>
+              <Link href="https://docs.yatcc-ai.com/#/">{t("nav.docs")}</Link>
+              <Link href="https://space.bilibili.com/3546650047941291"
+                >{t("nav.videos")}</Link
+              >
+              <Link href="https://github.com/arcsysu/YatCC">{t("nav.source")}</Link>
+            </NavDropdown>
           </NavDropdown>
-          <Link href="https://arcsysu.tech/">Research</Link>
+          <Link href="https://arcsysu.tech/">{t("nav.research")}</Link>
         </NavDropdown>
       </div>
       <div class="nav-action-wrapper">
@@ -99,12 +99,6 @@ const translatePath = useTranslatedPath(lang);
 
   @media (max-width: 1080px) {
     .nav-dropdown-team {
-      display: none;
-    }
-  }
-
-  @media (max-width: 980px) {
-    .nav-dropdown-tech {
       display: none;
     }
   }

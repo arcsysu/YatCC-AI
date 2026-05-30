@@ -9,8 +9,8 @@ interface Props {
   subtitle: string;
   primaryLabel: string;
   primaryHref: string;
-  secondaryLabel: string;
-  secondaryHref: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
   tertiaryLabel: string;
   tertiaryHref: string;
 }
@@ -31,7 +31,11 @@ const {
   <HomeTitle title={title} subtitle={subtitle} />
   <ButtonGroup>
     <Button href={primaryHref}>{primaryLabel}</Button>
-    <DarkLightButton href={secondaryHref}>{secondaryLabel}</DarkLightButton>
+    {
+      secondaryLabel && secondaryHref ? (
+        <DarkLightButton href={secondaryHref}>{secondaryLabel}</DarkLightButton>
+      ) : null
+    }
     <DarkLightButton href={tertiaryHref}>{tertiaryLabel}</DarkLightButton>
   </ButtonGroup>
 </Fragment>

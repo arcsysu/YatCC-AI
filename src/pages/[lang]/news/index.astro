@@ -1,0 +1,153 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import {
+  formatNewsDisplayDate,
+  getNewsEntries,
+  renderNewsBody,
+} from "@/lib/news";
+
+export async function getStaticPaths() {
+  return [{ params: { lang: "zh" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+
+if (lang !== "zh" && lang !== "en") {
+  return Astro.redirect("/zh/news");
+}
+
+const newsItems = await getNewsEntries(lang);
+
+const copy = {
+  zh: {
+    title: "平台动态",
+    description: "YatCC 平台重要发布、里程碑与生态进展一览。",
+    empty: "当前还没有动态，稍后再来看看。",
+  },
+  en: {
+    title: "News & Updates",
+    description: "Announcements, milestones, and platform updates from YatCC.",
+    empty: "No updates are available yet.",
+  },
+} as const;
+
+const text = copy[lang];
+---
+
+<BaseLayout>
+  <section class="news-index">
+    <div class="news-index-header">
+      <h1>{text.title}</h1>
+      <p>{text.description}</p>
+    </div>
+
+    {
+      newsItems.length ? (
+        <ol class="news-list">
+          {newsItems.map((item) => (
+            <li class="news-item">
+              <time class="news-date" datetime={item.date.toISOString()}>
+                {formatNewsDisplayDate(item.date)}
+              </time>
+              <p class="news-body" set:html={renderNewsBody(item.body)} />
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="news-empty">{text.empty}</p>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .news-index {
+    width: min(1180px, calc(100% - 24px));
+    margin: 0 auto;
+    padding: clamp(2rem, 4vw, 3rem) 0 4rem;
+  }
+
+  .news-index-header {
+    margin-bottom: 2rem;
+  }
+
+  .news-index-header h1 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+  }
+
+  .news-index-header p,
+  .news-empty {
+    margin: 0;
+    color: var(--sub-text-color);
+    line-height: 1.75;
+  }
+
+  .news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: 1.5rem;
+    align-items: baseline;
+  }
+
+  .news-item {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    padding: 0.5rem 0;
+  }
+
+  .news-item:first-child {
+    padding-top: 0;
+  }
+
+  .news-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .news-date {
+    grid-column: 1;
+    color: var(--accent-color);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .news-body {
+    grid-column: 2;
+    margin: 0;
+    line-height: 1.55;
+    color: var(--text-color);
+    font-size: 0.95rem;
+  }
+
+  .news-body :global(a) {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .news-body :global(a:hover) {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .news-list {
+      grid-template-columns: 1fr;
+      row-gap: 0;
+    }
+
+    .news-item {
+      row-gap: 0.15rem;
+    }
+
+    .news-date,
+    .news-body {
+      grid-column: 1;
+    }
+  }
+</style>

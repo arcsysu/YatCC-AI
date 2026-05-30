@@ -9,11 +9,11 @@ import HomeTimelineSection from "@/components/HomeTimelineSection.astro";
 import imgUseCodespaces from "@public/use-codespaces.gif";
 import imgUseOl from "@public/use-ol.gif";
 import { getLangFromUrl } from "@/i18n/utils";
-import { getBlogEntries } from "@/lib/blog";
+import { getLatestNews, getNewsEntries } from "@/lib/news";
 
 const lang = getLangFromUrl(Astro.url);
 const t = <T,>(value: { zh: T; en: T }) => value[lang];
-const posts = await getBlogEntries(lang);
+const latestNews = getLatestNews(await getNewsEntries(lang), 5);
 ---
 
 <HomePageShell>
@@ -29,11 +29,6 @@ const posts = await getBlogEntries(lang);
       en: "🔨 Get Started",
     })}
     primaryHref="https://ol.yatcc.arcsysu.cn"
-    secondaryLabel={t({
-      zh: "📄 阅读文档",
-      en: "📄 Read Docs",
-    })}
-    secondaryHref="https://docs.yatcc-ai.com"
     tertiaryLabel={t({
       zh: "🎓 2026编译实践",
       en: "🎓 2026 Compiler",
@@ -137,5 +132,5 @@ const posts = await getBlogEntries(lang);
     </FeatureDisplayPageFeature>
   </HomeFeatureSection>
 
-  <HomeTimelineSection slot="news" lang={lang} posts={posts} />
+  <HomeTimelineSection slot="news" lang={lang} news={latestNews} />
 </HomePageShell>
