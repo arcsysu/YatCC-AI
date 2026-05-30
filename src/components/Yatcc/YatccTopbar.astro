@@ -1,123 +1,18 @@
 ---
 import Topbar from "@/components/Topbar.astro";
-import Link from "../Link.astro";
-import NavDropdown from "../NavDropdown.astro";
-import DarkLightButton from "../DarkLightButton.astro";
-import { getLangFromUrl, tOfUrl, useTranslatedPath } from "@/i18n/utils";
+import YatccNavMenu from "./YatccNavMenu.astro";
+import { tOfUrl } from "@/i18n/utils";
 
-const lang = getLangFromUrl(Astro.url);
 const t = tOfUrl(Astro.url);
-const translatePath = useTranslatedPath(lang);
 ---
 
 <div>
-  <Topbar logoText="YatCC AI">
+  <Topbar logoText="YatCC AI" menuLabel={t("nav.menu")}>
     <Fragment slot="nav-items">
-      <Link href="https://ol.yatcc.arcsysu.cn/">&#128640; Get Started</Link>
-      <div class="nav-dropdown-item nav-dropdown-impl">
-        <NavDropdown>
-          <div slot="title">{t("nav.implementation")}</div>
-          <Link href="https://ol.yatcc.arcsysu.cn">OL Lab</Link>
-          <Link href="https://portal.aihub.arcsysu.cn">AI Hub</Link>
-          <Link href="#">DT Fab</Link>
-        </NavDropdown>
-      </div>
-      <div class="nav-dropdown-item nav-dropdown-team">
-        <NavDropdown>
-          <div slot="title">{t("nav.team")}</div>
-          <Link href="https://arcsysu.tech/people">arcsysu</Link>
-          <Link href="https://docs.yatcc-ai.com/contributors/"
-            >{t("nav.contributors")}</Link
-          >
-        </NavDropdown>
-      </div>
-      <div class="nav-dropdown-item nav-dropdown-cases">
-        <NavDropdown>
-          <div slot="title">{t("nav.cases")}</div>
-          <NavDropdown href={translatePath("/teaching-practice")} direction="left">
-            <div slot="title">{t("nav.teaching")}</div>
-            <NavDropdown direction="left">
-              <div slot="title">{t("nav.compilerTeaching")}</div>
-              <NavDropdown direction="left">
-                <div slot="title">{t("nav.courseSites")}</div>
-                <Link href="/teach/s2026.html">2026</Link>
-                <Link href="/teach/s2025.html">2025</Link>
-                <Link href="/teach/s2024.html">2024</Link>
-                <Link href="/teach/s2023.html">2023</Link>
-                <Link href="/teach/s2022.html">2022</Link>
-                <Link href="/teach/s2021.html">2021</Link>
-              </NavDropdown>
-              <Link href="https://docs.yatcc-ai.com/#/">{t("nav.docs")}</Link>
-              <Link href="https://space.bilibili.com/3546650047941291"
-                >{t("nav.videos")}</Link
-              >
-              <Link href="https://github.com/arcsysu/YatCC">{t("nav.source")}</Link>
-            </NavDropdown>
-          </NavDropdown>
-          <Link href="https://arcsysu.tech/">{t("nav.research")}</Link>
-        </NavDropdown>
-      </div>
-      <div class="nav-action-wrapper">
-        <div class="nav-action-wrapper ai-trigger-container">
-          <DarkLightButton href=""> {t("nav.ask_ai")} </DarkLightButton>
-        </div>
-      </div>
+      <YatccNavMenu layout="inline" />
+    </Fragment>
+    <Fragment slot="nav-overflow">
+      <YatccNavMenu layout="stacked" />
     </Fragment>
   </Topbar>
 </div>
-
-<style>
-  :global(.topbar-nav),
-  :global(.nav-right),
-  :global(.nav-items) {
-    flex-wrap: nowrap;
-  }
-
-  :global(.nav-items) > *,
-  :global(.nav-right) > * {
-    flex-shrink: 0;
-  }
-
-  :global(.logo-text),
-  :global(.nav-items a),
-  :global(.dropdown-trigger),
-  .nav-action-wrapper {
-    white-space: nowrap;
-  }
-
-  @media (max-width: 1320px) {
-    .nav-dropdown-cases {
-      display: none;
-    }
-  }
-
-  @media (max-width: 1200px) {
-    .nav-dropdown-impl {
-      display: none;
-    }
-  }
-
-  @media (max-width: 1080px) {
-    .nav-dropdown-team {
-      display: none;
-    }
-  }
-
-  @media (max-width: 400px) {
-    .nav-action-wrapper {
-      display: none;
-    }
-
-    :global(.nav-right) {
-      gap: 0.5rem;
-    }
-  }
-
-  @media (max-width: 340px) {
-    :global(.logo-text) {
-      max-width: 7.2rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
-</style>

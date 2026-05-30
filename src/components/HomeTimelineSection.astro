@@ -1,6 +1,6 @@
 ---
 import type { SiteLang } from "@/lib/blog";
-import { renderNewsBody, type NewsEntry } from "@/lib/news";
+import { getNewsExcerpt, renderNewsBody, type NewsEntry } from "@/lib/news";
 import Button from "@/components/Button.astro";
 
 interface Props {
@@ -52,7 +52,10 @@ const text = copy[lang];
               <time class="timeline-date" datetime={item.date.toISOString()}>
                 {item.rawDate}
               </time>
-              <p class="timeline-body" set:html={renderNewsBody(item.body)} />
+              <p
+                class="timeline-body"
+                set:html={renderNewsBody(getNewsExcerpt(item.body))}
+              />
             </div>
             <div class="timeline-axis" aria-hidden="true">
               <span class="timeline-node" />
@@ -73,6 +76,7 @@ const text = copy[lang];
     padding: clamp(1.6rem, 4vw, 2.8rem);
     border-radius: 2.25rem;
     border: 1px solid var(--border-color);
+    overflow: visible;
     background:
       radial-gradient(
         circle at top left,
@@ -127,15 +131,17 @@ const text = copy[lang];
     padding: 0;
     margin: 1rem 0 0;
     display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-columns: repeat(10, minmax(0, 1fr));
     gap: 0.9rem;
     position: relative;
     align-items: center;
+    overflow: visible;
   }
 
   .timeline-list::before {
     content: "";
     position: absolute;
+    z-index: 0;
     left: 0;
     right: 0;
     top: 50%;
@@ -150,27 +156,41 @@ const text = copy[lang];
   }
 
   .timeline-item {
+    grid-column: span 2;
     min-width: 0;
     display: grid;
-    grid-template-rows: 1fr 28px 1fr;
+    grid-template-rows: minmax(5.5rem, 1fr) 28px minmax(5.5rem, 1fr);
     position: relative;
+    overflow: visible;
   }
 
   .timeline-entry {
     display: grid;
     gap: 0.45rem;
-    align-content: end;
-    min-height: 104px;
-    padding: 0.35rem 0.2rem;
+    min-height: 0;
+    padding: 0.2rem 0.35rem 0.2rem 0;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    width: calc(150% + 0.9rem);
+    max-width: none;
+    pointer-events: auto;
   }
 
   .timeline-item-reverse .timeline-entry {
     grid-row: 3;
+    align-self: start;
     align-content: start;
   }
 
   .timeline-item:not(.timeline-item-reverse) .timeline-entry {
     grid-row: 1;
+    align-self: end;
+    align-content: end;
+  }
+
+  .timeline-item:last-child .timeline-entry {
+    width: 100%;
   }
 
   .timeline-date {
@@ -205,9 +225,11 @@ const text = copy[lang];
   .timeline-axis {
     grid-row: 2;
     position: relative;
+    z-index: 2;
     display: flex;
     justify-content: center;
     align-items: center;
+    pointer-events: none;
   }
 
   .timeline-axis::before,
@@ -250,23 +272,7 @@ const text = copy[lang];
     display: none;
   }
 
-  @media (max-width: 1180px) {
-    .timeline-list {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-    }
-  }
-
-  @media (max-width: 980px) {
-    .timeline-list {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .timeline-item:nth-child(n + 5) {
-      display: none;
-    }
-  }
-
-  @media (max-width: 820px) {
+  @media (max-width: 1200px) {
     .timeline-list {
       min-width: 0;
       display: grid;
@@ -296,6 +302,7 @@ const text = copy[lang];
 
     .timeline-item,
     .timeline-item-reverse {
+      grid-column: auto;
       min-width: 0;
       grid-template-columns: 24px minmax(0, 1fr);
       grid-template-rows: auto;
@@ -313,9 +320,16 @@ const text = copy[lang];
     .timeline-item-reverse .timeline-entry {
       grid-column: 2;
       grid-row: auto;
+      width: 100%;
+      max-width: none;
       min-height: auto;
+      align-self: auto;
       align-content: start;
       padding: 0 0 1rem;
+    }
+
+    .timeline-item:last-child .timeline-entry {
+      width: 100%;
     }
 
     .timeline-axis,

@@ -18,9 +18,10 @@ const translatePath = useTranslatedPath(lang);
 
 interface Props {
   logoText?: string;
+  menuLabel?: string;
 }
 
-const { logoText = "YatCC AI" } = Astro.props;
+const { logoText = "YatCC AI", menuLabel = "Menu" } = Astro.props;
 ---
 
 <header class="topbar-container">
@@ -37,11 +38,20 @@ const { logoText = "YatCC AI" } = Astro.props;
     </div>
 
     <div class="nav-right">
-      <div class="nav-items">
+      <div class="nav-items nav-items--desktop">
         <slot name="nav-items" />
       </div>
 
-      <div class="divider"></div>
+      <div class="nav-overflow">
+        <NavDropdown>
+          <div slot="title">{menuLabel}</div>
+          <div class="nav-overflow-panel">
+            <slot name="nav-overflow" />
+          </div>
+        </NavDropdown>
+      </div>
+
+      <div class="divider nav-divider--desktop"></div>
 
       <NavDropdown>
         <div class="language-icon" slot="title">
@@ -158,8 +168,34 @@ const { logoText = "YatCC AI" } = Astro.props;
       background-color: rgba(255, 255, 255, 0.1);
     }
 
-    @media (max-width: 760px) {
-      .nav-items {
+    .nav-overflow {
+      display: none;
+    }
+
+    .nav-items--desktop {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-overflow-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      min-width: 13.5rem;
+      max-height: min(70vh, 32rem);
+      overflow-y: auto;
+    }
+
+    @media (max-width: 1200px) {
+      .nav-items--desktop {
+        display: none;
+      }
+
+      .nav-overflow {
+        display: inline-block;
+      }
+
+      .nav-divider--desktop {
         display: none;
       }
     }

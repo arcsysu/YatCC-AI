@@ -117,6 +117,17 @@ export function formatNewsDisplayDate(date: Date) {
 }
 
 const markdownLinkPattern = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+const commaPattern = /[,，]/;
+
+export function getNewsExcerpt(body: string): string {
+  const match = body.match(commaPattern);
+
+  if (!match || match.index === undefined) {
+    return body.trim();
+  }
+
+  return body.slice(0, match.index).trim();
+}
 
 export function renderNewsBody(body: string): string {
   const escaped = body

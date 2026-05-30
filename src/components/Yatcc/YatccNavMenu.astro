@@ -1,0 +1,92 @@
+---
+import Link from "../Link.astro";
+import NavDropdown from "../NavDropdown.astro";
+import DarkLightButton from "../DarkLightButton.astro";
+import { getLangFromUrl, tOfUrl, useTranslatedPath } from "@/i18n/utils";
+
+interface Props {
+  layout?: "inline" | "stacked";
+}
+
+const { layout = "inline" } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = tOfUrl(Astro.url);
+const translatePath = useTranslatedPath(lang);
+---
+
+<div class:list={["yatcc-nav-menu", layout === "stacked" && "yatcc-nav-menu--stacked"]}>
+  <Link href="https://ol.yatcc.arcsysu.cn/">&#128640; Get Started</Link>
+  <NavDropdown>
+    <div slot="title">{t("nav.implementation")}</div>
+    <Link href="https://ol.yatcc.arcsysu.cn">OL Lab</Link>
+    <Link href="https://portal.aihub.arcsysu.cn">AI Hub</Link>
+    <Link href="#">DT Fab</Link>
+  </NavDropdown>
+  <NavDropdown>
+    <div slot="title">{t("nav.team")}</div>
+    <Link href="https://arcsysu.tech/people">arcsysu</Link>
+    <Link href="https://docs.yatcc-ai.com/contributors/">{t("nav.contributors")}</Link>
+  </NavDropdown>
+  <NavDropdown>
+    <div slot="title">{t("nav.cases")}</div>
+    <NavDropdown href={translatePath("/teaching-practice")} direction="left">
+      <div slot="title">{t("nav.teaching")}</div>
+      <NavDropdown direction="left">
+        <div slot="title">{t("nav.compilerTeaching")}</div>
+        <NavDropdown direction="left">
+          <div slot="title">{t("nav.courseSites")}</div>
+          <Link href="/teach/s2026.html">2026</Link>
+          <Link href="/teach/s2025.html">2025</Link>
+          <Link href="/teach/s2024.html">2024</Link>
+          <Link href="/teach/s2023.html">2023</Link>
+          <Link href="/teach/s2022.html">2022</Link>
+          <Link href="/teach/s2021.html">2021</Link>
+        </NavDropdown>
+        <Link href="https://docs.yatcc-ai.com/#/">{t("nav.docs")}</Link>
+        <Link href="https://space.bilibili.com/3546650047941291">{t("nav.videos")}</Link>
+        <Link href="https://github.com/arcsysu/YatCC">{t("nav.source")}</Link>
+      </NavDropdown>
+    </NavDropdown>
+    <Link href="https://arcsysu.tech/">{t("nav.research")}</Link>
+  </NavDropdown>
+  <div class="ai-trigger-container">
+    <DarkLightButton href="">{t("nav.ask_ai")}</DarkLightButton>
+  </div>
+</div>
+
+<style>
+  .yatcc-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: nowrap;
+  }
+
+  .yatcc-nav-menu--stacked {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+    width: 100%;
+  }
+
+  .yatcc-nav-menu--stacked :global(.dropdown-container) {
+    width: 100%;
+  }
+
+  .yatcc-nav-menu--stacked :global(.dropdown-trigger) {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .yatcc-nav-menu--stacked .ai-trigger-container {
+    width: 100%;
+  }
+
+  .yatcc-nav-menu--stacked .ai-trigger-container :global(.button-container) {
+    width: 100%;
+  }
+
+  .yatcc-nav-menu--stacked .ai-trigger-container :global(.button) {
+    width: 100%;
+  }
+</style>

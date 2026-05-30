@@ -166,7 +166,7 @@ interface Props {
     const canvas = document.getElementById("site-canvas");
 
     // 【核心修复】：不再用 getElementById，而是去类名容器里找 a 标签
-    const triggerBtn = document.querySelector(".ai-trigger-container a");
+    const triggerBtns = document.querySelectorAll(".ai-trigger-container a");
 
     const closeBtn = document.getElementById("close-ai");
     const overlay = document.getElementById("ai-overlay");
@@ -183,8 +183,8 @@ interface Props {
       console.log("Panel Toggle Status:", !isOpen); // 调试用：看控制台有没有输出
     };
 
-    if (triggerBtn) {
-      triggerBtn.addEventListener("click", togglePanel);
+    if (triggerBtns.length) {
+      triggerBtns.forEach((btn) => btn.addEventListener("click", togglePanel));
     } else {
       console.error("找不到触发按钮！请检查 Topbar 里的类名是否正确。");
     }

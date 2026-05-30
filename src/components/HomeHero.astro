@@ -7,10 +7,10 @@ import DarkLightButton from "@/components/DarkLightButton.astro";
 interface Props {
   title: string;
   subtitle: string;
+  rampLabel: string;
+  rampHref: string;
   primaryLabel: string;
   primaryHref: string;
-  secondaryLabel?: string;
-  secondaryHref?: string;
   tertiaryLabel: string;
   tertiaryHref: string;
 }
@@ -18,10 +18,10 @@ interface Props {
 const {
   title,
   subtitle,
+  rampLabel,
+  rampHref,
   primaryLabel,
   primaryHref,
-  secondaryLabel,
-  secondaryHref,
   tertiaryLabel,
   tertiaryHref,
 } = Astro.props;
@@ -30,12 +30,8 @@ const {
 <Fragment>
   <HomeTitle title={title} subtitle={subtitle} />
   <ButtonGroup>
-    <Button href={primaryHref}>{primaryLabel}</Button>
-    {
-      secondaryLabel && secondaryHref ? (
-        <DarkLightButton href={secondaryHref}>{secondaryLabel}</DarkLightButton>
-      ) : null
-    }
+    <Button href={rampHref}>{rampLabel}</Button>
+    <DarkLightButton href={primaryHref}>{primaryLabel}</DarkLightButton>
     <DarkLightButton href={tertiaryHref}>{tertiaryLabel}</DarkLightButton>
   </ButtonGroup>
 </Fragment>
