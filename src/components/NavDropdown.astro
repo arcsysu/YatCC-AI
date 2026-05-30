@@ -1,32 +1,78 @@
 ---
 interface Props {
   href?: string;
-  direction?: "down" | "right" | "left";
+  direction?: "down" | "right" | "left" | "auto";
+  toggle?: "hover" | "click";
+  menuRoot?: boolean;
 }
-const { href = "#", direction = "down" } = Astro.props;
+
+const {
+  href = "#",
+  direction = "down",
+  toggle = "hover",
+  menuRoot = false,
+} = Astro.props;
+const isClickToggle = toggle === "click";
+const prefersLeft = direction === "left" || direction === "auto";
+const useMenuButton = menuRoot && isClickToggle;
 ---
 
 <div
   class:list={[
     "dropdown-container",
     direction === "right" && "dropdown-right",
-    direction === "left" && "dropdown-left",
+    prefersLeft && "dropdown-left",
+    direction === "auto" && "dropdown-auto",
+    isClickToggle && "dropdown-click",
+    menuRoot && "dropdown-menu-root",
   ]}
+  data-toggle={toggle}
+  data-direction={direction}
+  data-nav-menu-root={menuRoot ? "" : undefined}
 >
-  <a href={href} class="dropdown-trigger">
-    <slot name="title" />
-    <svg
-      class="chevron"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
-        clip-rule="evenodd"></path>
-    </svg>
-  </a>
+  {
+    useMenuButton ? (
+      <button
+        type="button"
+        class="dropdown-trigger"
+        aria-expanded="false"
+        aria-haspopup="true"
+      >
+        <slot name="title" />
+        <svg
+          class="chevron"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </button>
+    ) : (
+      <a
+        href={href}
+        class="dropdown-trigger"
+        aria-expanded="false"
+        aria-haspopup="true"
+      >
+        <slot name="title" />
+        <svg
+          class="chevron"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </a>
+    )
+  }
 
   <div class="popup-wrapper">
     <div class="popup-card">
@@ -50,7 +96,16 @@ const { href = "#", direction = "down" } = Astro.props;
     color: var(--text-secondary, #64748b);
     text-decoration: none;
     transition: color 0.3s ease;
-    padding: 0.5rem 0.4rem; /* 这里的 padding 保证了 Topbar 的垂直居中 */
+    padding: 0.5rem 0.4rem;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    line-height: inherit;
+  }
+
+  .dropdown-menu-root > .dropdown-trigger {
+    border-radius: 0.5rem;
   }
 
   .chevron {
@@ -62,9 +117,8 @@ const { href = "#", direction = "down" } = Astro.props;
       color 0.3s ease;
   }
 
-  /* --- 核心：第二版的悬浮流光效果 --- */
-  /* 当容器被 hover 时，触发文字流光和箭头旋转 */
-  .dropdown-container:hover > .dropdown-trigger {
+  .dropdown-container:hover > .dropdown-trigger,
+  .dropdown-container.is-open > .dropdown-trigger {
     background-image: linear-gradient(
       to right,
       #715ec2,
@@ -79,9 +133,43 @@ const { href = "#", direction = "down" } = Astro.props;
     animation: flowDirectional 4s linear infinite;
   }
 
-  .dropdown-container:hover > .dropdown-trigger .chevron {
+  .dropdown-container:hover > .dropdown-trigger .chevron,
+  .dropdown-container.is-open > .dropdown-trigger .chevron {
     transform: rotate(180deg);
-    color: #a451bf; /* 箭头设为实色，防止随文字一起变透明 */
+    color: #a451bf;
+    opacity: 1;
+  }
+
+  .dropdown-click:hover > .dropdown-trigger {
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
+    animation: none;
+  }
+
+  .dropdown-click:hover > .dropdown-trigger .chevron {
+    transform: none;
+    color: inherit;
+    opacity: 0.6;
+  }
+
+  .dropdown-click.is-open > .dropdown-trigger {
+    background-image: linear-gradient(
+      to right,
+      #715ec2,
+      #a451bf,
+      #ebb5a5,
+      #715ec2
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: flowDirectional 4s linear infinite;
+  }
+
+  .dropdown-click.is-open > .dropdown-trigger .chevron {
+    transform: rotate(180deg);
+    color: #a451bf;
     opacity: 1;
   }
 
@@ -94,17 +182,17 @@ const { href = "#", direction = "down" } = Astro.props;
     }
   }
 
-  /* --- 弹出层布局：第一版的逻辑 --- */
   .popup-wrapper {
     position: absolute;
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    padding-top: 0.5rem; /* 这里的 padding 是感应桥梁，防止鼠标滑下时消失 */
+    padding-top: 0.5rem;
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     z-index: 100;
+    pointer-events: none;
   }
 
   .dropdown-right > .popup-wrapper {
@@ -141,17 +229,235 @@ const { href = "#", direction = "down" } = Astro.props;
     border-color: rgba(255, 255, 255, 0.1);
   }
 
-  .dropdown-container:hover > .popup-wrapper {
+  .dropdown-container:hover > .popup-wrapper,
+  .dropdown-container.is-open > .popup-wrapper {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
     transform: translateX(-50%) translateY(0);
   }
 
-  .dropdown-right:hover > .popup-wrapper {
+  .dropdown-right:hover > .popup-wrapper,
+  .dropdown-right.is-open > .popup-wrapper {
     transform: translateX(0);
   }
 
-  .dropdown-left:hover > .popup-wrapper {
+  .dropdown-left:hover > .popup-wrapper,
+  .dropdown-left.is-open > .popup-wrapper {
     transform: translateX(0);
   }
+
+  .dropdown-click:hover > .popup-wrapper {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .dropdown-click.is-open > .popup-wrapper {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .dropdown-click.dropdown-right:hover > .popup-wrapper {
+    transform: translateX(10px);
+  }
+
+  .dropdown-click.dropdown-right.is-open > .popup-wrapper {
+    transform: translateX(0);
+  }
+
+  .dropdown-click.dropdown-left:hover > .popup-wrapper {
+    transform: translateX(-10px);
+  }
+
+  .dropdown-click.dropdown-left.is-open > .popup-wrapper {
+    transform: translateX(0);
+  }
+
+  .dropdown-auto.dropdown-fallback-down > .popup-wrapper {
+    top: 100%;
+    left: 0;
+    right: auto;
+    transform: translateY(10px);
+    padding-top: 0.5rem;
+  }
+
+  .dropdown-auto.dropdown-fallback-down:hover > .popup-wrapper,
+  .dropdown-auto.dropdown-fallback-down.is-open > .popup-wrapper {
+    transform: translateY(0);
+  }
+
+  .dropdown-click.dropdown-auto.dropdown-fallback-down.is-open > .popup-wrapper {
+    transform: translateY(0);
+  }
+
+  .dropdown-menu-root > .popup-wrapper {
+    padding-top: 0.5rem;
+  }
+
+  .dropdown-menu-root.dropdown-click > .popup-wrapper {
+    pointer-events: none;
+  }
+
+  .dropdown-menu-root.dropdown-click.is-open > .popup-wrapper {
+    pointer-events: auto;
+  }
+
+  .dropdown-menu-root.dropdown-click.is-open > .popup-card {
+    pointer-events: auto;
+  }
 </style>
+
+<script>
+  function getDirectTrigger(container: HTMLElement) {
+    return container.querySelector(":scope > .dropdown-trigger") as
+      | HTMLAnchorElement
+      | HTMLButtonElement
+      | null;
+  }
+
+  function setDropdownOpen(container: HTMLElement, open: boolean) {
+    const trigger = getDirectTrigger(container);
+    container.classList.toggle("is-open", open);
+    trigger?.setAttribute("aria-expanded", open ? "true" : "false");
+  }
+
+  function closeMenuRoot(menuRoot: HTMLElement) {
+    menuRoot
+      .querySelectorAll('.dropdown-container[data-toggle="click"].is-open')
+      .forEach((node) => {
+        setDropdownOpen(node as HTMLElement, false);
+        (node as HTMLElement).classList.remove("dropdown-fallback-down");
+      });
+    setDropdownOpen(menuRoot, false);
+    menuRoot.classList.remove("dropdown-fallback-down");
+  }
+
+  function initClickDropdowns() {
+    const clickDropdowns = document.querySelectorAll(
+      '.dropdown-container[data-toggle="click"]',
+    );
+
+    clickDropdowns.forEach((container) => {
+      const el = container as HTMLElement;
+      const trigger = getDirectTrigger(el);
+      const isMenuRoot = el.hasAttribute("data-nav-menu-root");
+
+      if (!trigger || trigger.dataset.clickBound === "true") return;
+
+      trigger.dataset.clickBound = "true";
+
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (isMenuRoot) {
+          const willOpen = !el.classList.contains("is-open");
+
+          if (willOpen) {
+            setDropdownOpen(el, true);
+            scheduleAutoDirectionAdjust(el);
+          } else {
+            closeMenuRoot(el);
+          }
+
+          return;
+        }
+
+        const willOpen = !el.classList.contains("is-open");
+
+        document
+          .querySelectorAll('.dropdown-container[data-toggle="click"].is-open')
+          .forEach((openEl) => {
+            if (openEl === el) return;
+            if (openEl.closest("[data-nav-menu-root]")) return;
+
+            setDropdownOpen(openEl as HTMLElement, false);
+            (openEl as HTMLElement).classList.remove("dropdown-fallback-down");
+          });
+
+        setDropdownOpen(el, willOpen);
+
+        if (willOpen) {
+          scheduleAutoDirectionAdjust(el);
+        } else {
+          el.classList.remove("dropdown-fallback-down");
+        }
+      });
+    });
+
+    if (document.body.dataset.clickDropdownBound === "true") return;
+
+    document.body.dataset.clickDropdownBound = "true";
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as Element | null;
+
+      document.querySelectorAll("[data-nav-menu-root].is-open").forEach((root) => {
+        const menuRoot = root as HTMLElement;
+        if (target?.closest("[data-nav-menu-root]") === menuRoot) return;
+        closeMenuRoot(menuRoot);
+      });
+
+      document
+        .querySelectorAll(
+          '.dropdown-container[data-toggle="click"].is-open:not([data-nav-menu-root])',
+        )
+        .forEach((openEl) => {
+          if (target?.closest('.dropdown-container[data-toggle="click"]')) return;
+
+          setDropdownOpen(openEl as HTMLElement, false);
+          (openEl as HTMLElement).classList.remove("dropdown-fallback-down");
+        });
+    });
+  }
+
+  const EDGE_PAD = 12;
+
+  function adjustAutoDirection(container: HTMLElement) {
+    container.classList.remove("dropdown-fallback-down");
+    if (!container.classList.contains("dropdown-auto")) return;
+
+    const popup = container.querySelector(".popup-card");
+    if (!popup) return;
+
+    const rect = popup.getBoundingClientRect();
+    if (rect.width <= 0 && rect.height <= 0) return;
+
+    if (rect.left < EDGE_PAD) {
+      container.classList.add("dropdown-fallback-down");
+    }
+  }
+
+  function scheduleAutoDirectionAdjust(container: HTMLElement) {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => adjustAutoDirection(container));
+    });
+  }
+
+  function initAutoDirectionDropdowns() {
+    document.querySelectorAll(".dropdown-container.dropdown-auto").forEach((node) => {
+      const el = node as HTMLElement;
+      if (el.dataset.autoDirectionBound === "true") return;
+      el.dataset.autoDirectionBound = "true";
+
+      if (el.dataset.toggle !== "click") {
+        el.addEventListener("mouseenter", () => scheduleAutoDirectionAdjust(el));
+      }
+
+      window.addEventListener("resize", () => {
+        if (el.classList.contains("is-open") || el.matches(":hover")) {
+          scheduleAutoDirectionAdjust(el);
+        }
+      });
+    });
+  }
+
+  initClickDropdowns();
+  initAutoDirectionDropdowns();
+  document.addEventListener("astro:after-swap", () => {
+    initClickDropdowns();
+    initAutoDirectionDropdowns();
+  });
+</script>

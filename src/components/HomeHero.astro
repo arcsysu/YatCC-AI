@@ -27,11 +27,17 @@ const {
 } = Astro.props;
 ---
 
-<Fragment>
+<div class="home-hero">
   <HomeTitle title={title} subtitle={subtitle} />
   <ButtonGroup>
-    <Button href={rampHref}>{rampLabel}</Button>
-    <DarkLightButton href={primaryHref}>{primaryLabel}</DarkLightButton>
+    <Button href={primaryHref}>{primaryLabel}</Button>
     <DarkLightButton href={tertiaryHref}>{tertiaryLabel}</DarkLightButton>
+    <DarkLightButton href={rampHref}>{rampLabel}</DarkLightButton>
   </ButtonGroup>
-</Fragment>
+</div>
+
+<style>
+  .home-hero :global(.button-group) {
+    margin-top: clamp(1.25rem, 2.5vh, 2rem);
+  }
+</style>

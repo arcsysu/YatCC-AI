@@ -1,6 +1,7 @@
 ---
 import HomePageShell from "@/components/HomePageShell.astro";
 import HomeHero from "@/components/HomeHero.astro";
+import HomeStatsSection from "@/components/HomeStatsSection.astro";
 import CardContainer from "@/components/CardContainer.astro";
 import Card from "@/components/Card.astro";
 import HomeFeatureSection from "@/components/HomeFeatureSection.astro";
@@ -8,6 +9,7 @@ import FeatureDisplayPageFeature from "@/components/FeatureDisplayPageFeature.as
 import HomeTimelineSection from "@/components/HomeTimelineSection.astro";
 import imgUseCodespaces from "@public/use-codespaces.gif";
 import imgUseOl from "@public/use-ol.gif";
+import imgAiHubShowcase from "@assets/ai-hub-showcase.png";
 import { getLangFromUrl } from "@/i18n/utils";
 import { getLatestNews, getNewsEntries } from "@/lib/news";
 
@@ -40,6 +42,8 @@ const latestNews = getLatestNews(await getNewsEntries(lang), 5);
     })}
     tertiaryHref="https://yatcc-ai.com/teach/s2026.html"
   />
+
+  <HomeStatsSection slot="stats" lang={lang} />
 
   <CardContainer slot="cards">
     <Card icon="📦" title={t({ zh: "设计模块化", en: "Highly Modular" })}>
@@ -108,7 +112,10 @@ const latestNews = getLatestNews(await getNewsEntries(lang), 5);
   </HomeFeatureSection>
 
   <HomeFeatureSection slot="ai-hub" title="AI Hub" direction="right">
-    <FeatureDisplayPageFeature alt="AI Hub feature 1">
+    <FeatureDisplayPageFeature
+      image={imgAiHubShowcase}
+      alt={t({ zh: "AI Hub 平台展示", en: "AI Hub platform showcase" })}
+    >
       <span slot="title">{t({ zh: "统一模型网关", en: "Unified Model Gateway" })}</span>
       <span slot="description">
         {t({
@@ -117,7 +124,10 @@ const latestNews = getLatestNews(await getNewsEntries(lang), 5);
         })}
       </span>
     </FeatureDisplayPageFeature>
-    <FeatureDisplayPageFeature alt="AI Hub feature 2">
+    <FeatureDisplayPageFeature
+      image={imgAiHubShowcase}
+      alt={t({ zh: "AI Hub 平台展示", en: "AI Hub platform showcase" })}
+    >
       <span slot="title">{t({ zh: "密钥访问控制", en: "Access Control" })}</span>
       <span slot="description">
         {t({
@@ -126,7 +136,10 @@ const latestNews = getLatestNews(await getNewsEntries(lang), 5);
         })}
       </span>
     </FeatureDisplayPageFeature>
-    <FeatureDisplayPageFeature alt="AI Hub feature 3">
+    <FeatureDisplayPageFeature
+      image={imgAiHubShowcase}
+      alt={t({ zh: "AI Hub 平台展示", en: "AI Hub platform showcase" })}
+    >
       <span slot="title">{t({ zh: "用量成本观测", en: "Usage Visibility" })}</span>
       <span slot="description">
         {t({

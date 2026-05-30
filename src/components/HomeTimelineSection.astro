@@ -279,7 +279,7 @@ const text = copy[lang];
       grid-auto-flow: row;
       grid-auto-columns: auto;
       grid-template-columns: 1fr;
-      gap: 0.8rem;
+      gap: 0.48rem;
       padding: 0;
       margin-top: 1.25rem;
     }
@@ -306,8 +306,9 @@ const text = copy[lang];
       min-width: 0;
       grid-template-columns: 24px minmax(0, 1fr);
       grid-template-rows: auto;
-      gap: 0.95rem;
+      gap: 0.57rem;
       align-items: start;
+      min-height: 0;
     }
 
     .timeline-item:nth-child(n + 5),
@@ -325,21 +326,22 @@ const text = copy[lang];
       min-height: auto;
       align-self: auto;
       align-content: start;
-      padding: 0 0 1rem;
+      padding: 0 0 0.6rem;
     }
 
     .timeline-item:last-child .timeline-entry {
       width: 100%;
+      padding-bottom: 0;
     }
 
     .timeline-axis,
     .timeline-item-reverse .timeline-axis {
       grid-column: 1;
       grid-row: auto;
-      min-height: 100%;
+      min-height: 0;
       align-items: flex-start;
       justify-content: center;
-      padding-top: 0.28rem;
+      padding-top: 0.15rem;
     }
 
     .timeline-axis::before,
@@ -354,10 +356,6 @@ const text = copy[lang];
       box-shadow:
         0 0 0 4px color-mix(in srgb, var(--accent-color) 12%, transparent),
         0 6px 14px color-mix(in srgb, var(--accent-color) 20%, transparent);
-    }
-
-    .timeline-item:last-child .timeline-entry {
-      padding-bottom: 0;
     }
 
     .timeline-body {

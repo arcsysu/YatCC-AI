@@ -10,7 +10,14 @@ import DragonParticles from "@/components/DragonParticles.astro";
     <FixPage>
       <div class="home-container">
         <div class="content-wrapper">
-          <slot name="hero" />
+          <div class="home-above-fold">
+            <div class="home-hero-stack">
+              <slot name="hero" />
+            </div>
+            <div class="home-stats-anchor">
+              <slot name="stats" />
+            </div>
+          </div>
           <slot name="cards" />
           <slot name="news" />
           <div class="dragon-positioner">
@@ -48,6 +55,26 @@ import DragonParticles from "@/components/DragonParticles.astro";
     flex-direction: column;
     gap: clamp(0.1vh, 50px, 5rem);
     overflow-x: clip;
+  }
+
+  .home-above-fold {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100dvh - var(--navbar-height));
+    box-sizing: border-box;
+  }
+
+  .home-hero-stack {
+    flex-shrink: 0;
+  }
+
+  .home-stats-anchor {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 0;
   }
 
   @media (max-width: 768px) {

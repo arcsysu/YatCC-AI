@@ -43,7 +43,7 @@ const { logoText = "YatCC AI", menuLabel = "Menu" } = Astro.props;
       </div>
 
       <div class="nav-overflow">
-        <NavDropdown>
+        <NavDropdown toggle="click" menuRoot>
           <div slot="title">{menuLabel}</div>
           <div class="nav-overflow-panel">
             <slot name="nav-overflow" />
@@ -170,6 +170,8 @@ const { logoText = "YatCC AI", menuLabel = "Menu" } = Astro.props;
 
     .nav-overflow {
       display: none;
+      position: relative;
+      z-index: 120;
     }
 
     .nav-items--desktop {
@@ -177,13 +179,24 @@ const { logoText = "YatCC AI", menuLabel = "Menu" } = Astro.props;
       align-items: center;
     }
 
+    .nav-overflow :global(.dropdown-container > .popup-wrapper) {
+      overflow: visible;
+    }
+
+    .nav-overflow :global(.popup-card) {
+      overflow: visible;
+    }
+
     .nav-overflow-panel {
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
       min-width: 13.5rem;
-      max-height: min(70vh, 32rem);
-      overflow-y: auto;
+      overflow: visible;
+    }
+
+    .nav-overflow-panel :global(.dropdown-left > .popup-wrapper) {
+      z-index: 130;
     }
 
     @media (max-width: 1200px) {

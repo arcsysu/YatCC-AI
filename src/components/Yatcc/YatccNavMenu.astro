@@ -12,28 +12,34 @@ const { layout = "inline" } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = tOfUrl(Astro.url);
 const translatePath = useTranslatedPath(lang);
+const dropdownToggle = layout === "stacked" ? "click" : "hover";
+const dropdownDirection = layout === "stacked" ? "auto" : "down";
 ---
 
 <div class:list={["yatcc-nav-menu", layout === "stacked" && "yatcc-nav-menu--stacked"]}>
   <Link href="https://ol.yatcc.arcsysu.cn/">&#128640; Get Started</Link>
-  <NavDropdown>
+  <NavDropdown toggle={dropdownToggle} direction={dropdownDirection}>
     <div slot="title">{t("nav.implementation")}</div>
     <Link href="https://ol.yatcc.arcsysu.cn">OL Lab</Link>
     <Link href="https://portal.aihub.arcsysu.cn">AI Hub</Link>
     <Link href="#">DT Fab</Link>
   </NavDropdown>
-  <NavDropdown>
+  <NavDropdown toggle={dropdownToggle} direction={dropdownDirection}>
     <div slot="title">{t("nav.team")}</div>
     <Link href="https://arcsysu.tech/people">arcsysu</Link>
     <Link href="https://docs.yatcc-ai.com/contributors/">{t("nav.contributors")}</Link>
   </NavDropdown>
-  <NavDropdown>
+  <NavDropdown toggle={dropdownToggle} direction={dropdownDirection}>
     <div slot="title">{t("nav.cases")}</div>
-    <NavDropdown href={translatePath("/teaching-practice")} direction="left">
+    <NavDropdown
+      href={translatePath("/teaching-practice")}
+      direction={dropdownDirection}
+      toggle={dropdownToggle}
+    >
       <div slot="title">{t("nav.teaching")}</div>
-      <NavDropdown direction="left">
+      <NavDropdown direction={dropdownDirection} toggle={dropdownToggle}>
         <div slot="title">{t("nav.compilerTeaching")}</div>
-        <NavDropdown direction="left">
+        <NavDropdown direction={dropdownDirection} toggle={dropdownToggle}>
           <div slot="title">{t("nav.courseSites")}</div>
           <Link href="/teach/s2026.html">2026</Link>
           <Link href="/teach/s2025.html">2025</Link>
@@ -67,6 +73,11 @@ const translatePath = useTranslatedPath(lang);
     align-items: stretch;
     gap: 0.35rem;
     width: 100%;
+    overflow: visible;
+  }
+
+  .yatcc-nav-menu--stacked :global(.popup-card) {
+    overflow: visible;
   }
 
   .yatcc-nav-menu--stacked :global(.dropdown-container) {

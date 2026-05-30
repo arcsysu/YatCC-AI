@@ -1,0 +1,179 @@
+---
+import type { SiteLang } from "@/lib/blog";
+
+interface Props {
+  lang: SiteLang;
+}
+
+const { lang } = Astro.props;
+
+type StatItem = {
+  value: string;
+  title: string;
+  icon: "users" | "tokens" | "containers" | "awards";
+};
+
+const stats: Record<SiteLang, StatItem[]> = {
+  zh: [
+    { value: "400+", title: "注册用户", icon: "users" },
+    { value: "200+亿", title: "Token调用量", icon: "tokens" },
+    { value: "500+", title: "容器镜像实例", icon: "containers" },
+    { value: "10+", title: "教学科研奖项", icon: "awards" },
+  ],
+  en: [
+    { value: "400+", title: "Registered users", icon: "users" },
+    { value: "20B+", title: "Tokens consumed", icon: "tokens" },
+    { value: "500+", title: "Container image instances", icon: "containers" },
+    { value: "10+", title: "Teaching & research awards", icon: "awards" },
+  ],
+};
+
+const items = stats[lang];
+---
+
+<section class="home-stats-section" aria-label={lang === "zh" ? "平台数据" : "Platform metrics"}>
+  <ul class="stats-grid">
+    {
+      items.map((item) => (
+        <li class="stat-card">
+          <div class="stat-icon" aria-hidden="true">
+            {item.icon === "users" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="3" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            )}
+            {item.icon === "tokens" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M4 19V5" />
+                <path d="M4 19h16" />
+                <path d="M8 15l3-4 3 3 4-6" />
+              </svg>
+            )}
+            {item.icon === "containers" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 3 3 7.5 12 12l9-4.5L12 3z" />
+                <path d="M3 12l9 4.5 9-4.5" />
+                <path d="M3 16.5 12 21l9-4.5" />
+              </svg>
+            )}
+            {item.icon === "awards" && (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="8" r="5" />
+                <path d="M8.5 14 6 22l6-3 6 3-2.5-8" />
+              </svg>
+            )}
+          </div>
+          <div class="stat-text">
+            <p class="stat-value">{item.value}</p>
+            <p class="stat-title">{item.title}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .home-stats-section {
+    width: 100%;
+  }
+
+  .stats-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.85rem, 1.6vw, 1.35rem);
+  }
+
+  .stat-card {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 1.5vw, 1.15rem);
+    padding: clamp(1rem, 1.6vw, 1.35rem) clamp(1rem, 1.8vw, 1.4rem);
+    border-radius: 1rem;
+    background: color-mix(in srgb, var(--accent-color-extralight) 72%, var(--bg-color));
+    border: 1px solid color-mix(in srgb, var(--accent-color) 14%, var(--border-color));
+    box-shadow: 0 4px 18px color-mix(in srgb, var(--accent-color) 6%, transparent);
+  }
+
+  .stat-icon {
+    flex-shrink: 0;
+    width: clamp(3.25rem, 4vw, 3.75rem);
+    height: clamp(3.25rem, 4vw, 3.75rem);
+    border-radius: 0.75rem;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--accent-color) 12%, var(--bg-color-dimmer));
+    color: var(--accent-color);
+  }
+
+  .stat-icon svg {
+    width: clamp(1.6rem, 2vw, 1.85rem);
+    height: clamp(1.6rem, 2vw, 1.85rem);
+  }
+
+  .stat-text {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-value {
+    margin: 0;
+    font-size: clamp(1.45rem, 2.1vw, 2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: #5b3db8;
+  }
+
+  .stat-title {
+    margin: 0;
+    font-size: clamp(0.95rem, 1.25vw, 1.125rem);
+    line-height: 1.35;
+    color: var(--sub-text-color);
+    font-weight: 600;
+  }
+
+  :global([data-theme="dark"]) .stat-card {
+    background: color-mix(in srgb, var(--bg-color-dimmer) 88%, var(--bg-color));
+    border-color: color-mix(in srgb, var(--accent-color) 22%, var(--border-color));
+  }
+
+  :global([data-theme="dark"]) .stat-value {
+    color: #c4b5fd;
+  }
+
+  @media (max-width: 1080px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 560px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .stat-card {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0.9rem 0.85rem;
+    }
+
+    .stat-value {
+      font-size: 1.35rem;
+    }
+
+    .stat-title {
+      font-size: 0.875rem;
+    }
+  }
+</style>
