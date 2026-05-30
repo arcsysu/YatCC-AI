@@ -33,9 +33,10 @@ const text = copy[lang];
 <section id="news" class="timeline-section">
   <div class="timeline-heading">
     <span>{text.eyebrow}</span>
-    <h2>{text.title}</h2>
-    <!-- <p>{text.description}</p> -->
-    <Button href={lang === "zh" ? "/zh/news" : "/en/news"}>{text.cta}</Button>
+    <div class="timeline-heading-row">
+      <h2>{text.title}</h2>
+      <Button href={lang === "zh" ? "/zh/news" : "/en/news"}>{text.cta}</Button>
+    </div>
   </div>
 
   {
@@ -107,11 +108,18 @@ const text = copy[lang];
     font-size: 0.82rem;
   }
 
-  .timeline-heading h2 {
-    margin: 0;
+  .timeline-heading-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+    flex-wrap: wrap;
   }
 
   .timeline-heading h2 {
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
     font-size: clamp(1.8rem, 4vw, 3rem);
   }
 
@@ -122,8 +130,10 @@ const text = copy[lang];
     line-height: 1.75;
   }
 
-  .timeline-heading :global(.button-container) {
+  .timeline-heading-row :global(.button-container) {
+    flex-shrink: 0;
     width: fit-content;
+    margin-left: auto;
   }
 
   .timeline-list {
@@ -232,30 +242,6 @@ const text = copy[lang];
     pointer-events: none;
   }
 
-  .timeline-axis::before,
-  .timeline-axis::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    width: 1px;
-    transform: translateX(-50%);
-    background: color-mix(
-      in srgb,
-      var(--accent-color) 35%,
-      var(--border-color)
-    );
-  }
-
-  .timeline-item:not(.timeline-item-reverse) .timeline-axis::before {
-    top: -20px;
-    bottom: 50%;
-  }
-
-  .timeline-item-reverse .timeline-axis::after {
-    top: 50%;
-    bottom: -20px;
-  }
-
   .timeline-node {
     z-index: 1;
     width: 16px;
@@ -342,11 +328,6 @@ const text = copy[lang];
       align-items: flex-start;
       justify-content: center;
       padding-top: 0.15rem;
-    }
-
-    .timeline-axis::before,
-    .timeline-axis::after {
-      display: none;
     }
 
     .timeline-node {

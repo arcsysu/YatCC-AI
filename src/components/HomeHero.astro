@@ -37,7 +37,21 @@ const {
 </div>
 
 <style>
+  .home-hero :global(.fluid-subtitle) {
+    margin-top: clamp(2.25rem, 4.5vh, 3rem);
+  }
+
   .home-hero :global(.button-group) {
-    margin-top: clamp(1.25rem, 2.5vh, 2rem);
+    margin-top: clamp(1.75rem, 3.5vh, 2.5rem);
+  }
+
+  @media (max-width: 400px) {
+    .home-hero :global(.fluid-subtitle) {
+      margin-top: 1.5rem;
+    }
+
+    .home-hero :global(.button-group) {
+      margin-top: 1.35rem;
+    }
   }
 </style>

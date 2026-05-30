@@ -45,6 +45,8 @@ const latestNews = getLatestNews(await getNewsEntries(lang), 5);
 
   <HomeStatsSection slot="stats" lang={lang} />
 
+  <HomeTimelineSection slot="news" lang={lang} news={latestNews} />
+
   <CardContainer slot="cards">
     <Card icon="📦" title={t({ zh: "设计模块化", en: "Highly Modular" })}>
       {t({
@@ -149,6 +151,4 @@ const latestNews = getLatestNews(await getNewsEntries(lang), 5);
       </span>
     </FeatureDisplayPageFeature>
   </HomeFeatureSection>
-
-  <HomeTimelineSection slot="news" lang={lang} news={latestNews} />
 </HomePageShell>
