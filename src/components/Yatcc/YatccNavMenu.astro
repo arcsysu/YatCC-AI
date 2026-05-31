@@ -13,33 +13,34 @@ const lang = getLangFromUrl(Astro.url);
 const t = tOfUrl(Astro.url);
 const translatePath = useTranslatedPath(lang);
 const dropdownToggle = layout === "stacked" ? "click" : "hover";
-const dropdownDirection = layout === "stacked" ? "auto" : "down";
+const topDropdownDirection = layout === "stacked" ? "auto" : "down";
+const nestedDropdownDirection = layout === "stacked" ? "auto" : "left";
 ---
 
 <div class:list={["yatcc-nav-menu", layout === "stacked" && "yatcc-nav-menu--stacked"]}>
   <Link href="https://ol.yatcc.arcsysu.cn/">&#128640; Get Started</Link>
-  <NavDropdown toggle={dropdownToggle} direction={dropdownDirection}>
+  <NavDropdown toggle={dropdownToggle} direction={topDropdownDirection}>
     <div slot="title">{t("nav.implementation")}</div>
     <Link href="https://ol.yatcc.arcsysu.cn">OL Lab</Link>
     <Link href="https://portal.aihub.arcsysu.cn">AI Hub</Link>
     <Link href="#">DT Fab</Link>
   </NavDropdown>
-  <NavDropdown toggle={dropdownToggle} direction={dropdownDirection}>
+  <NavDropdown toggle={dropdownToggle} direction={topDropdownDirection}>
     <div slot="title">{t("nav.team")}</div>
     <Link href="https://arcsysu.tech/people">arcsysu</Link>
     <Link href="https://docs.yatcc-ai.com/contributors/">{t("nav.contributors")}</Link>
   </NavDropdown>
-  <NavDropdown toggle={dropdownToggle} direction={dropdownDirection}>
+  <NavDropdown toggle={dropdownToggle} direction={topDropdownDirection}>
     <div slot="title">{t("nav.cases")}</div>
     <NavDropdown
       href={translatePath("/teaching-practice")}
-      direction={dropdownDirection}
+      direction={nestedDropdownDirection}
       toggle={dropdownToggle}
     >
       <div slot="title">{t("nav.teaching")}</div>
-      <NavDropdown direction={dropdownDirection} toggle={dropdownToggle}>
+      <NavDropdown direction={nestedDropdownDirection} toggle={dropdownToggle}>
         <div slot="title">{t("nav.compilerTeaching")}</div>
-        <NavDropdown direction={dropdownDirection} toggle={dropdownToggle}>
+        <NavDropdown direction={nestedDropdownDirection} toggle={dropdownToggle}>
           <div slot="title">{t("nav.courseSites")}</div>
           <Link href="/teach/s2026.html">2026</Link>
           <Link href="/teach/s2025.html">2025</Link>
@@ -66,6 +67,14 @@ const dropdownDirection = layout === "stacked" ? "auto" : "down";
     align-items: center;
     gap: 1.25rem;
     flex-wrap: nowrap;
+  }
+
+  .yatcc-nav-menu:not(.yatcc-nav-menu--stacked) :global(.popup-card) {
+    overflow: visible;
+  }
+
+  .yatcc-nav-menu:not(.yatcc-nav-menu--stacked) :global(.dropdown-left > .popup-wrapper) {
+    z-index: 110;
   }
 
   .yatcc-nav-menu--stacked {
