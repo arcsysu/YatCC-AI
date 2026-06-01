@@ -4,17 +4,12 @@ import iconImage from "@assets/yatcc-icon.png";
 import ThemeToggleButton from "@components/ThemeToggleButton.astro";
 import NavDropdown from "@components/NavDropdown.astro";
 import Link from "@components/Link.astro";
-import {
-  getLangFromUrl,
-  useTranslations,
-  useTranslatedPath,
-} from "../i18n/utils";
-import { languages } from "../i18n/ui";
+import { getLangFromUrl, getSwitcherPath, useTranslations } from "../i18n/utils";
+import { languages, ui } from "../i18n/ui";
 import LanguageIcon from "@assets/language.svg";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const translatePath = useTranslatedPath(lang);
 
 interface Props {
   logoText?: string;
@@ -63,8 +58,10 @@ const { logoText = "YatCC AI", menuLabel = "Menu" } = Astro.props;
           />
         </div>
         {
-          Object.entries(languages).map(([lang, label]) => (
-            <Link href={translatePath("/", lang)}>{label}</Link>
+          Object.entries(languages).map(([langCode, label]) => (
+            <Link href={getSwitcherPath(Astro.url, langCode as keyof typeof ui)}>
+              {label}
+            </Link>
           ))
         }
       </NavDropdown>
