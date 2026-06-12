@@ -1,4 +1,6 @@
 ---
+import TeachingPracticePage from "@/contents/teaching-practice.astro";
+
 export function getStaticPaths() {
   return [
     { params: { slug: undefined } },
@@ -8,7 +10,6 @@ export function getStaticPaths() {
 
 const slug = Astro.params.slug ?? "";
 const isRoot = slug === "";
-const suffix = slug ? `/${slug}` : "/";
 ---
 
 {isRoot ? (
@@ -17,6 +18,7 @@ const suffix = slug ? `/${slug}` : "/";
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta http-equiv="refresh" content="0; url=/zh/" />
+      <link rel="icon" href="/favicon.png" />
       <title>YatCC AI</title>
       <style>
         :root {
@@ -232,5 +234,5 @@ const suffix = slug ? `/${slug}` : "/";
     </body>
   </html>
 ) : (
-  Astro.redirect(`/zh${suffix}`)
+  <TeachingPracticePage />
 )}

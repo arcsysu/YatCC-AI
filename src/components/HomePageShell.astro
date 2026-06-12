@@ -26,8 +26,10 @@ import DragonParticles from "@/components/DragonParticles.astro";
         </div>
       </div>
     </FixPage>
-    <slot name="ol-lab" />
-    <slot name="ai-hub" />
+    <div class="home-showcase-band">
+      <slot name="ol-lab" />
+      <slot name="ai-hub" />
+    </div>
   </FixPageContainer>
 </BaseLayout>
 
@@ -114,6 +116,21 @@ import DragonParticles from "@/components/DragonParticles.astro";
 
     :global(.home-container .button-group) {
       width: 100%;
+    }
+  }
+
+  .home-showcase-band {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    padding: 0 10vw;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 768px) {
+    .home-showcase-band {
+      padding: 0 12px;
     }
   }
 </style>

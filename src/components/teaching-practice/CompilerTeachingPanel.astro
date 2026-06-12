@@ -1,0 +1,332 @@
+---
+import type { SiteLang } from "@/lib/blog";
+
+interface Props {
+  lang: SiteLang;
+}
+
+const { lang } = Astro.props;
+const t = <T,>(value: { zh: T; en: T }) => value[lang];
+const courseYears = ["2026", "2025", "2024", "2023", "2022", "2021"] as const;
+
+const resources = [
+  {
+    id: "docs",
+    title: t({ zh: "文档", en: "Docs" }),
+    description: t({
+      zh: "编译实践平台使用说明、实验指引与 API 参考。",
+      en: "Platform guides, lab instructions, and API references.",
+    }),
+    href: "https://docs.yatcc-ai.com/#/",
+    label: "docs.yatcc-ai.com",
+    external: true,
+  },
+  {
+    id: "videos",
+    title: t({ zh: "视频", en: "Videos" }),
+    description: t({
+      zh: "课程讲解、实验演示与平台功能介绍视频合集。",
+      en: "Lecture recordings, lab demos, and platform walkthroughs.",
+    }),
+    href: "https://space.bilibili.com/3546650047941291",
+    label: "Bilibili",
+    external: true,
+  },
+  {
+    id: "source",
+    title: t({ zh: "源码", en: "Source" }),
+    description: t({
+      zh: "YatCC 编译器教学框架与实验基础设施开源仓库。",
+      en: "Open-source compiler teaching framework and lab infrastructure.",
+    }),
+    href: "https://github.com/arcsysu/YatCC",
+    label: "github.com/arcsysu/YatCC",
+    external: true,
+  },
+] as const;
+---
+
+<div class="practice-panel practice-panel--compiler">
+  <p class="resource-section-label">
+    {t({ zh: "资源入口", en: "Resource Hub" })}
+  </p>
+  <div class="resource-grid">
+    {
+      resources.map((resource) => (
+        <section class="resource-card">
+          <div class="resource-head">
+            <span class="resource-icon" aria-hidden="true">
+              {resource.id === "docs" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" />
+                  <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+                </svg>
+              )}
+              {resource.id === "videos" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <path d="m10 9 6 3-6 3V9Z" />
+                </svg>
+              )}
+              {resource.id === "source" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M16 18 22 12 16 6" />
+                  <path d="M8 6 2 12l6 6" />
+                </svg>
+              )}
+            </span>
+            <h2>{resource.title}</h2>
+          </div>
+          <p>{resource.description}</p>
+          <a
+            class="resource-link"
+            href={resource.href}
+            target={resource.external ? "_blank" : undefined}
+            rel={resource.external ? "noopener noreferrer" : undefined}
+            translate="no"
+          >
+            <span>{resource.label}</span>
+            {resource.external && (
+              <svg class="resource-external" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M5.5 4.75A.75.75 0 0 1 6.25 4h8.5a.75.75 0 0 1 .75.75v8.5a.75.75 0 0 1-1.5 0V6.56l-7.72 7.72a.75.75 0 1 1-1.06-1.06l7.72-7.72H6.25a.75.75 0 0 1-.75-.75Z" />
+              </svg>
+            )}
+          </a>
+        </section>
+      ))
+    }
+
+    <section class="resource-card resource-card--wide">
+      <div class="resource-head">
+        <span class="resource-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10Z" />
+          </svg>
+        </span>
+        <h2>{t({ zh: "课程网站", en: "Course Sites" })}</h2>
+      </div>
+      <p>
+        {t({
+          zh: "历年编译原理与实验课程主页，含讲义、实验安排与参考资料。",
+          en: "Archive of compiler course homepages with slides, labs, and schedules.",
+        })}
+      </p>
+      <ul class="course-year-list">
+        {
+          courseYears.map((year) => (
+            <li>
+              <a class="course-year-link" href={`/teach/s${year}.html`}>
+                <span class="course-year-label">{year}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+</div>
+
+<style>
+  .practice-panel--compiler {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: clip;
+    box-sizing: border-box;
+  }
+
+  .resource-section-label {
+    margin: 0 0 1rem;
+    font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-color);
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.85rem, 1.5vw, 1.1rem);
+    width: 100%;
+    min-width: 0;
+  }
+
+  .resource-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    min-width: 0;
+    max-width: 100%;
+    padding: clamp(0.95rem, 1.5vw, 1.15rem);
+    border-radius: 1.1rem;
+    border: 1px solid color-mix(in srgb, var(--accent-color) 14%, var(--border-color));
+    background: color-mix(in srgb, var(--bg-color) 92%, var(--bg-color-dimmer));
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: border-color 0.22s ease;
+  }
+
+  .resource-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #715ec2, #a451bf, #ebb5a5);
+    opacity: 0;
+    transition: opacity 0.22s ease;
+  }
+
+  .resource-card:hover {
+    border-color: color-mix(in srgb, var(--accent-color) 32%, var(--border-color));
+  }
+
+  .resource-card:hover::before {
+    opacity: 1;
+  }
+
+  .resource-card--wide {
+    grid-column: 1 / -1;
+  }
+
+  .resource-head {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+  }
+
+  .resource-head h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .resource-icon {
+    flex-shrink: 0;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 0.65rem;
+    display: grid;
+    place-items: center;
+    color: var(--accent-color);
+    background: color-mix(in srgb, var(--accent-color) 12%, var(--bg-color-dimmer));
+  }
+
+  .resource-icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .resource-card p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--sub-text-color);
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+
+  .resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    width: fit-content;
+    max-width: 100%;
+    margin-top: auto;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.55rem;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background-color 0.2s ease;
+  }
+
+  .resource-link span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .resource-link:hover {
+    background: color-mix(in srgb, var(--accent-color) 10%, var(--bg-color));
+  }
+
+  .resource-link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--accent-color) 65%, transparent);
+    outline-offset: 2px;
+  }
+
+  .resource-external {
+    width: 0.85rem;
+    height: 0.85rem;
+    opacity: 0.75;
+  }
+
+  .course-year-list {
+    list-style: none;
+    margin: 0.15rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .course-year-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3.25rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--accent-color) 25%, var(--border-color));
+    background: color-mix(in srgb, var(--accent-color) 8%, var(--bg-color));
+    color: var(--accent-color);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .course-year-label {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .course-year-link:hover {
+    background: color-mix(in srgb, var(--accent-color) 16%, var(--bg-color));
+    border-color: color-mix(in srgb, var(--accent-color) 40%, var(--border-color));
+  }
+
+  .course-year-link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--accent-color) 65%, transparent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 900px) {
+    .resource-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 640px) {
+    .resource-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .resource-card--wide {
+      grid-column: auto;
+    }
+  }
+</style>

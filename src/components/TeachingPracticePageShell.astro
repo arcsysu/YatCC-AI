@@ -3,94 +3,47 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <div class="practice-page">
-    <section class="hero-section">
-      <div class="hero-shell">
-        <slot name="hero" />
-      </div>
-    </section>
-
-    <section class="overview-section">
-      <slot name="overview" />
-      <slot name="cards" />
-    </section>
-
-    <section class="showcase-section">
-      <slot name="showcases" />
-    </section>
+  <div class="teaching-practice-shell">
+    <div class="shell-glow shell-glow--left" aria-hidden="true"></div>
+    <div class="shell-glow shell-glow--right" aria-hidden="true"></div>
+    <slot />
   </div>
 </BaseLayout>
 
 <style>
-  .practice-page {
-    width: min(1200px, calc(100% - 32px));
-    margin: 0 auto;
-    padding: 32px 0 96px;
-    display: flex;
-    flex-direction: column;
-    gap: 72px;
-  }
-
-  .hero-section {
-    padding-top: 12px;
-  }
-
-  .hero-shell {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-    text-align: center;
-  }
-
-  .hero-shell :global(.container) {
+  .teaching-practice-shell {
+    position: relative;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-inline: 0;
+    min-height: calc(100dvh - var(--navbar-height));
+    box-sizing: border-box;
+    overflow-x: clip;
   }
 
-  .hero-shell :global(.fluid-title) {
-    width: min(100%, 12ch);
-    text-align: center;
-    font-size: clamp(2.8rem, 8vw, 4.4rem);
-    line-height: 1.05;
-    margin-bottom: 0;
-    white-space: normal;
-    text-wrap: balance;
+  .shell-glow {
+    position: absolute;
+    width: min(42vw, 520px);
+    height: min(42vw, 520px);
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .hero-shell :global(.fluid-subtitle) {
-    width: min(100%, 42rem);
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    max-width: min(42rem, 100%);
-    text-align: center;
-    font-size: clamp(0.95rem, 1vw + 0.5rem, 1.15rem);
-    line-height: 1.75;
+  .shell-glow--left {
+    top: 8%;
+    left: -12%;
+    background: color-mix(in srgb, var(--accent-color) 28%, transparent);
   }
 
-  .overview-section,
-  .showcase-section {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  .shell-glow--right {
+    bottom: 6%;
+    right: -10%;
+    background: color-mix(in srgb, #ebb5a5 22%, transparent);
   }
 
-  @media (max-width: 900px) {
-    .practice-page {
-      width: min(100%, calc(100% - 20px));
-      gap: 56px;
-      padding-bottom: 72px;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .practice-page {
-      padding-top: 20px;
-    }
+  .teaching-practice-shell > :global(:not(.shell-glow)) {
+    position: relative;
+    z-index: 1;
   }
 </style>

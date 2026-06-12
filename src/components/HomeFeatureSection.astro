@@ -1,14 +1,17 @@
 ---
-import FeatureDisplayPage from "@/components/FeatureDisplayPage.astro";
+import HomeProductShowcase, {
+  type ShowcaseFeature,
+} from "@/components/HomeProductShowcase.astro";
 
 interface Props {
+  id: string;
+  eyebrow: string;
   title: string;
   direction?: "left" | "right";
+  features: ShowcaseFeature[];
 }
 
-const { title, direction = "left" } = Astro.props;
+const props = Astro.props;
 ---
 
-<FeatureDisplayPage title={title} direction={direction}>
-  <slot />
-</FeatureDisplayPage>
+<HomeProductShowcase {...props} />

@@ -1,0 +1,276 @@
+---
+import type { SiteLang } from "@/lib/blog";
+import CompilerTeachingPanel from "@/components/teaching-practice/CompilerTeachingPanel.astro";
+
+interface Props {
+  lang: SiteLang;
+}
+
+const { lang } = Astro.props;
+
+const t = <T,>(value: { zh: T; en: T }) => value[lang];
+---
+
+<section class="teaching-hub" aria-label={t({ zh: "教学实践", en: "Teaching Practice" })}>
+  <header class="hub-header">
+    <span class="hub-eyebrow">{t({ zh: "Use Cases / 教学实践", en: "Use Cases / Teaching Practice" })}</span>
+    <h1 class="hub-title">{t({ zh: "教学实践", en: "Teaching Practice" })}</h1>
+  </header>
+
+  <div class="topic-row" aria-label={t({ zh: "实践分类", en: "Practice categories" })}>
+    <div class="topic-card topic-card--active" aria-current="page">
+      <span class="topic-card-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+          <path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5" />
+        </svg>
+      </span>
+      <span class="topic-card-copy">
+        <span class="topic-card-title">{t({ zh: "编译教学", en: "Compiler Teaching" })}</span>
+        <span class="topic-card-desc">
+          {t({
+            zh: "文档、视频、源码与历年课程网站",
+            en: "Docs, videos, source code, and course archives",
+          })}
+        </span>
+      </span>
+    </div>
+
+    <div class="topic-chip topic-chip--disabled" aria-disabled="true">
+      <span class="topic-chip-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="m12 3 1.9 5.8H20l-4.9 3.6 1.9 5.8L12 14.6 7 18.2l1.9-5.8L4 8.8h6.1L12 3Z" />
+        </svg>
+      </span>
+      <span class="topic-chip-label">{t({ zh: "敬请期待…", en: "Coming Soon…" })}</span>
+    </div>
+  </div>
+
+  <div class="hub-panel">
+    <CompilerTeachingPanel lang={lang} />
+  </div>
+</section>
+
+<style>
+  .teaching-hub {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: clamp(1.5rem, 3.5vw, 2.5rem) 0 clamp(4rem, 8vw, 6rem);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(1.1rem, 2.5vw, 1.75rem);
+    overflow-x: clip;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hub-header {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .hub-eyebrow {
+    color: var(--sub-text-color);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+
+  .hub-title {
+    margin: 0;
+    font-family: "Satoshi-Bold", sans-serif;
+    font-size: clamp(2.5rem, 7vw, 4.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+    background-image: linear-gradient(
+      to right,
+      #715ec2,
+      #a451bf,
+      #ebb5a5,
+      #715ec2
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: title-flow 5s linear infinite;
+  }
+
+  @keyframes title-flow {
+    from {
+      background-position: 0% center;
+    }
+    to {
+      background-position: -200% center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hub-title {
+      animation: none;
+      background-position: 0% center;
+    }
+  }
+
+  .topic-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(0.65rem, 1.5vw, 0.85rem);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .topic-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex: 1 1 14rem;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0.9rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+    background: color-mix(in srgb, var(--bg-color) 88%, var(--bg-color-dimmer));
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  .topic-card--active {
+    border-color: color-mix(in srgb, var(--accent-color) 50%, var(--border-color));
+    background: color-mix(in srgb, var(--accent-color) 9%, var(--bg-color));
+  }
+
+  .topic-card--active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    bottom: 0.85rem;
+    width: 3px;
+    border-radius: 0 2px 2px 0;
+    background: linear-gradient(180deg, #715ec2, #a451bf);
+  }
+
+  .topic-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex: 0 1 auto;
+    max-width: 100%;
+    min-width: 0;
+    padding: 0.55rem 0.85rem;
+    border-radius: 999px;
+    border: 1px dashed color-mix(in srgb, var(--sub-text-color) 35%, var(--border-color));
+    background: color-mix(in srgb, var(--bg-color-dimmer) 60%, var(--bg-color));
+    box-sizing: border-box;
+  }
+
+  .topic-chip--disabled {
+    opacity: 0.6;
+    cursor: default;
+    user-select: none;
+  }
+
+  .topic-chip-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--sub-text-color);
+  }
+
+  .topic-chip-icon svg {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+
+  .topic-chip-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--sub-text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .topic-card-icon {
+    flex-shrink: 0;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 0.65rem;
+    display: grid;
+    place-items: center;
+    color: var(--accent-color);
+    background: color-mix(in srgb, var(--accent-color) 14%, var(--bg-color-dimmer));
+  }
+
+  .topic-card-icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .topic-card-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .topic-card-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.3;
+  }
+
+  .topic-card-desc {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--sub-text-color);
+  }
+
+  .hub-panel {
+    width: 100%;
+    min-width: 0;
+    padding: clamp(1.1rem, 2vw, 1.5rem);
+    border-radius: 1.75rem;
+    border: 1px solid var(--border-color);
+    background:
+      radial-gradient(
+        circle at top right,
+        color-mix(in srgb, var(--accent-color) 8%, transparent),
+        transparent 36%
+      ),
+      color-mix(in srgb, var(--bg-color) 92%, var(--bg-color-dimmer));
+    box-shadow: 0 20px 48px color-mix(in srgb, var(--anti-bg-color) 6%, transparent);
+    overflow-x: clip;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 520px) {
+    .topic-row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .topic-card--active {
+      flex: 1 1 auto;
+    }
+
+    .topic-chip {
+      align-self: flex-start;
+    }
+  }
+</style>

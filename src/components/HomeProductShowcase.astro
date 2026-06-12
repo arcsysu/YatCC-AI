@@ -1,0 +1,461 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+export type ShowcaseFeature = {
+  title: string;
+  description: string;
+  image: ImageMetadata;
+  alt: string;
+};
+
+interface Props {
+  id: string;
+  eyebrow: string;
+  title: string;
+  direction?: "left" | "right";
+  features: ShowcaseFeature[];
+}
+
+const { id, eyebrow, title, direction = "left", features } = Astro.props;
+const showcaseId = id;
+---
+
+<section
+  id={id}
+  class:list={["product-showcase", direction === "right" && "product-showcase--reverse"]}
+  data-product-showcase={showcaseId}
+  aria-label={title}
+>
+  <header class="showcase-header">
+    <span class="showcase-eyebrow">{eyebrow}</span>
+    <h2 class="showcase-title">{title}</h2>
+  </header>
+
+  <div class="showcase-panel">
+    <div class="showcase-nav" role="tablist" aria-label={title}>
+      {
+        features.map((feature, index) => (
+          <button
+            type="button"
+            class="showcase-tab"
+            role="tab"
+            data-showcase-tab={showcaseId}
+            data-index={index}
+            aria-selected={index === 0 ? "true" : "false"}
+            aria-controls={`${showcaseId}-panel-${index}`}
+            id={`${showcaseId}-tab-${index}`}
+          >
+            <span class="showcase-tab-index">{String(index + 1).padStart(2, "0")}</span>
+            <span class="showcase-tab-title">{feature.title}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <div class="showcase-content">
+      <div class="showcase-copy">
+        {
+          features.map((feature, index) => (
+            <article
+              id={`${showcaseId}-panel-${index}`}
+              class="showcase-detail"
+              role="tabpanel"
+              data-showcase-panel={showcaseId}
+              data-index={index}
+              aria-labelledby={`${showcaseId}-tab-${index}`}
+              hidden={index !== 0}
+            >
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </article>
+          ))
+        }
+      </div>
+
+      <div class="showcase-stage" aria-live="polite">
+        {
+          features.map((feature, index) => (
+            <figure
+              class:list={["showcase-media", index === 0 && "is-active"]}
+              data-showcase-media={showcaseId}
+              data-index={index}
+            >
+              <Image
+                src={feature.image}
+                alt={feature.alt}
+                width={1200}
+                class="showcase-image"
+              />
+            </figure>
+          ))
+        }
+        <div class="showcase-dots" aria-hidden="true">
+          {
+            features.map((_, index) => (
+              <span
+                class:list={["showcase-dot", index === 0 && "is-active"]}
+                data-showcase-dot={showcaseId}
+                data-index={index}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .product-showcase {
+    width: 100%;
+    min-height: calc(100dvh - var(--navbar-height));
+    box-sizing: border-box;
+    padding: clamp(0.5rem, 1.5vh, 1rem) 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(0.55rem, 1.2vh, 0.85rem);
+    scroll-margin-top: var(--navbar-height);
+  }
+
+  .showcase-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    text-align: left;
+    flex-shrink: 0;
+  }
+
+  .showcase-eyebrow {
+    color: var(--sub-text-color);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .showcase-title {
+    margin: 0;
+    font-family: "Satoshi-Bold", sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    background-image: linear-gradient(
+      to right,
+      #715ec2,
+      #a451bf,
+      #ebb5a5,
+      #715ec2
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: showcase-title-flow 5s linear infinite;
+  }
+
+  @keyframes showcase-title-flow {
+    from {
+      background-position: 0% center;
+    }
+    to {
+      background-position: -200% center;
+    }
+  }
+
+  .showcase-panel {
+    display: grid;
+    grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+    gap: clamp(0.65rem, 1.2vw, 0.9rem);
+    padding: clamp(0.85rem, 1.4vw, 1.15rem);
+    border-radius: 1.35rem;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: min(78dvh, 720px);
+    border: 1px solid var(--border-color);
+    background:
+      radial-gradient(
+        circle at top left,
+        color-mix(in srgb, var(--accent-color) 10%, transparent),
+        transparent 32%
+      ),
+      color-mix(in srgb, var(--bg-color) 92%, var(--bg-color-dimmer));
+    box-shadow: 0 20px 48px color-mix(in srgb, var(--anti-bg-color) 6%, transparent);
+  }
+
+  .product-showcase--reverse .showcase-panel {
+    grid-template-columns: minmax(0, 1fr) minmax(180px, 220px);
+  }
+
+  .product-showcase--reverse .showcase-nav {
+    order: 2;
+  }
+
+  .product-showcase--reverse .showcase-content {
+    order: 1;
+  }
+
+  .showcase-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-height: 0;
+  }
+
+  .showcase-tab {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.75rem;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--sub-text-color);
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition:
+      background-color 0.22s ease,
+      border-color 0.22s ease,
+      color 0.22s ease,
+      transform 0.2s ease;
+  }
+
+  .showcase-tab:hover {
+    background: color-mix(in srgb, var(--accent-color) 6%, var(--bg-color));
+    color: var(--text-color);
+  }
+
+  .showcase-tab.is-active {
+    border-color: color-mix(in srgb, var(--accent-color) 28%, var(--border-color));
+    background: color-mix(in srgb, var(--accent-color) 10%, var(--bg-color));
+    color: var(--accent-color);
+    transform: translateX(2px);
+  }
+
+  .product-showcase--reverse .showcase-tab.is-active {
+    transform: translateX(-2px);
+  }
+
+  .showcase-tab-index {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+  }
+
+  .showcase-tab-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .showcase-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    min-width: 0;
+    min-height: 0;
+    height: 100%;
+    padding: 0.25rem 0.6rem 0.4rem;
+    box-sizing: border-box;
+  }
+
+  .showcase-copy {
+    flex-shrink: 0;
+    min-height: 0;
+    width: 100%;
+    max-width: 48rem;
+    align-self: center;
+  }
+
+  .showcase-detail h3 {
+    margin: 0 0 0.3rem;
+    font-size: clamp(1.1rem, 1.65vw, 1.28rem);
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  .showcase-detail p {
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.55;
+    color: var(--sub-text-color);
+    max-width: 52rem;
+  }
+
+  .showcase-stage {
+    position: relative;
+    width: min(calc(100% - 0.5rem), 48rem);
+    aspect-ratio: 16 / 10;
+    flex: 0 0 auto;
+    margin-inline: auto;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: color-mix(in srgb, var(--bg-color-dimmer) 80%, var(--bg-color));
+    border: 1px solid color-mix(in srgb, var(--border-color) 80%, transparent);
+  }
+
+  .showcase-media {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transform: scale(1.02);
+    transition:
+      opacity 0.45s ease,
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .showcase-media.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .showcase-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .showcase-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 0.85rem;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.45rem;
+    padding: 0.35rem 0.55rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--bg-color) 72%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .showcase-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--sub-text-color) 45%, transparent);
+    transition:
+      width 0.25s ease,
+      background-color 0.25s ease;
+  }
+
+  .showcase-dot.is-active {
+    width: 1.15rem;
+    background: var(--accent-color);
+  }
+
+  @media (max-width: 900px) {
+    .product-showcase {
+      min-height: calc(100dvh - var(--navbar-height));
+    }
+
+    .showcase-panel {
+      max-height: min(70dvh, 600px);
+    }
+
+    .showcase-content {
+      padding: 0.2rem 0.5rem 0.35rem;
+    }
+
+    .showcase-copy {
+      max-width: 41.5rem;
+    }
+
+    .showcase-stage {
+      width: min(calc(100% - 0.5rem), 41.5rem);
+    }
+
+    .showcase-panel,
+    .product-showcase--reverse .showcase-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .product-showcase--reverse .showcase-nav,
+    .product-showcase--reverse .showcase-content,
+    .showcase-nav,
+    .showcase-content {
+      order: initial;
+    }
+
+    .showcase-nav {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .showcase-tab {
+      width: auto;
+      flex: 1 1 auto;
+      min-width: fit-content;
+    }
+
+    .showcase-tab.is-active,
+    .product-showcase--reverse .showcase-tab.is-active {
+      transform: none;
+    }
+
+    .showcase-copy {
+      min-height: auto;
+    }
+  }
+</style>
+
+<script>
+  function initProductShowcases() {
+    document.querySelectorAll("[data-product-showcase]").forEach((section) => {
+      const showcaseId = section.getAttribute("data-product-showcase");
+      if (!showcaseId || section.getAttribute("data-showcase-bound") === "true") return;
+      section.setAttribute("data-showcase-bound", "true");
+
+      const tabs = Array.from(
+        section.querySelectorAll<HTMLButtonElement>(`[data-showcase-tab="${showcaseId}"]`),
+      );
+      const panels = Array.from(
+        section.querySelectorAll<HTMLElement>(`[data-showcase-panel="${showcaseId}"]`),
+      );
+      const media = Array.from(
+        section.querySelectorAll<HTMLElement>(`[data-showcase-media="${showcaseId}"]`),
+      );
+      const dots = Array.from(
+        section.querySelectorAll<HTMLElement>(`[data-showcase-dot="${showcaseId}"]`),
+      );
+
+      const activate = (index: number) => {
+        tabs.forEach((tab, i) => {
+          const isActive = i === index;
+          tab.classList.toggle("is-active", isActive);
+          tab.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+
+        panels.forEach((panel, i) => {
+          panel.toggleAttribute("hidden", i !== index);
+        });
+
+        media.forEach((item, i) => {
+          item.classList.toggle("is-active", i === index);
+        });
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("is-active", i === index);
+        });
+      };
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => activate(index));
+      });
+
+      activate(0);
+    });
+  }
+
+  initProductShowcases();
+  document.addEventListener("astro:after-swap", initProductShowcases);
+</script>

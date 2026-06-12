@@ -1,5 +1,6 @@
 ---
 import Link from "../Link.astro";
+import NavSplitLink from "../NavSplitLink.astro";
 import NavDropdown from "../NavDropdown.astro";
 import DarkLightButton from "../DarkLightButton.astro";
 import { getLangFromUrl, tOfUrl, useTranslatedPath } from "@/i18n/utils";
@@ -14,14 +15,19 @@ const t = tOfUrl(Astro.url);
 const translatePath = useTranslatedPath(lang);
 const dropdownToggle = layout === "stacked" ? "click" : "hover";
 const topDropdownDirection = layout === "stacked" ? "auto" : "down";
-const nestedDropdownDirection = layout === "stacked" ? "auto" : "left";
 ---
 
 <div class:list={["yatcc-nav-menu", layout === "stacked" && "yatcc-nav-menu--stacked"]}>
   <Link href="https://ol.yatcc.arcsysu.cn/">&#128640; Get Started</Link>
-  <NavDropdown toggle={dropdownToggle} direction={topDropdownDirection}>
+  <NavDropdown toggle={dropdownToggle} direction={topDropdownDirection} compact>
     <div slot="title">{t("nav.implementation")}</div>
-    <Link href="https://ol.yatcc.arcsysu.cn">OL Lab</Link>
+    <NavSplitLink
+      leftHref="https://ol.yatcc.arcsysu.cn/"
+      leftLabel="OL Lab"
+      rightHref="https://ol.yatcc.arcsysu.cn/api/doc/"
+      rightLabel={t("nav.olLabApi")}
+      groupLabel={`OL Lab / ${t("nav.olLabApi")}`}
+    />
     <Link href="https://portal.aihub.arcsysu.cn">AI Hub</Link>
     <Link href="#">DT Fab</Link>
   </NavDropdown>
@@ -32,28 +38,7 @@ const nestedDropdownDirection = layout === "stacked" ? "auto" : "left";
   </NavDropdown>
   <NavDropdown toggle={dropdownToggle} direction={topDropdownDirection}>
     <div slot="title">{t("nav.cases")}</div>
-    <NavDropdown
-      href={translatePath("/teaching-practice")}
-      direction={nestedDropdownDirection}
-      toggle={dropdownToggle}
-    >
-      <div slot="title">{t("nav.teaching")}</div>
-      <NavDropdown direction={nestedDropdownDirection} toggle={dropdownToggle}>
-        <div slot="title">{t("nav.compilerTeaching")}</div>
-        <NavDropdown direction={nestedDropdownDirection} toggle={dropdownToggle}>
-          <div slot="title">{t("nav.courseSites")}</div>
-          <Link href="/teach/s2026.html">2026</Link>
-          <Link href="/teach/s2025.html">2025</Link>
-          <Link href="/teach/s2024.html">2024</Link>
-          <Link href="/teach/s2023.html">2023</Link>
-          <Link href="/teach/s2022.html">2022</Link>
-          <Link href="/teach/s2021.html">2021</Link>
-        </NavDropdown>
-        <Link href="https://docs.yatcc-ai.com/#/">{t("nav.docs")}</Link>
-        <Link href="https://space.bilibili.com/3546650047941291">{t("nav.videos")}</Link>
-        <Link href="https://github.com/arcsysu/YatCC">{t("nav.source")}</Link>
-      </NavDropdown>
-    </NavDropdown>
+    <Link href={translatePath("/teaching-practice")}>{t("nav.teaching")}</Link>
     <Link href="https://arcsysu.tech/">{t("nav.research")}</Link>
   </NavDropdown>
   <div class="ai-trigger-container">
@@ -109,4 +94,6 @@ const nestedDropdownDirection = layout === "stacked" ? "auto" : "left";
   .yatcc-nav-menu--stacked .ai-trigger-container :global(.button) {
     width: 100%;
   }
+
+
 </style>

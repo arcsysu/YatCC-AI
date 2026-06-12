@@ -1,0 +1,61 @@
+---
+interface Props {
+  leftHref: string;
+  leftLabel: string;
+  rightHref: string;
+  rightLabel: string;
+  groupLabel: string;
+}
+
+const { leftHref, leftLabel, rightHref, rightLabel, groupLabel } = Astro.props;
+---
+
+<div class="nav-split-link" role="group" aria-label={groupLabel}>
+  <a href={leftHref} class="nav-split-side nav-split-side--left">
+    {leftLabel}
+  </a>
+  <span class="nav-split-divider" aria-hidden="true"></span>
+  <a href={rightHref} class="nav-split-side nav-split-side--right">
+    {rightLabel}
+  </a>
+</div>
+
+<style>
+  .nav-split-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.55rem;
+    box-sizing: border-box;
+  }
+
+  .nav-split-side {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary, #64748b);
+    text-decoration: none;
+    white-space: nowrap;
+    touch-action: manipulation;
+    transition:
+      color 0.22s ease,
+      background-color 0.22s ease;
+    border-radius: 0.3rem;
+    padding: 0.05rem 0.1rem;
+  }
+
+  .nav-split-side:hover {
+    color: var(--accent-color);
+  }
+
+  .nav-split-side:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--accent-color) 70%, transparent);
+    outline-offset: 2px;
+  }
+
+  .nav-split-divider {
+    flex-shrink: 0;
+    width: 1px;
+    height: 0.9rem;
+    background: color-mix(in srgb, var(--sub-text-color) 35%, var(--border-color));
+  }
+</style>
