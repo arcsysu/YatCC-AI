@@ -6,7 +6,7 @@
 2026年6月25日：累计 Token 调用量突破 [300亿](https://portal.aihub.arcsysu.cn/)，已新增 GLM-5.2 等模型支持。
 2026年6月14日：全面支持 Hermes 智能体，提供个性化 Skill，使能新一代智能体系统。
 2026年5月31日：YatCC 亮相 CSIG 未来人机交互发展论坛（广州），作《YatCC: 面向人机协同智能实践的一体化应用支撑平台》专题报告。
-2026年5月26日：[RAMP](https://ramp.nexa-lang.com/) 评测论文正式公开在 [arxiv](https://arxiv.org/abs/2603.17891)，面向真实场景评估 Agentic模型能力与韧性。
+2026年5月26日：[RAMP](https://ramp.nexa-lang.com/) 评测论文正式公开在 [arxiv](https://arxiv.org/abs/2605.27492)，面向真实场景评估 Agentic模型能力与韧性。
 2026年5月6日：YatCC 入选 2026年 [Light 创造营 AI 公益创想项目](https://techforgood.qq.com/light)，致力于端云协同的智能化教育普惠。
 2026年5月23日：累计 Token 调用量过 [200亿](https://portal.aihub.arcsysu.cn/)，平台规模与用户活跃度持续增长。
 2026年4月24日：Day0 接入 DeepSeek V4，进一步增强平台智能服务能力与用户体验。

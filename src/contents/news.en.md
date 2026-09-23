@@ -3,7 +3,7 @@ July 29, 2026: Recognized as a 2026 Token Cloud Service Innovation Practice Case
 June 25, 2026: Total token usage exceeds [30 billion](https://portal.aihub.arcsysu.cn/), already supported new models like GLM-5.2.
 June 14, 2026: Full support for Hermes, delivering personalized Skills and enabling a new generation of intelligent agent systems.
 May 31, 2026: YatCC is presented at the CSIG Future HCI Forum, with a talk titled “YatCC: An Integrated Application Support Platform for Human–AI Collaborative Intelligent Practice”.
-May 26, 2026: The [RAMP](https://ramp.nexa-lang.com/) paper is released on [arxiv](https://arxiv.org/abs/2603.17891), targeting real-world Agentic model capability and resilience based on YatCC.
+May 26, 2026: The [RAMP](https://ramp.nexa-lang.com/) paper is released on [arxiv](https://arxiv.org/abs/2605.27492), targeting real-world Agentic model capability and resilience based on YatCC.
 May 23, 2026: Total token usage exceeds [20 billion](https://portal.aihub.arcsysu.cn/), and platform scale and user activity continue to grow.
 May 6, 2026: YatCC selected for 2026 Light AI Public Welfare Innovation Program.
 April 24, 2026: Day0 integrates DeepSeek V4, further boosting intelligent services and user experience.
