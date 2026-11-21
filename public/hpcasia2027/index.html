@@ -1,0 +1,859 @@
+<!doctype html>
+
+<!--
+YatCC · HPC Asia 2027 Tutorial — maintainable source
+
+EDIT MAP / 编辑导航
+  assets/js/content.js   All bilingual copy, event details, links and resource status.
+  assets/css/styles.css  Design tokens, page components and responsive rules.
+  assets/js/app.js       Language switching, rendering, filtering and downloads.
+  materials/            Public reference guides, checklist and architecture (en/zh).
+  README.md             Deployment, review checklist and common editing examples.
+
+Deploy this folder as /tutorials/hpcasia2027/; no frontend build is required.
+Optional: python3 scripts/build_standalone.py --output ../YatCC_HPC_Asia_2027_Tutorial.html
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="#101b2a" name="theme-color" />
+    <title>YatCC Tutorial · HPC Asia 2027 | From Models to Scientific Workflows</title>
+    <meta
+      content="A hands-on HPC Asia 2027 tutorial: connect private LLM services, data and compute in a reproducible scientific workspace with YatCC. Program, speakers and learning materials."
+      name="description"
+    />
+    <meta content="website" property="og:type" />
+    <meta
+      content="From Models to Scientific Workflows · YatCC at HPC Asia 2027"
+      property="og:title"
+    />
+    <meta
+      content="180 minutes. One scientific workflow. Build an intelligent HPC workspace with YatCC. February 19, 2027 · Seoul."
+      property="og:description"
+    />
+    <meta content="YatCC" property="og:site_name" />
+    <link href="assets/css/styles.css" rel="stylesheet" />
+    <script defer="True" src="assets/js/content.js"></script>
+    <script defer="True" src="assets/js/app.js"></script>
+  </head>
+  <body>
+    <svg
+      aria-hidden="true"
+      style="position: absolute; width: 0; height: 0; overflow: hidden"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <symbol id="i-model" viewBox="0 0 24 24">
+        <path d="m12 2 8.7 5v10L12 22l-8.7-5V7Z"></path>
+        <path d="m3.3 7 8.7 5 8.7-5M12 12v10M7.7 4.5l8.6 5v5"></path>
+      </symbol>
+      <symbol id="i-data" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="5" rx="8" ry="3"></ellipse>
+        <path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"></path>
+      </symbol>
+      <symbol id="i-compute" viewBox="0 0 24 24">
+        <rect height="7" rx="2" width="18" x="3" y="3"></rect>
+        <rect height="7" rx="2" width="18" x="3" y="14"></rect>
+        <path d="M7 6.5h.01M7 17.5h.01M12 6.5h5M12 17.5h5"></path>
+      </symbol>
+      <symbol id="i-connect" viewBox="0 0 24 24">
+        <path d="m9 15 6-6m-7 3-2 2a4.2 4.2 0 0 0 6 6l2-2m-4-12 2-2a4.2 4.2 0 0 1 6 6l-2 2"></path>
+      </symbol>
+      <symbol id="i-review" viewBox="0 0 24 24">
+        <path d="M7 4H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2"></path>
+        <rect height="4" rx="1" width="10" x="7" y="2"></rect>
+        <path d="m8 14 3 3 5-6"></path>
+      </symbol>
+      <symbol id="i-run" viewBox="0 0 24 24">
+        <path d="m9 5 11 7-11 7Z"></path>
+        <path d="M4 5v14"></path>
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12 4 4L19 6"></path>
+        <path d="M21 12a9 9 0 1 1-6-8.5"></path>
+      </symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24">
+        <rect height="16" rx="2" width="18" x="3" y="5"></rect>
+        <path d="M7 3v4m10-4v4M3 11h18M7 15h3m4 0h3m-10 3h3"></path>
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 7v5l3 2"></path>
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"></path></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24">
+        <path d="M14 2H5v20h14V7ZM14 2v5h5M8 12h8M8 16h6"></path>
+      </symbol>
+      <symbol id="i-code" viewBox="0 0 24 24">
+        <path d="m7 6-6 6 6 6m10-12 6 6-6 6m-3-15-4 18"></path>
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"></path>
+      </symbol>
+      <symbol id="i-slides" viewBox="0 0 24 24">
+        <rect height="13" rx="1" width="20" x="2" y="3"></rect>
+        <path d="M12 16v6M7 22l5-4 5 4M7 12V8m5 4V6m5 6V9"></path>
+      </symbol>
+      <symbol id="i-info" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 11v6m0-10h.01"></path>
+      </symbol>
+      <symbol id="i-laptop" viewBox="0 0 24 24">
+        <rect height="13" rx="1" width="16" x="4" y="3"></rect>
+        <path d="m4 16-3 4h22l-3-4M10 7h4"></path>
+      </symbol>
+      <symbol id="i-coffee" viewBox="0 0 24 24">
+        <path
+          d="M4 8h13v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4ZM17 9h2a3 3 0 0 1 0 6h-2M7 2v3m4-3v3M2 23h19"
+        ></path>
+      </symbol>
+      <symbol id="i-network" viewBox="0 0 24 24">
+        <rect height="6" rx="1" width="8" x="8" y="2"></rect>
+        <rect height="6" rx="1" width="8" x="1" y="16"></rect>
+        <rect height="6" rx="1" width="8" x="15" y="16"></rect>
+        <path d="M12 8v4M5 16v-4h14v4"></path>
+      </symbol>
+      <symbol id="i-logo" viewBox="0 0 32 36">
+        <path d="m2 3 14 8L30 3v9l-10 6v15l-8-5V18L2 12Z" fill="currentColor"></path>
+        <path d="m2 20 6 3v8l-6-3Zm22 3 6-3v8l-6 3Z" fill="currentColor" opacity=".45"></path>
+      </symbol>
+    </svg>
+    <a class="skip" data-i18n="accessibility.skip_to_content" href="#main">Skip to content</a>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a aria-label="YatCC home" class="brand" data-link="yatcc" href="https://yatcc-ai.com/"
+          ><svg aria-hidden="true" class="brand-symbol"><use href="#i-logo"></use></svg>YatCC</a
+        ><a
+          aria-label="HPC Asia 2027 official conference website"
+          class="header-conference"
+          data-link="conference"
+          href="https://hpcasia2027.org/2027/"
+          rel="noopener noreferrer"
+          target="_blank"
+          ><span>HPC ASIA</span><strong>2027</strong></a
+        >
+        <nav
+          aria-label="Main navigation"
+          class="nav"
+          data-i18n-aria="navigation.main_navigation_label"
+        >
+          <a data-i18n="navigation.overview" href="#overview">Overview</a>
+          <a data-i18n="navigation.program" href="#program">Program</a>
+          <a data-i18n="navigation.materials" href="#materials">Materials</a>
+          <a data-i18n="navigation.speakers" href="#speakers">Speakers</a>
+        </nav>
+        <div aria-label="Language / 语言" class="lang-toggle" role="group">
+          <button aria-label="English" aria-pressed="true" data-lang="en" type="button">EN</button
+          ><button aria-label="中文" aria-pressed="false" data-lang="zh" type="button">中文</button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <!-- === HERO === -->
+      <section aria-labelledby="hero-title" class="hero">
+        <div class="wrap">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="hero-tag">
+                <span aria-hidden="true"></span
+                ><span data-i18n="hero.hpc_asia_2027_hands_on_tutorial"
+                  >HPC ASIA 2027 · HANDS-ON TUTORIAL</span
+                >
+              </div>
+              <h1 data-i18n="hero.title" id="hero-title">
+                From Models to<br /><em>Scientific<br />Workflows.</em>
+              </h1>
+              <p
+                class="hero-subtitle"
+                data-i18n="hero.building_intelligent_hpc_workspaces_with_yatcc"
+              >
+                Building Intelligent HPC Workspaces<br />with YatCC
+              </p>
+              <p class="hero-desc" data-i18n="hero.bring_models_data_and_compute_into">
+                Bring models, data and compute into one research workspace. Build a scientific
+                workflow you can review, run and reproduce—in a half-day, hands-on session.
+              </p>
+              <div class="hero-actions">
+                <a class="btn btn-light" data-i18n="hero.explore_the_program" href="#program"
+                  >Explore the program</a
+                ><a class="btn btn-outline" href="#materials"
+                  ><svg aria-hidden="true" class="icon"><use href="#i-file"></use></svg
+                  ><span data-i18n="hero.get_the_materials">Get the materials</span></a
+                >
+              </div>
+              <p class="hero-small">
+                <svg aria-hidden="true" class="icon"><use href="#i-laptop"></use></svg
+                ><span data-i18n="hero.bring_your_browser_no_personal_gpu"
+                  >Bring your browser. No personal GPU required.</span
+                >
+              </p>
+            </div>
+            <div
+              aria-label="Interactive reference architecture"
+              class="workspace-visual"
+              data-i18n-aria="hero.interactive_reference_architecture_label"
+            >
+              <div class="visual-head">
+                <span data-i18n="hero.one_connected_research_loop">ONE CONNECTED RESEARCH LOOP</span
+                ><span aria-hidden="true" class="visual-dots"><i></i><i></i><i></i></span>
+              </div>
+              <div class="resource-nodes">
+                <div class="resource-node">
+                  <svg aria-hidden="true" class="icon"><use href="#i-model"></use></svg>
+                  <div class="node-name" data-i18n="hero.private_models">Private models</div>
+                  <div class="node-sub">OpenAI-compatible API</div>
+                </div>
+                <div class="resource-node">
+                  <svg aria-hidden="true" class="icon"><use href="#i-data"></use></svg>
+                  <div class="node-name" data-i18n="hero.scientific_data">Scientific data</div>
+                  <div class="node-sub" data-i18n="hero.managed_datasets">Managed datasets</div>
+                </div>
+                <div class="resource-node">
+                  <svg aria-hidden="true" class="icon"><use href="#i-compute"></use></svg>
+                  <div class="node-name" data-i18n="hero.hpc_cloud">HPC &amp; cloud</div>
+                  <div class="node-sub" data-i18n="hero.execution_adapters">Execution adapters</div>
+                </div>
+              </div>
+              <svg
+                aria-hidden="true"
+                class="connector"
+                preserveAspectRatio="none"
+                viewBox="0 0 480 48"
+              >
+                <path
+                  d="M75 0v10q0 13 20 13h125q20 0 20 20v5M405 0v10q0 13-20 13H260q-20 0-20 20v5M240 0v48"
+                ></path>
+                <circle cx="240" cy="24" r="3"></circle>
+              </svg>
+              <div class="workspace-box">
+                <div class="workspace-title">
+                  <svg aria-hidden="true"><use href="#i-logo"></use></svg>
+                  <div>
+                    <strong>YatCC Workspace</strong
+                    ><small data-i18n="hero.a_persistent_home_for_your_scientific"
+                      >A persistent home for your scientific task</small
+                    >
+                  </div>
+                </div>
+                <div class="workspace-pills">
+                  <span>AI Hub</span><span data-i18n="hero.agent_tools">Agent + tools</span
+                  ><span data-i18n="hero.workflow_state">Workflow state</span
+                  ><span data-i18n="hero.provenance">Provenance</span>
+                </div>
+              </div>
+              <div
+                aria-label="Explore the workflow"
+                class="workflow-track"
+                data-i18n-aria="hero.explore_the_workflow_label"
+                role="group"
+              >
+                <button
+                  aria-controls="step-description"
+                  aria-pressed="true"
+                  class="step-btn"
+                  data-step="0"
+                  type="button"
+                >
+                  <span class="step-dot"
+                    ><svg aria-hidden="true" class="icon"><use href="#i-connect"></use></svg></span
+                  ><span data-i18n="hero.connect">Connect</span>
+                </button>
+                <button
+                  aria-controls="step-description"
+                  aria-pressed="false"
+                  class="step-btn"
+                  data-step="1"
+                  type="button"
+                >
+                  <span class="step-dot"
+                    ><svg aria-hidden="true" class="icon"><use href="#i-review"></use></svg></span
+                  ><span data-i18n="hero.review">Review</span>
+                </button>
+                <button
+                  aria-controls="step-description"
+                  aria-pressed="false"
+                  class="step-btn"
+                  data-step="2"
+                  type="button"
+                >
+                  <span class="step-dot"
+                    ><svg aria-hidden="true" class="icon"><use href="#i-run"></use></svg></span
+                  ><span data-i18n="hero.execute">Execute</span>
+                </button>
+                <button
+                  aria-controls="step-description"
+                  aria-pressed="false"
+                  class="step-btn"
+                  data-step="3"
+                  type="button"
+                >
+                  <span class="step-dot"
+                    ><svg aria-hidden="true" class="icon"><use href="#i-check"></use></svg></span
+                  ><span data-i18n="hero.validate">Validate</span>
+                </button>
+              </div>
+              <div class="visual-caption">
+                <svg aria-hidden="true" class="icon"><use href="#i-info"></use></svg>
+                <p aria-live="polite" id="step-description"></p>
+              </div>
+              <p class="diagram-note" data-i18n="hero.reference_architecture_select_a_step_to">
+                Reference architecture · select a step to explore
+              </p>
+            </div>
+          </div>
+          <div class="hero-strip">
+            <div class="hero-fact">
+              <svg aria-hidden="true" class="icon"><use href="#i-calendar"></use></svg>
+              <div>
+                <div class="fact-main" data-i18n="hero.february_19_2027">February 19, 2027</div>
+                <div class="fact-sub" id="session-time">Tutorial day · time to be announced</div>
+              </div>
+            </div>
+            <div class="hero-fact">
+              <svg aria-hidden="true" class="icon"><use href="#i-pin"></use></svg>
+              <div>
+                <div class="fact-main" data-i18n="hero.yonsei_university_seoul">
+                  Yonsei University · Seoul
+                </div>
+                <div class="fact-sub" id="session-room">HPC Asia 2027 · room to be announced</div>
+              </div>
+            </div>
+            <div class="hero-fact">
+              <svg aria-hidden="true" class="icon"><use href="#i-clock"></use></svg>
+              <div>
+                <div class="fact-main" data-i18n="hero.180_minutes_hands_on">
+                  180 minutes · hands-on
+                </div>
+                <div class="fact-sub" data-i18n="hero.intermediate_newcomers_welcome">
+                  Intermediate · newcomers welcome
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- === CONFERENCE-BAND === -->
+      <section aria-labelledby="conference-title" class="conference-band">
+        <div class="wrap conference-layout">
+          <div class="conference-copy">
+            <p class="conference-kicker" data-i18n="conference.part_of_the_hpc_asia_2027">
+              PART OF THE HPC ASIA 2027 TUTORIAL PROGRAM
+            </p>
+            <h2 class="conference-wordmark" id="conference-title">HPC Asia <span>2027</span></h2>
+            <p
+              class="conference-description"
+              data-i18n="conference.an_international_meeting_for_the_asia"
+            >
+              An international meeting for the Asia-Pacific HPC community.
+            </p>
+            <dl class="conference-facts">
+              <div>
+                <dt data-i18n="conference.conference">Conference</dt>
+                <dd data-i18n="conference.february_16_19_2027">February 16–19, 2027</dd>
+              </div>
+              <div>
+                <dt data-i18n="conference.tutorial_day">Tutorial day</dt>
+                <dd data-i18n="conference.february_19_2027">February 19, 2027</dd>
+              </div>
+            </dl>
+            <p
+              class="conference-venue"
+              data-i18n="conference.baekyang_nuri_the_commons_yonsei_university"
+            >
+              Baekyang Nuri (The Commons), Yonsei University · Seoul, Korea
+            </p>
+            <div class="conference-links">
+              <a
+                data-i18n="conference.conference_website"
+                data-link="conference"
+                href="https://hpcasia2027.org/2027/"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Conference website</a
+              >
+              <a
+                data-i18n="conference.venue_directions"
+                data-link="venue"
+                href="https://hpcasia2027.org/2027/pages_information/venue.vm"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Venue &amp; directions</a
+              >
+              <a
+                data-i18n="conference.registration_information"
+                data-link="registration"
+                href="https://hpcasia2027.org/2027/pages_registration/registration.vm"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Registration information</a
+              >
+            </div>
+          </div>
+          <figure class="conference-photo">
+            <img
+              alt="Baekyang Nuri at Yonsei University, conference venue in Seoul"
+              data-i18n-alt="conference.baekyang_nuri_at_yonsei_university_conference_alt"
+              decoding="async"
+              height="540"
+              loading="lazy"
+              src="assets/images/hpcasia2027-venue.jpg"
+              width="860"
+            />
+            <figcaption>
+              <span data-i18n="conference.yonsei_university_baekyang_nuri"
+                >Yonsei University · Baekyang Nuri</span
+              ><a
+                data-i18n="conference.photo_hpc_asia_2027"
+                data-link="venue"
+                href="https://hpcasia2027.org/2027/pages_information/venue.vm"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Photo: HPC Asia 2027</a
+              >
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <!-- === OVERVIEW / 课程概览 === -->
+      <section aria-labelledby="overview-title" class="section" id="overview">
+        <div class="wrap">
+          <div class="eyebrow" data-i18n="overview.the_idea">THE IDEA</div>
+          <div class="intro-line">
+            <h2 data-i18n="overview.title" id="overview-title">
+              Connect the tools.<br />Complete the science.
+            </h2>
+            <div>
+              <p class="lead" data-i18n="overview.a_model_endpoint_is_only_the">
+                A model endpoint is only the beginning. Learn how private LLM services, managed data
+                and execution backends come together in a persistent workspace—with researchers in
+                control at every critical step.
+              </p>
+              <div class="value-pills">
+                <span data-i18n="overview.researcher_oversight">Researcher oversight</span
+                ><span data-i18n="overview.measurable_performance">Measurable performance</span
+                ><span data-i18n="overview.reproducible_workflows">Reproducible workflows</span>
+              </div>
+            </div>
+          </div>
+          <div class="learning-grid">
+            <article class="learning-item">
+              <div class="learning-icon">
+                <svg aria-hidden="true" class="icon"><use href="#i-model"></use></svg>
+              </div>
+              <h3 data-i18n="overview.serve_a_model">Serve a model</h3>
+              <p data-i18n="overview.explore_a_private_llm_endpoint_understand">
+                Explore a private LLM endpoint. Understand batching, accelerator memory, latency and
+                token throughput.
+              </p>
+              <span class="learning-tag">LLM → API</span>
+            </article>
+            <article class="learning-item">
+              <div class="learning-icon">
+                <svg aria-hidden="true" class="icon"><use href="#i-connect"></use></svg>
+              </div>
+              <h3 data-i18n="overview.connect_the_workspace">Connect the workspace</h3>
+              <p data-i18n="overview.route_models_through_an_ai_hub">
+                Route models through an AI hub. Stage data and connect an HPC or cloud execution
+                backend.
+              </p>
+              <span class="learning-tag">AI HUB + DATA + COMPUTE</span>
+            </article>
+            <article class="learning-item">
+              <div class="learning-icon">
+                <svg aria-hidden="true" class="icon"><use href="#i-review"></use></svg>
+              </div>
+              <h3 data-i18n="overview.build_with_an_agent">Build with an agent</h3>
+              <p data-i18n="overview.inspect_a_dataset_review_suggested_analysis">
+                Inspect a dataset, review suggested analysis code and approve a parameterized
+                computation.
+              </p>
+              <span class="learning-tag">INSPECT → REVIEW → RUN</span>
+            </article>
+            <article class="learning-item">
+              <div class="learning-icon">
+                <svg aria-hidden="true" class="icon"><use href="#i-check"></use></svg>
+              </div>
+              <h3 data-i18n="overview.validate_and_reproduce">Validate and reproduce</h3>
+              <p data-i18n="overview.check_reference_results_preserve_provenance_and">
+                Check reference results, preserve provenance and separate inference, transfer, queue
+                and compute time.
+              </p>
+              <span class="learning-tag">RESULTS + LOGS + METRICS</span>
+            </article>
+          </div>
+        </div>
+      </section>
+      <!-- === PROGRAM / 课程议程 === -->
+      <section aria-labelledby="program-title" class="section program" id="program">
+        <div class="wrap program-layout">
+          <aside class="program-aside">
+            <div class="eyebrow" data-i18n="program.the_program">THE PROGRAM</div>
+            <h2 data-i18n="program.title" id="program-title">
+              One workflow.<br />From start to finish.
+            </h2>
+            <p class="lead" data-i18n="program.short_walkthroughs_lead_into_a_guided">
+              Short walkthroughs lead into a guided lab, followed by validation and deployment
+              discussion.
+            </p>
+            <div class="duration">
+              <strong>180</strong
+              ><span data-i18n="program.minutes_including_a_break">minutes, including a break</span>
+            </div>
+            <div aria-hidden="true" class="duration-track">
+              <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <p class="agenda-note" data-i18n="program.times_below_are_minutes_from_the">
+              Times below are minutes from the session start. Select a topic for details.
+            </p>
+          </aside>
+          <div class="agenda" id="agenda-list">
+            <!-- Rendered from assets/js/content.js by app.js. -->
+          </div>
+        </div>
+      </section>
+      <!-- === RESOURCES / 材料中心 === -->
+      <section aria-labelledby="materials-title" class="section materials" id="materials">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" data-i18n="materials.the_resource_desk">THE RESOURCE DESK</div>
+              <h2 data-i18n="materials.title" id="materials-title">Everything for the hands-on.</h2>
+            </div>
+            <p class="lead" data-i18n="materials.start_with_the_preparation_guide_and">
+              Start with the preparation guide and reference resources. Slides and runnable lab
+              materials will be added here as they are released.
+            </p>
+          </div>
+          <div class="resource-toolbar">
+            <div
+              aria-label="Filter materials"
+              class="filters"
+              data-i18n-aria="materials.filter_materials_label"
+              role="group"
+            >
+              <button
+                aria-pressed="true"
+                class="filter"
+                data-filter="all"
+                data-i18n="materials.all_resources"
+                type="button"
+              >
+                All resources</button
+              ><button
+                aria-pressed="false"
+                class="filter"
+                data-filter="ready"
+                data-i18n="materials.available"
+                type="button"
+              >
+                Available</button
+              ><button
+                aria-pressed="false"
+                class="filter"
+                data-filter="pending"
+                data-i18n="materials.coming_soon"
+                type="button"
+              >
+                Coming soon
+              </button>
+            </div>
+            <span class="resource-legend" data-i18n="materials.public_resources_no_sign_in_needed"
+              >Public resources · no sign-in needed for downloads</span
+            >
+          </div>
+          <div class="resource-grid" id="resource-grid">
+            <!-- Rendered from assets/js/content.js by app.js. -->
+          </div>
+          <p class="materials-note">
+            <svg aria-hidden="true" class="icon"><use href="#i-info"></use></svg
+            ><span data-i18n="materials.the_guide_checklist_and_architecture_support"
+              >The guide, checklist and architecture support pre-tutorial preparation. Final lab
+              instructions, data and expected outputs will be released separately. Hosted lab access
+              details will be provided for the session.</span
+            >
+          </p>
+        </div>
+      </section>
+      <!-- === PARTICIPATION / 参与指南 === -->
+      <section aria-labelledby="participate-title" class="section participate" id="participate">
+        <div class="wrap participate-grid">
+          <div>
+            <div class="eyebrow" data-i18n="participate.come_ready_to_build">
+              COME READY TO BUILD
+            </div>
+            <h2 data-i18n="participate.title" id="participate-title">
+              Your browser is<br />your starting point.
+            </h2>
+            <p class="lead" data-i18n="participate.for_people_building_or_using_hpc">
+              For people building or using HPC and AI infrastructure. Basic Python or shell
+              familiarity and an understanding of batch jobs are helpful; prior YatCC experience is
+              not required.
+            </p>
+            <div class="audience-tags">
+              <span>HPC</span
+              ><span data-i18n="participate.research_software">Research software</span
+              ><span data-i18n="participate.ai_infrastructure">AI infrastructure</span
+              ><span data-i18n="participate.scientific_research">Scientific research</span
+              ><span data-i18n="participate.education">Education</span>
+            </div>
+            <a
+              class="btn btn-dark"
+              data-i18n="participate.conference_registration"
+              data-link="registration"
+              href="https://hpcasia2027.org/2027/pages_registration/registration.vm"
+              rel="noopener noreferrer"
+              target="_blank"
+              >Conference &amp; registration</a
+            >
+            <p
+              class="participation-note"
+              data-i18n="participate.the_conference_tutorial_call_states_that"
+            >
+              The conference tutorial call states that registered HPC Asia 2027 attendees may join
+              tutorials without an additional tutorial fee. There is no tutorial-only registration.
+            </p>
+          </div>
+          <div class="prep-panel">
+            <h3 data-i18n="participate.a_small_preparation_checklist">
+              A small preparation checklist
+            </h3>
+            <div class="prep-item">
+              <svg aria-hidden="true" class="icon"><use href="#i-laptop"></use></svg>
+              <div>
+                <strong data-i18n="participate.laptop_modern_browser_wi_fi"
+                  >Laptop, modern browser, Wi-Fi</strong
+                >
+                <p data-i18n="participate.the_core_lab_uses_a_hosted">
+                  The core lab uses a hosted browser environment.
+                </p>
+              </div>
+            </div>
+            <div class="prep-item">
+              <svg aria-hidden="true" class="icon"><use href="#i-code"></use></svg>
+              <div>
+                <strong data-i18n="participate.python_or_shell_basics"
+                  >Python or shell basics</strong
+                >
+                <p data-i18n="participate.a_local_python_3_setup_is">
+                  A local Python 3 setup is optional, for additional exploration.
+                </p>
+              </div>
+            </div>
+            <div class="prep-item">
+              <svg aria-hidden="true" class="icon"><use href="#i-compute"></use></svg>
+              <div>
+                <strong data-i18n="participate.no_personal_gpu_or_hpc_account"
+                  >No personal GPU or HPC account needed</strong
+                >
+                <p data-i18n="participate.prepared_datasets_and_compute_access_support">
+                  Prepared datasets and compute access support the guided exercise.
+                </p>
+              </div>
+            </div>
+            <div class="prep-item">
+              <svg aria-hidden="true" class="icon"><use href="#i-review"></use></svg>
+              <div>
+                <strong data-i18n="participate.keep_the_researcher_in_the_loop"
+                  >Keep the researcher in the loop</strong
+                >
+                <p data-i18n="participate.review_generated_code_and_parameters_before">
+                  Review generated code and parameters before approving execution.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- === SPEAKERS / 讲者团队 === -->
+      <section aria-labelledby="speakers-title" class="section speakers" id="speakers">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow" data-i18n="speakers.meet_the_team">MEET THE TEAM</div>
+              <h2 data-i18n="speakers.title" id="speakers-title">
+                Built by the people teaching it.
+              </h2>
+            </div>
+            <p class="lead" data-i18n="speakers.the_yatcc_team_at_sun_yat">
+              The YatCC team at Sun Yat-sen University brings together systems research, platform
+              engineering and hands-on teaching.
+            </p>
+          </div>
+          <div class="speaker-grid">
+            <article class="lead-speaker">
+              <div aria-hidden="true" class="avatar" data-leader="initials">XZ</div>
+              <div class="role-label" data-i18n="speakers.session_leader">SESSION LEADER</div>
+              <h3 data-leader="name">Xianwei Zhang</h3>
+              <div
+                class="speaker-role"
+                data-i18n="speakers.associate_professor_sun_yat_sen_university"
+              >
+                Associate Professor · Sun Yat-sen University
+              </div>
+              <p data-i18n="speakers.leads_the_arcsysu_research_group_his">
+                Leads the arcSYSu research group. His research spans GPU systems, compilers,
+                runtimes and HPC/AI infrastructure, with industry experience at AMD and NVIDIA and a
+                Ph.D. from the University of Pittsburgh.
+              </p>
+              <div class="lead-links">
+                <a
+                  data-i18n="speakers.homepage"
+                  data-link="leaderHomepage"
+                  href="https://xianweiz.github.io"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  >Homepage</a
+                ><a
+                  data-i18n="speakers.contact"
+                  data-link="contact"
+                  href="mailto:zhangxw79@mail.sysu.edu.cn"
+                  >Contact</a
+                >
+              </div>
+            </article>
+            <div class="team-grid" id="speaker-list">
+              <div class="team-home" id="team-affiliation">
+                <strong>arcSYSu × YatCC</strong
+                ><span data-i18n="speakers.school_of_computer_science_and_engineering"
+                  >School of Computer Science<br />and Engineering<br />Sun Yat-sen University</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- === FAQ-SECTION === -->
+      <section aria-labelledby="faq-title" class="faq-section">
+        <div class="wrap faq-layout">
+          <div class="faq-heading">
+            <div class="eyebrow" data-i18n="faq.before_you_join">BEFORE YOU JOIN</div>
+            <h2 data-i18n="faq.title" id="faq-title">A few practical details.</h2>
+            <p data-i18n="faq.have_a_specific_question_get_in">
+              Have a specific question?
+              <a class="text-link" data-link="contact" href="mailto:zhangxw79@mail.sysu.edu.cn"
+                >Get in touch.</a
+              >
+            </p>
+          </div>
+          <div class="faq">
+            <details>
+              <summary>
+                <span data-i18n="faq.do_i_need_experience_with_yatcc"
+                  >Do I need experience with YatCC or LLM serving?</span
+                ><svg aria-hidden="true" class="icon"><use href="#i-plus"></use></svg>
+              </summary>
+              <p data-i18n="faq.no_prior_yatcc_experience_or_gpu">
+                No prior YatCC experience or GPU administration experience is required. The tutorial
+                is intermediate overall, but introductory walkthroughs make it accessible to
+                participants new to LLM serving. Basic Python or shell and batch-job concepts will
+                help.
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span data-i18n="faq.will_agents_run_generated_code_automatically"
+                  >Will agents run generated code automatically?</span
+                ><svg aria-hidden="true" class="icon"><use href="#i-plus"></use></svg>
+              </summary>
+              <p data-i18n="faq.the_guided_workflow_includes_an_explicit">
+                The guided workflow includes an explicit human review and approval step before
+                computation is submitted. Participants inspect the proposed code, adjust parameters
+                and check results against reference outputs, while preserving the execution record.
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span data-i18n="faq.what_if_live_generation_or_connectivity"
+                  >What if live generation or connectivity is unavailable?</span
+                ><svg aria-hidden="true" class="icon"><use href="#i-plus"></use></svg>
+              </summary>
+              <p data-i18n="faq.the_tutorial_plan_includes_reference_scripts">
+                The tutorial plan includes reference scripts, prepared outputs, screenshots and
+                recorded demonstrations as fallback materials. These support discussion and
+                verification when live services are unavailable; hands-on hosted access still
+                requires connectivity.
+              </p>
+            </details>
+            <details>
+              <summary>
+                <span data-i18n="faq.can_i_adapt_the_workflow_for"
+                  >Can I adapt the workflow for my own institution?</span
+                ><svg aria-hidden="true" class="icon"><use href="#i-plus"></use></svg>
+              </summary>
+              <p data-i18n="faq.yes_the_reference_architecture_and_reusable">
+                Yes—the reference architecture and reusable workflow template are intended to
+                support adaptation. Institutional deployment must account for model access,
+                scheduler policies, resource isolation, permissions, data staging and budget limits.
+                The closing discussion covers these trade-offs.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+      <!-- === CLOSING === -->
+      <section class="closing">
+        <div class="wrap closing-inner">
+          <div>
+            <h2 data-i18n="closing.meet_us_in_seoul">Meet us in Seoul.</h2>
+            <p data-i18n="closing.february_19_2027_hpc_asia_2027">
+              February 19, 2027 · HPC Asia 2027 · Yonsei University
+            </p>
+          </div>
+          <div class="closing-actions">
+            <a class="btn btn-light" data-i18n="closing.browse_the_materials" href="#materials"
+              >Browse the materials</a
+            ><a
+              class="btn btn-outline"
+              data-i18n="closing.explore_yatcc"
+              data-link="platform"
+              href="https://ol.yatcc.arcsysu.cn"
+              rel="noopener noreferrer"
+              target="_blank"
+              >Explore YatCC</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <span
+          ><span class="footer-brand">YatCC · arcSYSu</span>  © 2027
+          <span data-i18n="footer.sun_yat_sen_university">Sun Yat-sen University</span></span
+        >
+        <div class="footer-links">
+          <a data-i18n="footer.yatcc_home" data-link="yatcc" href="https://yatcc-ai.com/"
+            >YatCC home</a
+          ><a
+            data-link="github"
+            href="https://github.com/arcsysu/YatCC-AI"
+            rel="noopener noreferrer"
+            target="_blank"
+            >GitHub</a
+          ><a
+            data-i18n="footer.official_tutorial_info"
+            data-link="tutorialInfo"
+            href="https://hpcasia2027.org/2027/pages_submission/call_for_tutorials.vm"
+            rel="noopener noreferrer"
+            target="_blank"
+            >Official tutorial info</a
+          ><a
+            data-i18n="footer.contact"
+            data-link="contact"
+            href="mailto:zhangxw79@mail.sysu.edu.cn"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </footer>
+
+    <noscript
+      >Enable JavaScript to switch languages and browse the interactive agenda and materials. 请启用
+      JavaScript 以切换语言和查看交互议程及材料。</noscript
+    >
+  </body>
+</html>

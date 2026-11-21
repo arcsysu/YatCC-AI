@@ -1,0 +1,1560 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#091f1b">
+<title>YatCC · 让智能真正工作｜官网概念演示</title>
+<style>
+/*
+  YatCC homepage concept
+  ----------------------
+  Edit the colors below first. Content lives in the named sections below the CSS.
+  The mock Workspace is intentionally CSS and HTML, so it is easy to replace
+  with a real product screenshot later.
+*/
+:root {
+  --sysu-deep: #091f1b;
+  --sysu-green: #0d6f51;
+  --sysu-bright: #15946b;
+  --sysu-mint: #e5f5e8;
+  --text: #142b25;
+  --mute: #65796f;
+  --line: #deebe2;
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  scroll-behavior:smooth;
+}
+
+section[id],.dark[id] {
+  scroll-margin-top:88px;
+}
+
+body {
+  margin:0;
+  color:var(--text);
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+button {
+  font:inherit;
+  cursor:pointer;
+}
+
+.wrap {
+  width:min(1180px,calc(100% - 56px));
+  margin:auto;
+}
+
+.eyebrow {
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.18em;
+  color:#19866a;
+}
+
+.eyebrow.on-dark {
+  color:#a2d9c1;
+}
+
+h1,h2,h3,p {
+  margin:0;
+}
+
+h2 {
+  font-size:clamp(35px,4vw,56px);
+  line-height:1.2;
+  letter-spacing:-.055em;
+}
+
+p {
+  line-height:1.8;
+}
+
+.lead {
+  font-size:16px;
+  color:var(--mute);
+  max-width:640px;
+  margin-top:18px;
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  padding:14px 21px;
+  border-radius:9px;
+  font-size:13px;
+  font-weight:750;
+  transition:transform .2s;
+}
+
+.btn:hover {
+  transform:translateY(-3px);
+}
+
+.btn.green {
+  color:white;
+  background:var(--sysu-bright);
+  box-shadow:0 10px 30px #15946b45;
+}
+
+.btn.ghost {
+  border:1px solid #9fd7b660;
+  color:#f1fff7;
+  background:#ffffff0a;
+}
+
+.btn.navy {
+  background:#0e4939;
+  color:white;
+}
+
+.btn.outline {
+  border:1px solid #c9e0d1;
+}
+
+/* Hero and navigation */
+.dark {
+  background:radial-gradient(ellipse at 77% 40%,#165946 0,#0c302a 29%,transparent 60%),radial-gradient(ellipse at 15% 100%,#1b3b28 0,transparent 32%),var(--sysu-deep);
+  color:white;
+  position:relative;
+  overflow:hidden;
+  padding-top:76px;
+}
+
+.dark:before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:linear-gradient(#abdbc20e 1px,transparent 1px),linear-gradient(90deg,#abdbc20e 1px,transparent 1px);
+  background-size:52px 52px;
+}
+
+.nav-shell {
+  position:fixed;
+  inset:0 0 auto;
+  z-index:100;
+  color:#fff;
+  background:#09251fef;
+  border-bottom:1px solid #b3dfbf2b;
+  box-shadow:0 10px 30px #071b1824;
+  -webkit-backdrop-filter:blur(18px);
+  backdrop-filter:blur(18px);
+}
+
+.nav {
+  height:76px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand {
+  font-size:26px;
+  letter-spacing:-.07em;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.brand i {
+  display:block;
+  width:23px;
+  height:23px;
+  border:3px solid #62db9e;
+  border-radius:6px;
+  transform:rotate(45deg);
+  position:relative;
+}
+
+.brand i:after {
+  content:"";
+  position:absolute;
+  inset:4px;
+  border:2px solid #d5e97e;
+}
+
+.brand small {
+  font-size:10px;
+  color:#a5c3af;
+  font-weight:600;
+  letter-spacing:.03em;
+}
+
+.links {
+  display:flex;
+  gap:28px;
+  font-size:13px;
+  color:#c4ddce;
+}
+
+.links a:hover {
+  color:white;
+}
+
+.nav-right {
+  display:flex;
+  align-items:center;
+  gap:18px;
+  font-size:12px;
+  color:#b5d1c1;
+}
+
+.nav-right>a {
+  background:#e8faed;
+  color:#123529;
+  padding:11px 16px;
+  border-radius:7px;
+  font-weight:750;
+}
+
+.menu {
+  display:none;
+  background:transparent;
+  border:0;
+  color:white;
+  font-size:23px;
+}
+
+.hero {
+  min-height:620px;
+  display:grid;
+  grid-template-columns:48% 52%;
+  align-items:center;
+  position:relative;
+  padding:50px 0 75px;
+}
+
+.hero-copy {
+  position:relative;
+  z-index:2;
+}
+
+.pill {
+  border:1px solid #94d5b44f;
+  background:#ffffff09;
+  border-radius:30px;
+  padding:9px 13px;
+  display:inline-block;
+  font-size:10px;
+  letter-spacing:.17em;
+  color:#c0e5d1;
+  margin-bottom:30px;
+}
+
+.pill b {
+  display:inline-block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#95e2a4;
+  margin-right:8px;
+  box-shadow:0 0 0 4px #95e2a422;
+}
+
+.hero h1 {
+  font-size:clamp(54px,5.8vw,84px);
+  letter-spacing:-.075em;
+  line-height:1.14;
+  margin-bottom:24px;
+}
+
+.hero h1 em {
+  font-style:normal;
+  background:linear-gradient(105deg,white,#8ce5b8 65%,#d8eda3);
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p {
+  font-size:17px;
+  color:#b8d7c7;
+  max-width:510px;
+  margin-bottom:29px;
+}
+
+.actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.tagline {
+  margin-top:25px;
+  font-size:12px;
+  color:#a0c4ae;
+}
+
+.tagline strong {
+  color:white;
+}
+
+.visual {
+  height:470px;
+  position:relative;
+  perspective:900px;
+}
+
+.visual:before {
+  content:"";
+  position:absolute;
+  inset:18% 12%;
+  background:#26a977;
+  filter:blur(85px);
+  opacity:.27;
+}
+
+.app {
+  position:absolute;
+  left:4%;
+  right:2%;
+  top:32px;
+  height:385px;
+  background:#0c2d26;
+  border:1px solid #78b9977d;
+  border-radius:15px;
+  box-shadow:0 40px 90px #0008,0 0 0 7px #ffffff0a;
+  overflow:hidden;
+  transform:rotateY(-5deg);
+}
+
+.chrome {
+  height:40px;
+  border-bottom:1px solid #ffffff20;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:0 14px;
+  color:#aed7bd;
+  font-size:10px;
+  letter-spacing:.14em;
+}
+
+.chrome i {
+  height:7px;
+  width:7px;
+  background:#669580;
+  border-radius:50%;
+}
+
+.chrome i:first-child {
+  background:#72d19e;
+}
+
+.chrome span {
+  margin-left:13px;
+}
+
+.app-inner {
+  height:calc(100% - 40px);
+  display:grid;
+  grid-template-columns:110px 1fr;
+}
+
+.rail {
+  border-right:1px solid #ffffff19;
+  padding:24px 9px;
+  color:#9abeaa;
+  font-size:10px;
+}
+
+.rail div {
+  padding:10px 9px;
+  margin-bottom:4px;
+  border-radius:5px;
+}
+
+.rail .selected {
+  background:#358f704d;
+  color:white;
+}
+
+.pane {
+  padding:22px 20px;
+}
+
+.pane .micro {
+  font-size:9px;
+  letter-spacing:.14em;
+  color:#9ed0b0;
+}
+
+.pane h3 {
+  font-size:18px;
+  margin:8px 0 6px;
+}
+
+.pane p {
+  font-size:10px;
+  color:#a6c5b2;
+}
+
+.steps {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:23px;
+}
+
+.steps span {
+  flex:1;
+  background:#153b31;
+  border:1px solid #4f9878;
+  border-radius:7px;
+  padding:10px 7px;
+  font-size:9px;
+  color:#b6d9c5;
+}
+
+.steps b {
+  display:block;
+  color:#f1f5ff;
+  font-size:11px;
+  margin-bottom:4px;
+}
+
+.steps i {
+  font-style:normal;
+  color:#95dab0;
+}
+
+.terminal {
+  margin-top:15px;
+  background:#09241e;
+  border:1px solid #418666;
+  border-radius:9px;
+  overflow:hidden;
+  font:10px/1.75 ui-monospace,monospace;
+  color:#b5dfc6;
+}
+
+.terminal header {
+  padding:7px 11px;
+  color:#aad1b7;
+  border-bottom:1px solid #356b54;
+}
+
+.terminal div {
+  padding:12px;
+}
+
+.terminal strong {
+  color:#b9f08e;
+}
+
+.float {
+  position:absolute;
+  background:#f0fbf1;
+  color:#173c2b;
+  z-index:2;
+  border:1px solid white;
+  border-radius:10px;
+  box-shadow:0 20px 35px #0007;
+  padding:12px 17px;
+  font-size:11px;
+  font-weight:750;
+}
+
+.float small {
+  display:block;
+  color:#688576;
+  font-size:10px;
+  font-weight:500;
+  margin-top:4px;
+}
+
+.float.one {
+  right:-22px;
+  top:57px;
+  transform:rotate(5deg);
+}
+
+.float.two {
+  left:0;
+  bottom:8px;
+  transform:rotate(-4deg);
+}
+
+.under-hero {
+  position:relative;
+  border-top:1px solid #ffffff26;
+  padding:27px 0;
+  display:flex;
+  gap:36px;
+  font-size:11px;
+  letter-spacing:.05em;
+  color:#a8c8b1;
+}
+
+.under-hero strong {
+  color:#e9f8e9;
+}
+
+/* Shared page sections */
+section {
+  padding:110px 0;
+}
+
+.split {
+  display:grid;
+  grid-template-columns:minmax(0, .78fr) minmax(0, 1.22fr);
+  gap:40px;
+  align-items:center;
+}
+
+.intro h2 span {
+  color:#108561;
+}
+
+.intro .lead {
+  font-size:16px;
+}
+
+.architecture {
+  background:#f3f8f3;
+  border:1px solid #e1ece3;
+  border-radius:17px;
+  padding:30px;
+}
+
+.layer {
+  border:1px solid #d5e6d9;
+  border-radius:10px;
+  background:white;
+  padding:17px 19px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  font-size:14px;
+  font-weight:750;
+}
+
+.layer small {
+  color:#6d8576;
+  font-size:11px;
+  font-weight:500;
+}
+
+.layer.focus {
+  background:#0d4938;
+  color:white;
+  border-color:#0d4938;
+  box-shadow:0 16px 30px #0d573735;
+}
+
+.layer.focus small {
+  color:#b8deca;
+}
+
+.bridge {
+  width:1px;
+  height:27px;
+  margin:auto;
+  background:#94c9ac;
+}
+
+.chips {
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+}
+
+.chips span {
+  font-size:10px;
+  background:#e6f5e9;
+  border-radius:5px;
+  padding:5px 7px;
+  color:#2d8462;
+}
+
+.focus .chips span {
+  background:#26634b;
+  color:#e6f5e8;
+}
+
+.metrics {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  margin-top:80px;
+  border-top:1px solid var(--line);
+  padding-top:26px;
+}
+
+.metric {
+  padding-left:30px;
+  border-left:1px solid var(--line);
+}
+
+.metric:first-child {
+  padding:0;
+  border:0;
+}
+
+.metric b {
+  font-size:34px;
+  letter-spacing:-.05em;
+  display:block;
+}
+
+.metric span {
+  font-size:12px;
+  color:#698577;
+}
+
+.metric small {
+  display:block;
+  color:#8aa295;
+  font-size:10px;
+  margin-top:5px;
+}
+
+.soft {
+  background:#f5f9f5;
+}
+
+.section-head {
+  margin-bottom:42px;
+}
+
+.cards {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.card {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:25px;
+  min-height:280px;
+  display:flex;
+  flex-direction:column;
+  transition:transform .2s,box-shadow .2s;
+}
+
+.card:hover,.case:hover {
+  transform:translateY(-4px);
+  box-shadow:0 17px 35px #24365816;
+}
+
+.card.feature {
+  background:#0d4938;
+  color:white;
+  border-color:#0d4938;
+}
+
+.card .index {
+  font-size:10px;
+  letter-spacing:.12em;
+  color:#759285;
+}
+
+.card .icon {
+  height:44px;
+  width:44px;
+  display:grid;
+  place-items:center;
+  border-radius:11px;
+  background:#e3f4e6;
+  color:#148561;
+  font-size:23px;
+  margin:27px 0;
+}
+
+.card.feature .icon {
+  background:#31775b;
+  color:white;
+}
+
+.card h3 {
+  font-size:19px;
+  margin-bottom:10px;
+}
+
+.card p {
+  font-size:12px;
+  color:#6e8478;
+}
+
+.card.feature p {
+  color:#bcdfca;
+}
+
+.card a {
+  margin-top:auto;
+  font-size:11px;
+  color:#168666;
+  font-weight:750;
+}
+
+.card.feature a {
+  color:#d7f8db;
+}
+
+.case-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.case {
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  transition:transform .2s,box-shadow .2s;
+}
+
+.case-art {
+  height:185px;
+  position:relative;
+  overflow:hidden;
+  padding:28px;
+  background:#e3f1e5;
+}
+
+.case:nth-child(2) .case-art {
+  background:#dcf0e8;
+}
+
+.case:nth-child(3) .case-art {
+  background:#e6efe2;
+}
+
+.mock {
+  position:relative;
+  margin:auto;
+  max-width:290px;
+  background:#123c31;
+  color:#c1e4cc;
+  border-radius:10px;
+  padding:18px;
+  box-shadow:0 15px 25px #133f2d50;
+  font:11px/1.6 ui-monospace,monospace;
+  transform:rotate(-4deg);
+}
+
+.case:nth-child(2) .mock {
+  background:white;
+  color:#3b735b;
+  transform:rotate(3deg);
+}
+
+.case:nth-child(3) .mock {
+  background:#164537;
+  color:#c5e4d0;
+  transform:rotate(-3deg);
+}
+
+.case-body {
+  padding:25px;
+}
+
+.case-body label {
+  font-size:10px;
+  color:#1c8062;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+
+.case h3 {
+  font-size:19px;
+  margin:10px 0;
+}
+
+.case p {
+  font-size:12px;
+  color:#718b79;
+  min-height:70px;
+}
+
+.case a {
+  font-size:12px;
+  color:#177f61;
+  font-weight:750;
+}
+
+.manifesto {
+  background:radial-gradient(circle at 95% 50%,#205a48,#0d342a 48%,#0a2a23);
+  color:white;
+}
+
+.manifesto .split {
+  grid-template-columns:minmax(0, 1.2fr) minmax(0, .8fr);
+}
+
+.manifesto h2 {
+  margin:16px 0;
+}
+
+.manifesto p {
+  color:#b8d7c2;
+  max-width:600px;
+}
+
+.quote {
+  font-size:23px;
+  line-height:1.55;
+  color:#e3f6e6;
+  border-left:2px solid #a9e392;
+  padding-left:22px;
+}
+
+/* Honors: replace the placeholder span inside each .award-media with an img. */
+.honors {
+  background:linear-gradient(180deg,#f4f8f4 0%,#fff 100%);
+  position:relative;
+  overflow:hidden;
+}
+
+.honors:before {
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  right:-230px;
+  top:-260px;
+  border:1px solid #b4dac0;
+  border-radius:50%;
+  box-shadow:0 0 0 54px #d9eee14d,0 0 0 108px #d9eee125;
+  pointer-events:none;
+}
+
+.honors .wrap { position:relative; }
+
+.honors-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:28px;
+  margin-bottom:34px;
+}
+
+.honors-heading h2 { margin-top:14px; }
+
+.honors-heading .lead {
+  max-width:340px;
+  font-size:13px;
+  margin:0 0 4px;
+}
+
+.award-grid {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:16px;
+}
+
+.award-card {
+  background:#fff;
+  border:1px solid #dfeae2;
+  border-radius:17px;
+  overflow:hidden;
+  box-shadow:0 12px 35px #16492d09;
+  transition:transform .25s,box-shadow .25s;
+}
+
+.award-card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 20px 42px #16492d18;
+}
+
+.award-media {
+  height:186px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  position:relative;
+  background:radial-gradient(circle at 74% 22%,#e3f7dc 0,transparent 36%),linear-gradient(145deg,#e9f3e9,#dbeae1);
+  border-bottom:1px solid #dce9df;
+}
+
+.award-media:before {
+  content:"";
+  width:82px;
+  height:82px;
+  border:1px solid #83b99a;
+  border-radius:50%;
+  position:absolute;
+  box-shadow:0 0 0 17px #a5d1ae3b,0 0 0 35px #a5d1ae25;
+}
+
+.award-media:after {
+  content:"✦";
+  color:#2f8260;
+  font-size:28px;
+  position:absolute;
+}
+
+.award-media span {
+  position:absolute;
+  right:13px;
+  bottom:12px;
+  color:#5e8a72;
+  background:#ffffffbd;
+  padding:5px 8px;
+  border-radius:5px;
+  font-size:10px;
+}
+
+.award-media img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:relative;
+  z-index:2;
+}
+
+.award-content { padding:23px 21px 25px; }
+.award-content .award-type {
+  font-size:10px;
+  font-weight:800;
+  color:#217e5b;
+  letter-spacing:.11em;
+}
+.award-content h3 {
+  font-size:18px;
+  line-height:1.45;
+  letter-spacing:-.025em;
+  margin:12px 0 9px;
+  min-height:52px;
+}
+.award-content p {
+  color:#758c7c;
+  font-size:12px;
+  line-height:1.7;
+}
+.award-foot {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-top:1px solid #e7efe8;
+  padding-top:15px;
+  margin-top:21px;
+  color:#819589;
+  font-size:11px;
+}
+.award-foot strong { color:#22664b; }
+
+.news-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:42px;
+}
+
+.news-item {
+  border-top:1px solid #d9e9df;
+  padding-top:20px;
+}
+
+.news-item time {
+  font-size:11px;
+  color:#789485;
+}
+
+.news-item h3 {
+  font-size:17px;
+  line-height:1.5;
+  margin:13px 0;
+}
+
+.news-item p {
+  color:#748b7c;
+  font-size:12px;
+}
+
+.news-item a {
+  font-size:12px;
+  color:#218361;
+  font-weight:750;
+}
+
+.endcap {
+  margin-top:70px;
+  padding:42px;
+  background:#eef6ef;
+  border-radius:17px;
+  display:flex;
+  justify-content:space-between;
+  gap:25px;
+  align-items:center;
+}
+
+.endcap h3 {
+  font-size:26px;
+  margin-bottom:6px;
+}
+
+.endcap p {
+  font-size:13px;
+  color:#78869c;
+}
+
+footer {
+  background:#091f1b;
+  color:#b0ceb9;
+  padding:55px 0 24px;
+}
+
+footer .cols {
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:20px;
+}
+
+footer .brand {
+  color:white;
+}
+
+footer p {
+  font-size:12px;
+  margin-top:18px;
+  max-width:300px;
+}
+
+footer h4 {
+  font-size:12px;
+  color:white;
+}
+
+footer .cols a:not(.brand) {
+  display:block;
+  font-size:12px;
+  margin:13px 0;
+}
+
+.copy {
+  border-top:1px solid #ffffff20;
+  font-size:10px;
+  margin-top:48px;
+  padding-top:21px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.demo {
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  background:white;
+  border:1px solid #d5e6d9;
+  color:#34674c;
+  border-radius:8px;
+  padding:10px 13px;
+  font-size:10px;
+  font-weight:750;
+  box-shadow:0 8px 25px #0c403040;
+  z-index:9;
+}
+
+.reveal {
+  opacity:0;
+  transform:translateY(16px);
+  transition:opacity .6s,transform .6s;
+}
+
+.reveal.show {
+  opacity:1;
+  transform:none;
+}
+
+/* Responsive adjustments */
+@media(max-width:1000px) {
+  .links {
+    gap:12px;
+  }
+  .cards {
+    grid-template-columns:repeat(2,1fr);
+  }
+  .award-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .hero {
+    grid-template-columns:50% 50%;
+  }
+  .visual {
+    transform:scale(.85);
+    transform-origin:left center;
+    width:117%;
+  }
+}
+
+/* Phone layout */
+@media(max-width:750px) {
+  section[id],.dark[id] { scroll-margin-top:76px; }
+  .dark { padding-top:68px; }
+  .wrap {
+    width:min(100% - 36px,540px);
+  }
+  .nav {
+    height:68px;
+  }
+  .brand small,.nav-right>a,.nav-right>span,.links {
+    display:none;
+  }
+  .menu {
+    display:block;
+  }
+  .links.open {
+    display:flex;
+    position:absolute;
+    left:-18px;
+    right:-18px;
+    top:65px;
+    background:#0e3a2d;
+    padding:25px;
+    flex-direction:column;
+    gap:20px;
+  }
+  .hero {
+    display:block;
+    padding:65px 0 25px;
+    min-height:0;
+  }
+  .hero h1 {
+    font-size:clamp(52px,12vw,72px);
+  }
+  .hero p {
+    font-size:15px;
+  }
+  .visual {
+    height:370px;
+    width:137%;
+    transform:scale(.73);
+    transform-origin:left top;
+    margin-top:30px;
+  }
+  .float.one {
+    right:25px;
+  }
+  .under-hero {
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .under-hero strong {
+    width:100%;
+  }
+  section {
+    padding:75px 0;
+  }
+  .split,.manifesto .split {
+    grid-template-columns:1fr;
+    gap:32px;
+  }
+  .architecture {
+    padding:20px;
+  }
+  .layer {
+    display:block;
+  }
+  .layer small {
+    display:block;
+    margin-top:7px;
+  }
+  .chips {
+    margin-top:12px;
+  }
+  .metrics {
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+    margin-top:55px;
+  }
+  .metric {
+    padding:0;
+    border:0;
+  }
+  .metric b {
+    font-size:29px;
+  }
+  .cards,.case-grid,.news-grid {
+    grid-template-columns:1fr;
+  }
+  .award-grid { grid-template-columns:1fr; }
+  .honors-heading { display:block; }
+  .honors-heading .lead { margin-top:16px; }
+  .award-media { height:210px; }
+  .award-content h3 { min-height:0; }
+  .card {
+    min-height:235px;
+  }
+  .section-head {
+    margin-bottom:28px;
+  }
+  .endcap {
+    display:block;
+    padding:28px;
+  }
+  .endcap .actions {
+    margin-top:18px;
+  }
+  .quote {
+    font-size:18px;
+  }
+  footer .cols {
+    grid-template-columns:repeat(2,1fr);
+  }
+  .copy {
+    display:block;
+  }
+  .demo {
+    bottom:8px;
+    right:8px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior:auto;
+  }
+  .reveal {
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+  .btn,.card,.case,.award-card {
+    transition:none;
+  }
+}
+
+/* Small reusable utilities */
+.heading-gap { margin-top: 14px; }
+</style>
+</head>
+<body>
+<!-- Hero / replace the concept Workspace with a product capture when ready -->
+<div class="nav-shell">
+<header class="nav wrap"><a class="brand" href="#top"><i></i>YatCC <small>中山大学 · 国家超算广州中心</small></a><nav class="links" id="links">
+<a href="#product">平台能力</a>
+<a href="#cases">应用场景</a>
+<a href="#impact">研究与影响</a>
+<a href="#honors">荣誉奖项</a>
+<a href="#news">动态</a></nav><div class="nav-right">
+<span>中文 / EN</span><a href="https://ol.yatcc.arcsysu.cn/" target="_blank" rel="noopener">进入平台 ↗</a><button class="menu" id="menu" aria-label="打开菜单" aria-expanded="false">☰</button>
+</div></header>
+</div>
+<div class="dark" id="top">
+<div class="hero wrap">
+<div class="hero-copy">
+<div class="pill">
+<b></b>AI-NATIVE COMPUTING WORKSPACE</div>
+<h1>让智能<br><em>真正工作</em>
+</h1>
+<p>将模型、Agent、工具与算力汇入统一工作空间；从想法、开发到运行和交付，让复杂任务在真实环境中持续推进</p>
+<div class="actions">
+<a class="btn green" href="https://ol.yatcc.arcsysu.cn/" target="_blank" rel="noopener">进入工作空间 ↗</a>
+<a class="btn ghost" href="#product">了解平台能力 ↓</a>
+</div>
+<div class="tagline">Token 让 AI 可调用，<strong>Workspace 让 AI 真正工作</strong>
+</div>
+</div>
+<div class="visual" aria-label="YatCC Workspace 概念界面">
+<div class="app">
+<div class="chrome">
+<i></i><i></i><i></i><span>YATCC / WORKSPACE</span>
+</div>
+<div class="app-inner">
+<div class="rail">
+<div class="selected">◈  项目概览</div>
+<div>✳  智能体</div>
+<div>◎  模型服务</div>
+<div>⌘  运行环境</div>
+<div>▤  项目文件</div>
+</div>
+<div class="pane">
+<span class="micro">ACTIVE PROJECT · RESEARCH WORKFLOW</span><h3>编译任务与模型评测</h3>
+<p>统一组织任务、工具、代码与运行状态</p>
+<div class="steps">
+<span><b>01 · 定义任务</b>需求与数据</span><i>→</i><span><b>02 · 协同执行</b>Agent × 工具</span><i>→</i><span><b>03 · 交付结果</b>实验与产物</span>
+</div>
+<div class="terminal">
+<header>终端 / 实验环境   ·   ● 已连接</header><div>$ yatcc run benchmark --task compiler<br><strong>✓</strong> 环境准备完成   <strong>✓</strong> 模型已接入<br><strong>✓</strong> 任务运行中 · 结果持续记录<br>→ 输出已保存至当前 Workspace</div>
+</div>
+</div>
+</div>
+</div>
+<div class="float one">▣   AI Hub<small>统一调用多种模型</small>
+</div>
+<div class="float two">✳   Agent 已就绪<small>工具 · 环境 · 工作状态</small>
+</div>
+</div>
+</div>
+<div class="under-hero wrap">
+<strong>FROM COMPUTE TO WORKSPACE</strong><span>模型可用</span><span>环境即开</span><span>智能体协作</span><span>工作可持续</span>
+</div>
+</div>
+
+<!-- 01 / The YatCC approach and platform metrics -->
+<section class="intro" id="product"><div class="wrap">
+<div class="split reveal">
+<div>
+<div class="eyebrow">THE YATCC APPROACH</div>
+<h2 class="heading-gap">从调用智能，<br>到<span>完成工作</span>
+</h2>
+<p class="lead">一个连接用户与模型、算力资源的统一工作层；项目所需的 Agent、工具、数据、运行环境与状态，在这里持续组织</p>
+</div>
+<div class="architecture">
+<div class="layer">用户与任务 <small>教学实践 · 科学研究 · 工程创新</small>
+</div>
+<div class="bridge"></div>
+<div class="layer focus">
+<div>YatCC Workspace<small> 统一的智能工作层</small>
+</div>
+<div class="chips">
+<span>Agent</span><span>模型</span><span>工具</span><span>数据</span><span>状态</span>
+</div>
+</div>
+<div class="bridge"></div>
+<div class="layer">算力与运行环境 <small>容器 · 模型服务 · 异构计算资源</small>
+</div>
+</div>
+</div>
+<div class="metrics reveal">
+<div class="metric">
+<b>700+</b><span>注册用户</span><small>示例口径，发布前核准</small>
+</div>
+<div class="metric">
+<b>300亿+</b><span>累计 Token 调用量</span><small>示例口径，发布前核准</small>
+</div>
+<div class="metric">
+<b>900+</b><span>容器镜像实例</span><small>具体统计含义待核准</small>
+</div>
+<div class="metric">
+<b>30+</b><span>可用模型</span><small>具体统计日期待核准</small>
+</div>
+</div>
+</div></section>
+
+<!-- 02 / Platform capabilities -->
+<section class="soft" id="capabilities"><div class="wrap">
+<div class="section-head reveal">
+<div class="eyebrow">ONE PLATFORM · CONNECTED CAPABILITIES</div>
+<h2 class="heading-gap">一个平台，组织完成任务<br>所需的一切</h2>
+<p class="lead">统一的工作空间连接模型服务、运行环境与智能体能力</p>
+</div>
+<div class="cards">
+<article class="card feature reveal"><span class="index">01 / WORKSPACE</span><div class="icon">◈</div>
+<h3>持续工作的空间</h3>
+<p>围绕项目组织模型、Agent、工具、数据与环境，让任务可继续、可复用</p>
+<a href="#product">统一工作层 ↗</a></article>
+<article class="card reveal"><span class="index">02 / AI HUB</span><div class="icon">◎</div>
+<h3>统一的模型入口</h3>
+<p>通过一致接口连接多种模型，管理权限、用量与项目资源。</p>
+<a href="#cases">模型服务 ↗</a></article>
+<article class="card reveal"><span class="index">03 / COMPUTE</span><div class="icon">⌘</div>
+<h3>随时就绪的环境</h3>
+<p>云端开发与容器运行环境衔接计算资源，让实验在真实环境中执行</p>
+<a href="#cases">运行环境 ↗</a></article>
+<article class="card reveal"><span class="index">04 / AGENTS</span><div class="icon">✳</div>
+<h3>参与任务的智能体</h3>
+<p>通过 Hermes、Skill 与工具调用，协助完成多步骤工作</p>
+<a href="#cases">Agent 能力 ↗</a></article>
+</div>
+</div></section>
+
+<!-- 03 / Application scenarios -->
+<section id="cases"><div class="wrap">
+<div class="section-head reveal">
+<div class="eyebrow">REAL WORK · REAL IMPACT</div>
+<h2 class="heading-gap">让技术进入真实场景</h2>
+<p class="lead">从课堂实践到模型评测，YatCC 在真实用户与任务中持续演进</p>
+</div>
+<div class="case-grid">
+<article class="case reveal"><div class="case-art"><div class="mock">src/compiler/main.cpp<br><br>class Compiler {<br>  analyze(source);<br>  build(ir);<br>  evaluate(output);<br>}<br>✓ 测试通过</div></div>
+<div class="case-body">
+<label>EDUCATION / 教学实践</label><h3>从课程作业到系统作品</h3>
+<p>预置编译实验环境、开发工具与模型辅助，让学生专注设计、实现和验证</p>
+<a href="https://docs.yatcc-ai.com/" target="_blank" rel="noopener">查看编译实践文档 ↗</a>
+</div></article>
+<article class="case reveal"><div class="case-art"><div class="mock">研究问题 → Agent + 工具<br><br>运行环境已就绪<br>任务状态持续记录<br><br>✓ 保存实验结果</div></div>
+<div class="case-body">
+<label>RESEARCH / 科研工作</label><h3>从想法到可运行实验</h3>
+<p>在统一空间中组织任务与运行条件，探索可复现的科研工作流程</p>
+<a href="#product">了解工作方式 ↗</a>
+</div></article>
+<article class="case reveal"><div class="case-art"><div class="mock">RAMP / MODEL EVALUATION<br><br>模型 A　████████<br>模型 B　██████<br>模型 C　█████████</div></div>
+<div class="case-body">
+<label>EVALUATION / 模型评测</label><h3>在真实任务中理解模型</h3>
+<p>以编译等复杂任务作为负载，观察模型在完整工作过程中的能力</p>
+<a href="https://ramp.nexa-lang.com/" target="_blank" rel="noopener">了解 RAMP ↗</a>
+</div></article>
+</div>
+</div></section>
+
+<!-- 04 / Research and impact -->
+<section class="manifesto" id="impact"><div class="wrap split">
+<div class="reveal">
+<div class="eyebrow on-dark">RESEARCH → INFRASTRUCTURE → IMPACT</div>
+<h2>让系统研究，<br>成为共享能力</h2>
+<p>YatCC 从编译教学与系统实践生长，在真实环境与负载中验证想法，将经验沉淀为服务教学、科研与工程的智能基础设施</p>
+</div>
+<div class="quote reveal">“从计算基础设施，走向真正可用的智能工作空间”</div>
+</div></section>
+
+<!-- 05 / Honors and recognitions.
+     To use a real award image, replace the placeholder span within .award-media
+     with: <img src="images/award.webp" alt="奖项照片说明" loading="lazy">. -->
+<section class="honors" id="honors">
+  <div class="wrap">
+    <div class="honors-heading reveal">
+      <div>
+        <div class="eyebrow">HONORS &amp; RECOGNITION / 荣誉与认可</div>
+        <h2>实践成果，获得认可</h2>
+      </div>
+      <p class="lead">平台应用、教学创新与服务实践持续积累；正式发布时，可将下方占位图替换为证书、案例封面或活动照片</p>
+    </div>
+
+    <div class="award-grid">
+      <article class="award-card reveal">
+        <div class="award-media" role="img" aria-label="全国超算典型应用案例图片占位"><span>奖项图片占位</span></div>
+        <div class="award-content">
+          <div class="award-type">PLATFORM APPLICATION / 平台应用</div>
+          <h3>全国超算典型应用案例</h3>
+          <p>YatCC 入选基金委高技术中心全国超算典型应用案例</p>
+          <div class="award-foot"><span>2026</span><strong>平台案例</strong></div>
+        </div>
+      </article>
+
+      <article class="award-card reveal">
+        <div class="award-media" role="img" aria-label="可信 Token 云服务创新实践案例图片占位"><span>奖项图片占位</span></div>
+        <div class="award-content">
+          <div class="award-type">INTELLIGENT SERVICE / 智能服务</div>
+          <h3>可信 Token 云服务创新实践案例</h3>
+          <p>面向真实场景的一体化智能服务探索入选实践案例</p>
+          <div class="award-foot"><span>2026</span><strong>实践案例</strong></div>
+        </div>
+      </article>
+
+      <article class="award-card reveal">
+        <div class="award-media" role="img" aria-label="教师人工智能应用培育案例图片占位"><span>奖项图片占位</span></div>
+        <div class="award-content">
+          <div class="award-type">EDUCATION / 教学创新</div>
+          <h3>教师人工智能应用培育案例</h3>
+          <p>YatCC 教学实践入选教育部教师人工智能应用培育案例</p>
+          <div class="award-foot"><span>2026</span><strong>教学案例</strong></div>
+        </div>
+      </article>
+
+      <article class="award-card reveal">
+        <div class="award-media" role="img" aria-label="广东省本科教学成果特等奖图片占位"><span>奖项图片占位</span></div>
+        <div class="award-content">
+          <div class="award-type">SUPPORTED ACHIEVEMENT / 支撑成果</div>
+          <h3>广东省本科教学成果特等奖</h3>
+          <p>YatCC 支撑相关本科教学成果获广东省特等奖</p>
+          <div class="award-foot"><span>2025</span><strong>支撑成果</strong></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 06 / News and final action -->
+<section id="news"><div class="wrap">
+<div class="eyebrow reveal">UPDATES / 最新进展</div>
+<h2 class="reveal">持续演进，持续开放</h2>
+<div class="news-grid">
+<article class="news-item reveal"><time>2026.08.12</time><h3>YatCC 亮相 APAN62，分享智能工作空间探索</h3>
+<p>Turning Computing Infrastructure into Intelligent Workspaces</p>
+<a href="https://yatcc-ai.com/zh/news/" target="_blank" rel="noopener">阅读更多 ↗</a></article>
+<article class="news-item reveal"><time>2026.07.29</time><h3>入选可信 Token 云服务创新实践案例</h3>
+<p>场景驱动的一体化智能服务平台探索</p>
+<a href="https://yatcc-ai.com/zh/news/" target="_blank" rel="noopener">阅读更多 ↗</a></article>
+<article class="news-item reveal"><time>2026.06.14</time><h3>全面支持 Hermes 智能体与个性化 Skill</h3>
+<p>让模型、工具与工作环境更紧密地协同</p>
+<a href="https://yatcc-ai.com/zh/news/" target="_blank" rel="noopener">阅读更多 ↗</a></article>
+</div>
+<div class="endcap reveal">
+<div>
+<h3>从这里，开始你的下一项工作</h3>
+<p>进入平台，或通过文档了解 YatCC</p>
+</div>
+<div class="actions">
+<a class="btn navy" href="https://ol.yatcc.arcsysu.cn/" target="_blank" rel="noopener">进入平台 ↗</a>
+<a class="btn outline" href="https://docs.yatcc-ai.com/" target="_blank" rel="noopener">阅读文档 ↗</a>
+</div>
+</div>
+</div></section>
+
+<!-- Footer links -->
+<footer><div class="wrap">
+<div class="cols">
+<div>
+<a class="brand" href="#top"><i></i>YatCC</a><p>让算力、模型与智能体协同工作<br>面向教学、科研与工程创新的一体化智能工作平台</p>
+</div>
+<div>
+<h4>平台</h4>
+<a href="#product">工作方式</a>
+<a href="#capabilities">平台能力</a>
+<a href="#cases">应用场景</a>
+<a href="#honors">荣誉奖项</a>
+</div>
+<div>
+<h4>探索</h4>
+<a href="https://docs.yatcc-ai.com/" target="_blank" rel="noopener">使用文档</a>
+<a href="https://ramp.nexa-lang.com/" target="_blank" rel="noopener">RAMP 评测</a>
+<a href="https://yatcc-ai.com/zh/news/" target="_blank" rel="noopener">平台动态</a>
+</div>
+<div>
+<h4>关于</h4>
+<a href="https://arcsysu.tech/" target="_blank" rel="noopener">arcSYSu Lab</a>
+<a href="https://yatcc-ai.com/zh/" target="_blank" rel="noopener">YatCC 官网</a>
+</div>
+</div>
+<div class="copy">
+<span>© YatCC · Sun Yat-sen University · National Supercomputer Center in Guangzhou</span><span>首页概念演示 · 非正式发布页面</span>
+</div>
+</div></footer><div class="demo">YatCC 官网改版 · 概念演示</div>
+
+<!-- Mobile navigation and reveal motion -->
+<script>
+  // Mobile navigation
+  const menu = document.getElementById('menu');
+  const links = document.getElementById('links');
+
+  menu.addEventListener('click', () => {
+    const isOpen = links.classList.toggle('open');
+    menu.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  links.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      links.classList.remove('open');
+      menu.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Reveal sections once; reduce-motion users see content immediately via CSS.
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal').forEach((element) => {
+      observer.observe(element);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach((element) => {
+      element.classList.add('show');
+    });
+  }
+</script>
+</body>
+</html>
