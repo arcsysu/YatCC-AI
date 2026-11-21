@@ -99,7 +99,7 @@ window.YatccTutorialContent = {
       "zh": "HPC ASIA 2027 · 实践教程"
     },
     "hero.title": {
-      "en": "From Models to<br><em>Scientific<br>Workflows.</em>",
+      "en": "From Models to<br><em>Scientific<br>Workflows</em>",
       "zh": "从模型服务<br>到<em>科学工作流</em>"
     },
     "hero.building_intelligent_hpc_workspaces_with_yatcc": {
@@ -147,7 +147,7 @@ window.YatccTutorialContent = {
       "zh": "执行后端适配"
     },
     "hero.a_persistent_home_for_your_scientific": {
-      "en": "A customized home for your scientific task",
+      "en": "A customized space for your scientific task",
       "zh": "承载科学任务的定制化工作空间"
     },
     "hero.agent_tools": {
@@ -268,7 +268,7 @@ window.YatccTutorialContent = {
     },
     "overview.reproducible_workflows": {
       "en": "Reproducible workflows",
-      "zh": "可复现工作流"
+      "zh": "可复现流程"
     },
     "overview.serve_a_model": {
       "en": "Serve a model",
@@ -328,7 +328,7 @@ window.YatccTutorialContent = {
     },
     "materials.title": {
       "en": "Everything for the hands-on.",
-      "zh": "课前准备与现场材料，一站获取"
+      "zh": "会前准备与现场材料，一站获取"
     },
     "materials.start_with_the_preparation_guide_and": {
       "en": "Start with the preparation guide and reference resources. Slides and runnable lab materials will be added here as they are released.",
@@ -352,7 +352,7 @@ window.YatccTutorialContent = {
     },
     "materials.the_guide_checklist_and_architecture_support": {
       "en": "The guide, checklist and architecture support pre-tutorial preparation. Final lab instructions, data and expected outputs will be released separately. Hosted lab access details will be provided for the session.",
-      "zh": "准备指南、检查清单与架构图用于课前学习；正式实验说明、数据与预期输出将单独发布。现场托管实验环境的访问方式将在 Tutorial 中提供"
+      "zh": "准备指南、检查清单与架构图用于会前学习；正式实验说明、数据与预期输出将单独发布。现场托管实验环境的访问方式将在 Tutorial 中提供"
     },
     "participate.come_ready_to_build": {
       "en": "COME READY TO BUILD",
@@ -392,7 +392,7 @@ window.YatccTutorialContent = {
     },
     "participate.a_small_preparation_checklist": {
       "en": "A small preparation checklist",
-      "zh": "轻量课前准备"
+      "zh": "轻量会前准备"
     },
     "participate.laptop_modern_browser_wi_fi": {
       "en": "Laptop, modern browser, Wi-Fi",
@@ -448,7 +448,7 @@ window.YatccTutorialContent = {
     },
     "speakers.leads_the_arcsysu_research_group_his": {
       "en": "Leads the arcSYSu research group. His research spans GPU systems, compilers, runtimes and HPC/AI infrastructure, with industry experience at AMD and NVIDIA and a Ph.D. from the University of Pittsburgh.",
-      "zh": "领导 arcSYSu 研究组，研究方向涵盖 GPU 系统、编译与运行时、HPC 和 AI 基础设施。曾在 AMD 和 NVIDIA 工作或实习，获 University of Pittsburgh 计算机科学博士学位。"
+      "zh": "领导 arcSYSu 研究组，研究方向涵盖 GPU 系统、编译与运行时、HPC 和 AI 基础设施。曾在 AMD 和 NVIDIA 工作，获 University of Pittsburgh 计算机科学博士学位。"
     },
     "speakers.homepage": {
       "en": "Homepage",
@@ -678,7 +678,7 @@ window.YatccTutorialContent = {
       },
       "title": {
         "en": "Before you arrive",
-        "zh": "课前准备指南"
+        "zh": "会前准备指南"
       },
       "desc": {
         "en": "Audience, prerequisites, what to bring and how the hosted lab works.",

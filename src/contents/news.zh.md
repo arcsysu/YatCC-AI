@@ -1,6 +1,6 @@
-2026年11月27日：YatCC 亮相 [第28届中国国际高新技术成果交易会](https://chtfair.com/)（深圳）·可信Token云服务论坛。
-2026年11月1日：Tutorial 入选 [HPC Asia 2027](https://hpcasia2027.org/2027/)（韩国首尔）， “From Models to Scientific Workflows: Building Intelligent HPC Workspaces with YatCC“。
-2026年10月19日：YatCC 亮相[高性能计算学术大会](https://ccf.org.cn/hpcchina2026)（CCF HPC 2026）论坛， “[从任务到智能体：Agent时代高性能计算系统的新挑战](https://mp.weixin.qq.com/s/PLXsN1FULU2lG382uEXeMA)”。
+2026年11月27日：YatCC 亮相 [第28届中国国际高新技术成果交易会](https://chtfair.com/)（深圳）·可信 Token 云服务论坛。
+2026年11月1日：Tutorial 入选 [HPC Asia 2027](https://hpcasia2027.org/2027/)（South Korea）， “From Models to Scientific Workflows: Building Intelligent HPC Workspaces with YatCC“。
+2026年10月19日：YatCC 亮相[高性能计算学术大会](https://ccf.org.cn/hpcchina2026)（CCF HPC 2026）论坛， “[从任务到智能体：Agent 时代高性能计算系统的新挑战](https://mp.weixin.qq.com/s/PLXsN1FULU2lG382uEXeMA)”。
 2026年9月18日：支持 Qwen 模型基于自研框架 [gLLM](https://dl.acm.org/doi/10.1145/3712285.3759823) 私有部署，推理服务正式接入 [AI Hub](https://token.aihub.arcsysu.cn/)。
 2026年8月21日：YatCC 团队成员在 [2026年全国大学生计算机系统能力大赛](https://mp.weixin.qq.com/s/6ovJJMjBSXOdCnG1Mff6hQ)中获多个奖项，包括OS赛道一等、二等、优胜奖，编译赛道三等奖。
 2026年8月19日：YatCC 参加 [2026年全国编译课程教学研讨会](https://mp.weixin.qq.com/s/OJuIRVG6i00kef5gpP8lhQ)（天津），作《YatCC: 基于智能空间的一体化编译教学实践》分享报告。
