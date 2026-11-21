@@ -80,11 +80,11 @@ window.YatccTutorialContent = {
     },
     "navigation.overview": {
       "en": "Overview",
-      "zh": "Tutorial概览"
+      "zh": "Tutorial 概览"
     },
     "navigation.program": {
       "en": "Program",
-      "zh": "Tutorial议程"
+      "zh": "Tutorial 议程"
     },
     "navigation.materials": {
       "en": "Materials",
@@ -216,7 +216,7 @@ window.YatccTutorialContent = {
     },
     "conference.tutorial_day": {
       "en": "Tutorial day",
-      "zh": "Tutorial日期"
+      "zh": "Tutorial 日期"
     },
     "conference.february_19_2027": {
       "en": "February 19, 2027",
@@ -248,15 +248,15 @@ window.YatccTutorialContent = {
     },
     "overview.the_idea": {
       "en": "THE IDEA",
-      "zh": "Tutorial概览"
+      "zh": "Tutorial 概览"
     },
     "overview.title": {
       "en": "Connect the tools.<br>Complete the science.",
       "zh": "贯通模型与算力，<br>让科学任务真正落地"
     },
     "overview.a_model_endpoint_is_only_the": {
-      "en": "A model endpoint is only the beginning. Learn how private LLM services, managed data and execution backends come together in a persistent workspace—with researchers in control at every critical step.",
-      "zh": "模型接口只是起点；本Tutorial将私有大模型服务、科学数据和计算后端连接起来，构建持久化科研工作空间，并在关键步骤保留研究者的审查与控制"
+      "en": "A model endpoint is only the beginning. Learn how private LLM services, managed data and execution backends come together in a customized workspace—with researchers in control at every critical step.",
+      "zh": "模型接口只是起点；本 Tutorial 将私有大模型服务、科学数据和计算后端连接起来，构建定制化科研工作空间，并在关键步骤保留研究者的审查与控制"
     },
     "overview.researcher_oversight": {
       "en": "Researcher oversight",
@@ -304,7 +304,7 @@ window.YatccTutorialContent = {
     },
     "program.the_program": {
       "en": "THE PROGRAM",
-      "zh": "Tutorial议程"
+      "zh": "Tutorial 议程"
     },
     "program.title": {
       "en": "One workflow.<br>From start to finish.",
@@ -320,7 +320,7 @@ window.YatccTutorialContent = {
     },
     "program.times_below_are_minutes_from_the": {
       "en": "Times below are minutes from the session start. Select a topic for details.",
-      "zh": "下列时间为Tutorial开始后的相对时间，点击议题可查看详情"
+      "zh": "下列时间为 Tutorial 开始后的相对时间，点击议题可查看详情"
     },
     "materials.the_resource_desk": {
       "en": "THE RESOURCE DESK",
@@ -332,7 +332,7 @@ window.YatccTutorialContent = {
     },
     "materials.start_with_the_preparation_guide_and": {
       "en": "Start with the preparation guide and reference resources. Slides and runnable lab materials will be added here as they are released.",
-      "zh": "可先下载准备指南与参考资料；Tutorial讲义和可运行实验材料将在发布后于此开放"
+      "zh": "可先下载准备指南与参考资料；Tutorial 讲义和可运行实验材料将在发布后于此开放"
     },
     "materials.all_resources": {
       "en": "All resources",
@@ -352,7 +352,7 @@ window.YatccTutorialContent = {
     },
     "materials.the_guide_checklist_and_architecture_support": {
       "en": "The guide, checklist and architecture support pre-tutorial preparation. Final lab instructions, data and expected outputs will be released separately. Hosted lab access details will be provided for the session.",
-      "zh": "准备指南、检查清单与架构图用于课前学习；正式实验说明、数据与预期输出将单独发布。现场托管实验环境的访问方式将在Tutorial中提供"
+      "zh": "准备指南、检查清单与架构图用于课前学习；正式实验说明、数据与预期输出将单独发布。现场托管实验环境的访问方式将在 Tutorial 中提供"
     },
     "participate.come_ready_to_build": {
       "en": "COME READY TO BUILD",
@@ -388,7 +388,7 @@ window.YatccTutorialContent = {
     },
     "participate.the_conference_tutorial_call_states_that": {
       "en": "The conference tutorial call states that registered HPC Asia 2027 attendees may join tutorials without an additional tutorial fee. There is no tutorial-only registration.",
-      "zh": "按会议 Tutorial 通知，已注册 HPC Asia 2027 的参会者参加Tutorial无需额外付费；会议不提供仅限 Tutorial 的注册类别"
+      "zh": "按会议 Tutorial 通知，已注册 HPC Asia 2027 的参会者参加 Tutorial 无需额外付费；会议不提供仅限 Tutorial 的注册类别"
     },
     "participate.a_small_preparation_checklist": {
       "en": "A small preparation checklist",
@@ -436,11 +436,11 @@ window.YatccTutorialContent = {
     },
     "speakers.the_yatcc_team_at_sun_yat": {
       "en": "The YatCC team at Sun Yat-sen University brings together systems research, platform engineering and hands-on teaching.",
-      "zh": "来自中山大学的 YatCC 团队，将系统研究、平台开发与实践教学带到Tutorial现场"
+      "zh": "来自中山大学的 YatCC 团队，将系统研究、平台开发与实践教学带到 Tutorial 现场"
     },
     "speakers.session_leader": {
       "en": "SESSION LEADER",
-      "zh": "Tutorial负责人"
+      "zh": "Tutorial 负责人"
     },
     "speakers.associate_professor_sun_yat_sen_university": {
       "en": "Associate Professor · Sun Yat-sen University",
@@ -448,7 +448,7 @@ window.YatccTutorialContent = {
     },
     "speakers.leads_the_arcsysu_research_group_his": {
       "en": "Leads the arcSYSu research group. His research spans GPU systems, compilers, runtimes and HPC/AI infrastructure, with industry experience at AMD and NVIDIA and a Ph.D. from the University of Pittsburgh.",
-      "zh": "领导 arcSYSu 研究组，研究方向涵盖 GPU 系统、编译与运行时、HPC 和 AI 基础设施。曾在 AMD 和 NVIDIA 工作或实习，获匹兹堡大学计算机科学博士学位。"
+      "zh": "领导 arcSYSu 研究组，研究方向涵盖 GPU 系统、编译与运行时、HPC 和 AI 基础设施。曾在 AMD 和 NVIDIA 工作或实习，获 University of Pittsburgh 计算机科学博士学位。"
     },
     "speakers.homepage": {
       "en": "Homepage",
@@ -472,7 +472,7 @@ window.YatccTutorialContent = {
     },
     "faq.have_a_specific_question_get_in": {
       "en": "Have a specific question? <a class='text-link' href='mailto:zhangxw79@mail.sysu.edu.cn'>Get in touch.</a>",
-      "zh": "有其他问题？<a class='text-link' href='mailto:zhangxw79@mail.sysu.edu.cn'>联系Tutorial团队。</a>"
+      "zh": "有其他问题？<a class='text-link' href='mailto:zhangxw79@mail.sysu.edu.cn'>联系 Tutorial 团队。</a>"
     },
     "faq.do_i_need_experience_with_yatcc": {
       "en": "Do I need experience with YatCC or LLM serving?",
@@ -480,7 +480,7 @@ window.YatccTutorialContent = {
     },
     "faq.no_prior_yatcc_experience_or_gpu": {
       "en": "No prior YatCC experience or GPU administration experience is required. The tutorial is intermediate overall, but introductory walkthroughs make it accessible to participants new to LLM serving. Basic Python or shell and batch-job concepts will help.",
-      "zh": "无需 YatCC 使用经验，也不要求 GPU 管理经验。Tutorial整体为中级难度，但通过入门讲解帮助初次接触大模型服务的参与者上手。建议具备基础 Python 或 Shell 知识并了解批处理作业概念。"
+      "zh": "无需 YatCC 使用经验，也不要求 GPU 管理经验。Tutorial 整体为中级难度，但通过入门讲解帮助初次接触大模型服务的参与者上手。建议具备基础 Python 或 Shell 知识并了解批处理作业概念。"
     },
     "faq.will_agents_run_generated_code_automatically": {
       "en": "Will agents run generated code automatically?",
@@ -496,7 +496,7 @@ window.YatccTutorialContent = {
     },
     "faq.the_tutorial_plan_includes_reference_scripts": {
       "en": "The tutorial plan includes reference scripts, prepared outputs, screenshots and recorded demonstrations as fallback materials. These support discussion and verification when live services are unavailable; hands-on hosted access still requires connectivity.",
-      "zh": "Tutorial计划配备参考脚本、预生成输出、截图与录制演示作为备用材料，便于在实时服务不可用时继续讲解和验证。在线托管环境的实际操作仍需要网络连接。"
+      "zh": "Tutorial 计划配备参考脚本、预生成输出、截图与录制演示作为备用材料，便于在实时服务不可用时继续讲解和验证。在线托管环境的实际操作仍需要网络连接。"
     },
     "faq.can_i_adapt_the_workflow_for": {
       "en": "Can I adapt the workflow for my own institution?",
@@ -504,7 +504,7 @@ window.YatccTutorialContent = {
     },
     "faq.yes_the_reference_architecture_and_reusable": {
       "en": "Yes—the reference architecture and reusable workflow template are intended to support adaptation. Institutional deployment must account for model access, scheduler policies, resource isolation, permissions, data staging and budget limits. The closing discussion covers these trade-offs.",
-      "zh": "可以。参考架构与可复用工作流模板旨在支持环境适配。机构部署需结合模型访问、调度策略、资源隔离、权限、数据预备及预算限制；Tutorial最后将讨论这些取舍。"
+      "zh": "可以。参考架构与可复用工作流模板旨在支持环境适配。机构部署需结合模型访问、调度策略、资源隔离、权限、数据预备及预算限制；Tutorial 最后将讨论这些取舍。"
     },
     "closing.meet_us_in_seoul": {
       "en": "Meet us in Seoul.",
@@ -516,7 +516,7 @@ window.YatccTutorialContent = {
     },
     "closing.browse_the_materials": {
       "en": "Browse the materials",
-      "zh": "查看Tutorial材料"
+      "zh": "查看 Tutorial 材料"
     },
     "closing.explore_yatcc": {
       "en": "Explore YatCC",
@@ -571,8 +571,8 @@ window.YatccTutorialContent = {
         "zh": "概念讲解 · 现场交流 · 参考架构"
       },
       "body": {
-        "en": "Identify the fragmentation between model services, data, environments and compute. Map the components of a persistent workspace and discuss where agents can help a scientific task.",
-        "zh": "识别模型服务、数据、软件环境与计算资源之间的割裂，理解持久化工作空间的组成，讨论 Agent 如何协助完成科学任务。"
+        "en": "Identify the fragmentation between model services, data, environments and compute. Map the components of a customized workspace and discuss where agents can help a scientific task.",
+        "zh": "识别模型服务、数据、软件环境与计算资源之间的割裂，理解定制化工作空间的组成，讨论 Agent 如何协助完成科学任务。"
       },
       "id": "motivation"
     },
@@ -603,7 +603,7 @@ window.YatccTutorialContent = {
         "zh": "功能演示 · 引导配置"
       },
       "body": {
-        "en": "Connect an AI hub for routing and token accounting, add HPC/cloud execution adapters, stage datasets and define permissions and job controls. Relate these services to persistent workspace state.",
+        "en": "Connect an AI hub for routing and token accounting, add HPC/cloud execution adapters, stage datasets and define permissions and job controls. Relate these services to customized workspace state.",
         "zh": "配置 AI Hub 的模型路由与 Token 用量记录，接入 HPC 或云执行适配器，预备数据集，设置权限和作业控制，并理解这些服务如何与工作空间状态协同。"
       },
       "id": "connect-services"
@@ -682,7 +682,7 @@ window.YatccTutorialContent = {
       },
       "desc": {
         "en": "Audience, prerequisites, what to bring and how the hosted lab works.",
-        "zh": "适合人群、知识准备、携带物品，以及托管实验的参与方式。"
+        "zh": "适合人群、知识准备、携带物品，以及托管实验的参与方式"
       },
       "file": {
         "en": "materials/guide.en.md",
@@ -703,7 +703,7 @@ window.YatccTutorialContent = {
       },
       "desc": {
         "en": "A portable diagram connecting models, data, compute and human review.",
-        "zh": "连接模型、数据、算力与人工审查的可缩放架构示意图。"
+        "zh": "连接模型、数据、算力与人工审查的可缩放架构示意图"
       },
       "file": {
         "en": "materials/architecture.en.svg",
@@ -724,7 +724,7 @@ window.YatccTutorialContent = {
       },
       "desc": {
         "en": "What to measure, record and verify in a scientific workflow.",
-        "zh": "梳理科学工作流中应测量、记录和验证的关键事项。"
+        "zh": "梳理科学工作流中应测量、记录和验证的关键事项"
       },
       "file": {
         "en": "materials/checklist.en.md",
@@ -741,11 +741,11 @@ window.YatccTutorialContent = {
       },
       "title": {
         "en": "Tutorial slides",
-        "zh": "Tutorial讲义"
+        "zh": "Tutorial 讲义"
       },
       "desc": {
         "en": "Concepts, deployment walkthroughs and the end-to-end workflow.",
-        "zh": "核心概念、部署讲解与端到端工作流的现场演示材料。"
+        "zh": "核心概念、部署讲解与端到端工作流的现场演示材料"
       },
       "file": null
     },
@@ -763,7 +763,7 @@ window.YatccTutorialContent = {
       },
       "desc": {
         "en": "Example API calls, scripts, redistributable data and expected outputs.",
-        "zh": "API 调用示例、实验脚本、可再分发数据与预期输出。"
+        "zh": "API 调用示例、实验脚本、可再分发数据与预期输出"
       },
       "file": null
     },
@@ -781,27 +781,27 @@ window.YatccTutorialContent = {
       },
       "desc": {
         "en": "Setup instructions, container recipes and backend configuration examples.",
-        "zh": "环境准备说明、容器配置与执行后端接入示例。"
+        "zh": "环境准备说明、容器配置与执行后端接入示例"
       },
       "file": null
     }
   ],
   "workflowSteps": [
     {
-      "en": "<strong>Connect.</strong> Bring a model endpoint, managed data and an execution backend into one persistent workspace.",
-      "zh": "<strong>接入。</strong>将模型接口、统一管理的数据与执行后端，连接到同一个持久化工作空间。"
+      "en": "<strong>Connect.</strong> Bring a model endpoint, managed data and an execution backend into one workspace.",
+      "zh": "<strong>接入：</strong>将模型接口、统一管理的数据与执行后端，连接到同一工作空间"
     },
     {
       "en": "<strong>Review.</strong> Inspect the agent’s proposed analysis code and parameters. A researcher approves the computation.",
-      "zh": "<strong>审查。</strong>检查 Agent 提议的分析代码与参数，由研究者批准计算任务。"
+      "zh": "<strong>审查：</strong>检查 Agent 提议的分析代码与参数，由研究者批准计算任务"
     },
     {
       "en": "<strong>Execute.</strong> Stage inputs, submit the approved job and retrieve results under backend permissions and scheduler policies.",
-      "zh": "<strong>执行。</strong>预备输入、提交已批准作业并取回结果，遵循后端权限与调度策略。"
+      "zh": "<strong>执行：</strong>预备输入、提交已批准作业并取回结果，遵循后端权限与调度策略"
     },
     {
       "en": "<strong>Validate.</strong> Check reference outputs, measure the workflow and preserve versions, logs and human decisions.",
-      "zh": "<strong>验证。</strong>对照参考输出，测量工作流性能，保留版本、日志和人工决策记录。"
+      "zh": "<strong>验证：</strong>对照参考输出，测量工作流性能，保留版本、日志和人工决策记录"
     }
   ],
   "leader": {
